@@ -79,11 +79,11 @@ data:extend {{
         {type = "fluid", name = "maraxsis-brackish-water", amount = 300},
     },
     results = {
-        {type = "item",  name = "salt",     amount = 3},
+        {type = "item",  name = "salt",     amount = 3, quality_change = 1},
         {type = "fluid", name = "oxygen",   amount = 100},
         {type = "fluid", name = "hydrogen", amount = 200},
     },
-    categories = {"maraxsis-hydro-plant", "chemistry"},
+    categories = {"maraxsis-hydro-plant", "electromagnetics", mods.Krastorio2 and "kr-electrolysis" or nil},
     icon = "__maraxsis__/graphics/icons/saline-electrolysis.png",
     icon_size = 64,
     auto_recycle = false,
@@ -108,10 +108,12 @@ data:extend {{
         {type = "fluid", name = "water", amount = 300},
     },
     allow_productivity = true,
+    auto_recycle = false,
     categories = {"chemistry", "cryogenics"},
     main_product = "water",
+    hidden = not not mods.skewer_planet_vesta,
 }}
-add_to_tech("maraxsis-water")
+add_to_tech(data.raw.recipe["ske_h2o"] and "ske_h2o" or "maraxsis-water")
 
 data:extend {{
     type = "item",
@@ -197,7 +199,7 @@ data:extend {{
         {type = "fluid", name = "water",                          amount = 20},
     },
     results = {
-        {type = "item",  name = "maraxsis-salt-filter",    amount = 1, independent_probability = 0.95, ignored_by_stats = 1},
+        {type = "item",  name = "maraxsis-salt-filter",    amount = 1, independent_probability = 0.95, ignored_by_productivity = 1, ignored_by_stats = 1, quality_change = 1},
         {type = "item",  name = "carbon-fiber",            amount = 1, independent_probability = 0.025},
         {type = "fluid", name = "maraxsis-brackish-water", amount = 20},
     },
@@ -228,6 +230,7 @@ data:extend {{
     allow_productivity = true,
     categories = {"maraxsis-hydro-plant"},
     main_product = "rocket-fuel",
+    auto_recycle = false,
 }}
 add_to_tech("maraxsis-hydrolox-rocket-fuel")
 

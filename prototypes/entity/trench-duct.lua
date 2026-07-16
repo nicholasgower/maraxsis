@@ -29,6 +29,7 @@ data:extend {{
     results = {
         {type = "item", name = "maraxsis-trench-duct", amount = 1},
     },
+    auto_recycle = true,
     energy_required = 10,
 }}
 table.insert(data.raw.technology["ducts"].effects, {
@@ -224,11 +225,7 @@ data:extend {{
     fast_replaceable_group = "ducts",
     collision_box = {{-0.99, -0.99}, {0.79, 0.79}},
     selection_box = {{-1, -1}, {1, 1}},
-    surface_conditions = {{
-        property = "pressure",
-        min = 400000,
-        max = 400000,
-    }},
+    surface_conditions = maraxsis.trench_surface_conditions(),
     fluid_box = {
         volume = constants.volume * 2,
         pipe_covers = nil,
@@ -349,3 +346,11 @@ data.raw.recipe["duct-exhaust"].ingredients = {
 data.raw.pump["duct-intake"].energy_source = {type = "void"}
 data.raw.pump["duct-exhaust"].energy_source = {type = "void"}
 data.raw.pump["non-return-duct"].energy_source = {type = "void"}
+
+for _, pump in pairs{"duct-intake", "duct-exhaust"} do
+    data.raw.pump[pump].energy_source = {
+        type = "electric",
+        usage_priority = "secondary-input",
+    }
+    data.raw.pump[pump].energy_usage = "200kW"
+end

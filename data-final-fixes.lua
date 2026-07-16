@@ -12,7 +12,6 @@ end
 
 local collision_mask_util = require("collision-mask-util")
 
-require "prototypes.research-vessel"
 require "prototypes.collision-mask"
 require "prototypes.swimming"
 
@@ -24,6 +23,7 @@ require "compat.combat-mechanics-overhaul"
 require "compat.castra"
 require "compat.krastorio-2-final-fixes"
 require "compat.water-refining"
+require "compat.science-tab"
 
 if not data.raw["mining-drill"]["electric-mining-drill"].next_upgrade then
     if mods["SchallAlienTech"] and data.raw["mining-drill"]["Schall-uranium-mining-drill"] then
@@ -59,8 +59,15 @@ for extractor in pairs(maraxsis_constants.MARAXSIS_SAND_EXTRACTORS) do
     update_collision_masks(extractor .. "-sand-extractor")
 end
 
-if data.raw["technology"]["maraxsis-promethium-productivity"] then
-    data.raw["technology"]["maraxsis-promethium-productivity"].unit.ingredients = table.deepcopy(data.raw["technology"]["research-productivity"].unit.ingredients)
+local i = 1
+while true do
+    local t = data.raw["technology"]["maraxsis-promethium-quality-" .. i]
+    if t then
+        t.unit.ingredients = table.deepcopy(data.raw["technology"]["research-productivity"].unit.ingredients)
+    else
+        break
+    end
+    i = i + 1
 end
 
 for _, recipe in pairs(data.raw.recipe) do
@@ -71,6 +78,35 @@ end
 
 data.raw["equipment-grid"]["maraxsis-diesel-submarine-equipment-grid"].equipment_categories = table.deepcopy(data.raw["equipment-grid"]["spidertron-equipment-grid"].equipment_categories)
 data.raw["equipment-grid"]["maraxsis-nuclear-submarine-equipment-grid"].equipment_categories = table.deepcopy(data.raw["equipment-grid"]["spidertron-equipment-grid"].equipment_categories)
+
+if data.raw.technology["legendary-quality"] and data.raw.technology["legendary-quality"].unit and data.raw.technology["legendary-quality"].unit.ingredients then
+    data:extend {maraxsis.merge(data.raw.technology["legendary-quality"], {
+        name = "maraxsis-legendary-quality",
+        localised_description = {"technology-description.legendary-quality"},
+        prerequisites = {
+            "hydraulic-science-pack",
+            "epic-quality"
+        }
+    })}
+
+    for _, ingredient in pairs(data.raw.technology["maraxsis-legendary-quality"].unit.ingredients) do
+        assert(type(ingredient) == "table")
+        if ingredient[1] == "cryogenic-science-pack" then
+            ingredient[1] = "hydraulic-science-pack"
+        end
+    end
+
+    for _, technology in pairs(data.raw.technology) do
+        if type(technology.prerequisites) == "table" then
+            for _, prerequisite in pairs(technology.prerequisites) do
+                if prerequisite == "legendary-quality" then
+                    table.insert(technology.prerequisites, "maraxsis-legendary-quality")
+                    break
+                end
+            end
+        end
+    end
+end
 
 local ducts = table.invert {
     "duct-small",
@@ -116,6 +152,25 @@ do
             end
 
             ::continue::
+        end
+    end
+end
+
+for estrogen_equipment, strength in pairs(maraxsis_constants.ESTROGEN_EQUIPMENT) do
+    for prototype in pairs(defines.prototypes.equipment) do
+        local equipment_prototype = data.raw[prototype][estrogen_equipment]
+        if equipment_prototype then
+            equipment_prototype.custom_tooltip_fields = equipment_prototype.custom_tooltip_fields or {}
+            table.insert(equipment_prototype.custom_tooltip_fields, {
+                name = {"tooltip.estrogen-duration-reduction"},
+                value = {"quality-tooltip.percent-duration-decrease", tostring(strength * 100)},
+                quality_header = "quality-tooltip.estrogen-duration-reduction",
+                quality_values = table.map(data.raw.quality, function(q)
+                    local quality_strength = (q.level * 0.3 + 1)
+                    local value = tostring(quality_strength * strength * 100)
+                    return {"quality-tooltip.percent-duration-decrease", value}
+                end)
+            })
         end
     end
 end

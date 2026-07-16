@@ -1,8 +1,15 @@
 --note: much of this code is duplicated from the nightvision script.
 
 local function init()
-    storage.external_modifiers = storage.external_modifiers or {light_radius = {}, swim_speed = {}}
-    storage.base_character_values = storage.base_character_values or {light_radius = 0, swim_speed = 0}
+    storage.external_modifiers = storage.external_modifiers or {}
+    storage.external_modifiers.light_radius = storage.external_modifiers.light_radius or {}
+    storage.external_modifiers.swim_speed = storage.external_modifiers.swim_speed or {}
+    storage.external_modifiers.estrogen_resistance = storage.external_modifiers.estrogen_resistance or {}
+
+    storage.base_character_values = storage.base_character_values or {}
+    storage.base_character_values.light_radius = storage.base_character_values.light_radius or 0
+    storage.base_character_values.swim_speed = storage.base_character_values.swim_speed or 0
+    storage.base_character_values.estrogen_resistance = storage.base_character_values.estrogen_resistance or 0
 end
 
 maraxsis.on_event(maraxsis.events.on_init(), init)
@@ -14,7 +21,7 @@ local is_abyssal_diving_gear = {
 
 -- returns the default buff amount per quality level in vanilla
 local function get_quality_buff(quality_level)
-    return 1 + quality_level
+    return (quality_level * 0.3 + 1)
 end
 
 local function get_abyssal_light_size(player)
@@ -31,7 +38,28 @@ local function get_abyssal_light_size(player)
             light_size = light_size + (equipment.count * get_quality_buff(quality.level))
         end
     end
+    
     return light_size
+end
+
+function maraxsis.get_estrogen_resistance(player)
+    init()
+    local character = player.character
+    local estrogen_resistance = 1 - storage.base_character_values["estrogen_resistance"]
+    if not character then return estrogen_resistance end
+    local grid = character.grid
+    if not grid then return estrogen_resistance end
+
+    for _, equipment in pairs(grid.get_contents()) do
+        if maraxsis_constants.ESTROGEN_EQUIPMENT[equipment.name] then
+            local quality = prototypes.quality[equipment.quality]
+            for _ = 1, equipment.count do
+                estrogen_resistance = estrogen_resistance * (1 - (maraxsis_constants.ESTROGEN_EQUIPMENT[equipment.name] * get_quality_buff(quality.level)))
+            end
+        end
+    end
+
+    return estrogen_resistance
 end
 
 maraxsis.is_wearing_abyssal_diving_gear = function(player)
@@ -122,20 +150,23 @@ end)
 
 maraxsis.on_event(defines.events.on_equipment_inserted, function(event)
     local equipment = event.equipment
-    if not equipment.valid or not is_abyssal_diving_gear[equipment.name] then return end
     local grid = event.grid
-    if not grid.valid then return end
-
-    for _, player in pairs(game.players) do
-        local armor = player.get_inventory(defines.inventory.character_armor)
-        if not armor then goto continue end
-        for i = 1, #armor do
-            local stack = armor[i]
-            if stack.valid_for_read and stack.is_armor and stack.grid == grid then
-                swap_diving_gear(grid, player, equipment)
+    if equipment.valid and grid.valid and is_abyssal_diving_gear[equipment.name] then
+        for _, player in pairs(game.players) do
+            local armor = player.get_inventory(defines.inventory.character_armor)
+            if armor then
+                for i = 1, #armor do
+                    local stack = armor[i]
+                    if stack.valid_for_read and stack.is_armor and stack.grid == grid then
+                        swap_diving_gear(grid, player, equipment)
+                    end
+                end
             end
         end
-        ::continue::
+    end
+
+
+    for _, player in pairs(game.players) do
         update_abyssal_light_cone(player)
     end
 end)
@@ -152,8 +183,8 @@ end)
 ---The given source will add the given value to light radius or other maraxsis modifiers.
 ---@param source_key string A unique string to allow overwriting the previous source of a modifier.
 ---@param modifier_type string string tied to the type of parameter to control. See relevant dic
----@param modifier double The actual bonus value to be added
-local function set_modifier(source_key, modifier_type, modifier)
+---@param modifier number The actual bonus value to be added
+function maraxsis.set_modifier(source_key, modifier_type, modifier)
     init()
     local modifier_list = storage.external_modifiers[modifier_type]
     assert(modifier_list, "Invalid modifier type for Maraxsis: " .. modifier_type)
@@ -178,10 +209,3 @@ local function set_modifier(source_key, modifier_type, modifier)
         update_abyssal_light_cone(player)
     end
 end
-
---Define the interface to modify underwater parameters
-remote.add_interface("maraxsis-character-modifier",{
-    set_light_radius_modifier = function(source_key, modifier) set_modifier(source_key, "light_radius", modifier) end,
-    set_swim_speed_modifier =   function(source_key, modifier) set_modifier(source_key, "swim_speed", modifier) end,
-})
---#endregion
