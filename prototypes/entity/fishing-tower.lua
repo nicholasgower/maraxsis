@@ -55,11 +55,7 @@ fishing_tower.minable = {mining_time = 0.5, result = "maraxsis-fishing-tower"}
 fishing_tower.icon = "__maraxsis__/graphics/icons/fishing-tower.png"
 fishing_tower.icon_size = 64
 fishing_tower.max_health = 500
-fishing_tower.surface_conditions = {{
-    property = "pressure",
-    min = 200000,
-    max = 200000,
-}}
+fishing_tower.surface_conditions = maraxsis.shallow_surface_conditions()
 fishing_tower.growth_grid_tile_size = 2
 fishing_tower.radius = 4
 fishing_tower.input_inventory_size = 2
@@ -77,6 +73,9 @@ fishing_tower.radius_visualisation_picture = {
     height = 6,
     priority = "extra-high-no-scale"
 }
+fishing_tower.module_slots = 3
+fishing_tower.quality_affects_module_slots = true
+fishing_tower.allowed_effects = {"speed", "productivity", "consumption", "pollution", "quality"}
 data:extend {fishing_tower}
 
 data:extend {{
