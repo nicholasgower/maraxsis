@@ -15,7 +15,7 @@ local function coral_created(event)
             name = "maraxsis-coral-animation",
             position = maraxsis.randomize_position(position, 0.75),
             force = force_index,
-            create_build_effect_smoke = false
+            create_build_effect_smoke = false,
         }
         new_coral.disabled_by_script = true
         new_coral.destructible = false
@@ -35,8 +35,8 @@ local function coral_created(event)
                 amount = 1,
                 name = "polycephalum-slime",
                 position = maraxsis.randomize_position(position, 0.75),
-            }
-        }
+            },
+        },
     }
 
     local registration_number = script.register_on_object_destroyed(coral)

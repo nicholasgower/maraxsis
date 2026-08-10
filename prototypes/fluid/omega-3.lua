@@ -18,10 +18,10 @@ data:extend {{
     enabled = false,
     energy_required = 20,
     ingredients = {
-        {type = "item", name = "maraxsis-fish-oil", amount = 1},
-        {type = "item", name = "nutrients", amount = 1, quality_min = "legendary", quality_max = "legendary"},
+        {type = "item",  name = "maraxsis-fish-oil",          amount = 1},
+        {type = "item",  name = "nutrients",                  amount = 1, quality_min = "legendary", quality_max = "legendary"},
         {type = "fluid", name = "maraxsis-liquid-atmosphere", amount = 5},
-        {type = "fluid", name = "water", amount = 90},
+        {type = "fluid", name = "water",                      amount = 90},
     },
     results = {
         {type = "fluid", name = "maraxsis-omega-3", amount = 30},
@@ -56,7 +56,7 @@ data:extend {{
             {"agricultural-science-pack", 1},
             {"hydraulic-science-pack",    1},
         },
-        time = 60
+        time = 60,
     },
     icons = {
         {
@@ -68,7 +68,7 @@ data:extend {{
             icon_size = data.raw.quality.normal.icon_size,
             scale = 0.5,
             shift = {45, 45},
-            floating = true
+            floating = true,
         },
     },
 }}
@@ -87,13 +87,13 @@ data:extend {{
     enabled = false,
     categories = {"maraxsis-hydro-plant"},
     ingredients = {
-        {type = "item", name = "nutrients", amount = 1, quality_min = "uncommon", quality_max = "uncommon"},
-        {type = "item", name = science_pack, amount = 1, quality_max = "normal"},
+        {type = "item",  name = "nutrients",        amount = 1, quality_min = "uncommon", quality_max = "uncommon"},
+        {type = "item",  name = science_pack,       amount = 1, quality_max = "normal"},
         {type = "fluid", name = "maraxsis-omega-3", amount = 10},
     },
     results = {
-        {type = "item", name = science_pack, amount = 1, ignored_by_stats = 1, ignored_by_productivity = 1, quality_min = "uncommon", always_fresh = true},
-        {type = "fluid", name = "water", amount = 20},
+        {type = "item",  name = science_pack, amount = 1, ignored_by_stats = 1, ignored_by_productivity = 1, quality_min = "uncommon", always_fresh = true},
+        {type = "fluid", name = "water",      amount = 20},
     },
     allow_productivity = false,
     can_set_quality = false,
@@ -102,14 +102,14 @@ data:extend {{
     icons = {
         {
             icon = data.raw.item[science_pack].icon,
-            icon_size = data.raw.item[science_pack].icon_size
+            icon_size = data.raw.item[science_pack].icon_size,
         },
         {
             icon = data.raw.quality.uncommon.icon,
             icon_size = data.raw.quality.uncommon.icon_size,
             scale = 0.25,
             shift = {-8, 8},
-            floating = true
+            floating = true,
         },
     },
 }}
@@ -128,13 +128,13 @@ data:extend {{
     enabled = false,
     categories = {"maraxsis-hydro-plant"},
     ingredients = {
-        {type = "item", name = "nutrients", amount = 1, quality_min = "epic", quality_max = "epic"},
-        {type = "item", name = science_pack, amount = 1, quality_max = "rare", quality_min = "rare"},
+        {type = "item",  name = "nutrients",        amount = 1, quality_min = "epic", quality_max = "epic"},
+        {type = "item",  name = science_pack,       amount = 1, quality_max = "rare", quality_min = "rare"},
         {type = "fluid", name = "maraxsis-omega-3", amount = 10},
     },
     results = {
-        {type = "item", name = science_pack, amount = 1, ignored_by_stats = 1, ignored_by_productivity = 1, quality_min = "epic"},
-        {type = "fluid", name = "water", amount = 20},
+        {type = "item",  name = science_pack, amount = 1, ignored_by_stats = 1, ignored_by_productivity = 1, quality_min = "epic"},
+        {type = "fluid", name = "water",      amount = 20},
     },
     allow_productivity = false,
     can_set_quality = false,
@@ -143,14 +143,14 @@ data:extend {{
     icons = {
         {
             icon = data.raw.item[science_pack].icon,
-            icon_size = data.raw.item[science_pack].icon_size
+            icon_size = data.raw.item[science_pack].icon_size,
         },
         {
             icon = data.raw.quality.epic.icon,
             icon_size = data.raw.quality.epic.icon_size,
             scale = 0.25,
             shift = {-8, 8},
-            floating = true
+            floating = true,
         },
     },
 }}

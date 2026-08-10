@@ -15,7 +15,7 @@ local map_colors = table.deepcopy {
     defines.color.orange,
     defines.color.rosybrown,
     defines.color.whitesmoke,
-    defines.color.darkcyan
+    defines.color.darkcyan,
 }
 
 local color_budget = 150
@@ -41,7 +41,7 @@ for i, v in pairs(fish) do
         layers = {
             v,
             table.deepcopy(v),
-        }
+        },
     }
     v.layers[2].draw_as_shadow = true
     v.layers[2].shift.x = v.layers[2].shift.x + 3
@@ -63,7 +63,7 @@ for i, v in pairs(fish) do
         collision_mask = {layers = {}},
         autoplace = {
             probability_expression = "maraxsis_tropical_fish_" .. i,
-            default_enabled = false
+            default_enabled = false,
         },
         vision_distance = 0,
         movement_speed = data.raw.unit["small-biter"].movement_speed * 2,
@@ -83,11 +83,11 @@ for i, v in pairs(fish) do
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = {amount = 0, type = "physical"}
-                            }
-                        }
-                    }
-                }
+                                damage = {amount = 0, type = "physical"},
+                            },
+                        },
+                    },
+                },
             },
             animation = v,
         },
@@ -108,8 +108,8 @@ for i, v in pairs(fish) do
             mining_time = data.raw.fish["fish"].minable.mining_time,
             results = {
                 {type = "item", name = "maraxsis-tropical-fish", amount = 5},
-            }
-        }
+            },
+        },
     }}
 end
 

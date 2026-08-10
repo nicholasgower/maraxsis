@@ -5,7 +5,7 @@ for i = 1, 3 do
         width = 64,
         height = 64,
         scale = 1 / 2,
-        flags = {"icon"}
+        flags = {"icon"},
     }
 end
 
@@ -26,9 +26,9 @@ data:extend {{
     energy_required = 5,
     ingredients = {
         {type = "item",  name = "maraxsis-fish-oil", amount = 1},
-        {type = "item",  name = "sulfur", amount = 3},
-        {type = "fluid", name = "heavy-oil", amount = 200},
-        {type = "fluid", name = "hydrogen", amount = 100},
+        {type = "item",  name = "sulfur",            amount = 3},
+        {type = "fluid", name = "heavy-oil",         amount = 200},
+        {type = "fluid", name = "hydrogen",          amount = 100},
     },
     results = {
         {type = "item", name = "maraxsis-super-sealant-substance", amount = 1},
@@ -36,5 +36,5 @@ data:extend {{
     categories = {"chemistry", "cryogenics"},
     allow_productivity = true,
     auto_recycle = false,
-    sort_item_ingredients = false
+    sort_item_ingredients = false,
 }}

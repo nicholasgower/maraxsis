@@ -5,7 +5,7 @@ for i = 1, 6 do
         width = 64,
         height = 64,
         scale = 1 / 2,
-        flags = {"icon"}
+        flags = {"icon"},
     }
 end
 
@@ -25,15 +25,15 @@ data:extend {{
     energy_required = 5,
     ingredients = {
         {type = "item", name = maraxsis_constants.SAND_ITEM_NAME, amount = 3},
-        {type = "item", name = "limestone", amount = 1},
-        {type = "item", name = "salt",      amount = 2},
+        {type = "item", name = "limestone",                       amount = 1},
+        {type = "item", name = "salt",                            amount = 2},
     },
     results = {
         {type = "item", name = "maraxsis-reinforced-glass", amount = 1, quality_change = -1},
     },
     allow_productivity = true,
     categories = {"metallurgy", "maraxsis-hydro-plant"},
-    auto_recycle = true
+    auto_recycle = true,
 }}
 
 data:extend {{
@@ -66,7 +66,7 @@ data:extend {{
     prerequisites = {"planet-discovery-maraxsis"},
     research_trigger = {
         type = "mine-entity",
-        entities = {"maraxsis-mollusk-husk"}
+        entities = {"maraxsis-mollusk-husk"},
     },
     order = "eb[glassworking]",
 }}
@@ -80,8 +80,8 @@ data:extend {{
         {
             type = "change-recipe-productivity",
             recipe = "maraxsis-pressure-dome",
-            change = 0.1
-        }
+            change = 0.1,
+        },
     },
     prerequisites = {"maraxsis-project-seadragon", "production-science-pack", "utility-science-pack", "metallurgic-science-pack"},
     unit = {
@@ -95,7 +95,7 @@ data:extend {{
             {"metallurgic-science-pack", 1},
             {"hydraulic-science-pack",   1},
         },
-        time = 60
+        time = 60,
     },
     max_level = "infinite",
     upgrade = true,
@@ -104,18 +104,18 @@ data:extend {{
             {
                 type = "item",
                 name = "maraxsis-reinforced-glass",
-                change = 0.1
+                change = 0.1,
             },
             {
                 type = "item",
                 name = "glass",
-                change = 0.1
+                change = 0.1,
             },
             {
                 type = "item",
                 name = "kr-glass",
-                change = 0.1
+                change = 0.1,
             },
         },
-    }
+    },
 }}

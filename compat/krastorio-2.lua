@@ -14,20 +14,20 @@ data:extend {{
     energy_required = 30,
     ingredients = {
         {type = "item",  name = "maraxsis-ooozma-specimen", amount = 1},
-        {type = "item",  name = "salt",                   amount = 1, quality_change = -1},
-        {type = "fluid", name = "saline-water",  amount = 300},
+        {type = "item",  name = "salt",                     amount = 1,  quality_change = -1},
+        {type = "fluid", name = "saline-water",             amount = 300},
     },
     results = {
         {type = "item", name = "hydraulic-research-data", amount = 1},
     },
     allow_productivity = true,
-    categories = { "maraxsis-hydro-plant"},
+    categories = {"maraxsis-hydro-plant"},
     auto_recycle = false,
     surface_conditions = maraxsis.trench_surface_conditions(),
 }}
 table.insert(data.raw.technology["hydraulic-science-pack"].effects, 2, {
     type = "unlock-recipe",
-    recipe = "hydraulic-research-data"
+    recipe = "hydraulic-research-data",
 })
 
 data:extend {{
@@ -43,7 +43,7 @@ data:extend {{
         {type = "item", name = "hydraulic-science-pack", amount = 5, quality_change = -1},
     },
     allow_productivity = true,
-    categories = { "kr-tech-cards"},
+    categories = {"kr-tech-cards"},
     auto_recycle = false,
     surface_conditions = maraxsis.trench_surface_conditions(),
 }}
@@ -51,7 +51,7 @@ data:extend {{
 table.insert(data.raw.recipe["maraxsis-hydrolox-rocket-fuel"].ingredients, {
     name = "iron-plate",
     amount = 1,
-    type = "item"
+    type = "item",
 })
 data.raw.recipe["maraxsis-hydrolox-rocket-fuel"].surface_conditions = maraxsis.surface_conditions()
 
@@ -60,7 +60,7 @@ data.raw.planet["maraxsis"].map_gen_settings.autoplace_controls["kr-rare-metal-o
 
 data.raw.recipe["maraxsis-conduit"].ingredients = {
     {type = "item", name = "beacon",                           amount = 1},
-    {type = "item", name = "maraxsis-reinforced-glass",             amount = 25},
+    {type = "item", name = "maraxsis-reinforced-glass",        amount = 25},
     {type = "item", name = "kr-rare-metals",                   amount = 50},
     {type = "item", name = "maraxsis-super-sealant-substance", amount = 15},
     {type = "item", name = "kr-energy-control-unit",           amount = 5},
@@ -112,11 +112,11 @@ table.insert(data.raw.technology["kr-intergalactic-transceiver"].unit.ingredient
 data.raw.recipe["kr-quantum-computer"].categories = {"maraxsis-hydro-plant"}
 
 data.raw.recipe["kr-quantum-computer"].ingredients = {
-    {type = "item", name = "kr-research-server",   amount = 3},
-    {type = "item", name = "tungsten-plate",       amount = 100},
-    {type = "item", name = "kr-rare-metals",       amount = 50},
-    {type = "item", name = "kr-ai-core",           amount = 50},
-    {type = "item", name = "quantum-processor",    amount = 100},
+    {type = "item", name = "kr-research-server",        amount = 3},
+    {type = "item", name = "tungsten-plate",            amount = 100},
+    {type = "item", name = "kr-rare-metals",            amount = 50},
+    {type = "item", name = "kr-ai-core",                amount = 50},
+    {type = "item", name = "quantum-processor",         amount = 100},
     {type = "item", name = "maraxsis-reinforced-glass", amount = 200},
 }
 
@@ -135,18 +135,18 @@ data:extend {{
     type = "recipe",
     name = "kr-singularity-research-data",
     enabled = false,
-    categories = { "kr-matter-deconversion" },
+    categories = {"kr-matter-deconversion"},
     energy_required = 20,
     ingredients = {
-      { type = "item", name = "kr-charged-matter-stabilizer", amount = 1 },
-      { type = "item", name = "metallic-asteroid-chunk", amount = 1 },
-      { type = "item", name = "carbonic-asteroid-chunk", amount = 1 },
-      { type = "item", name = "oxide-asteroid-chunk", amount = 1 },
-      { type = "fluid", name = "kr-matter", amount = 20 },
+        {type = "item",  name = "kr-charged-matter-stabilizer", amount = 1},
+        {type = "item",  name = "metallic-asteroid-chunk",      amount = 1},
+        {type = "item",  name = "carbonic-asteroid-chunk",      amount = 1},
+        {type = "item",  name = "oxide-asteroid-chunk",         amount = 1},
+        {type = "fluid", name = "kr-matter",                    amount = 20},
     },
     results = {
-      { type = "item", name = "kr-singularity-research-data", amount = 5 },
-      { type = "item", name = "kr-charged-matter-stabilizer", amount = 1, independent_probability = 0.9 },
+        {type = "item", name = "kr-singularity-research-data", amount = 5},
+        {type = "item", name = "kr-charged-matter-stabilizer", amount = 1, independent_probability = 0.9},
     },
     main_product = "kr-singularity-research-data",
     allow_productivity = true,
@@ -155,26 +155,26 @@ data:extend {{
         property = "pressure",
         min = 0,
         max = 0,
-    }}
+    }},
 }}
 
 table.insert(data.raw.technology["kr-singularity-tech-card"].effects, {
     type = "unlock-recipe",
-    recipe = "kr-singularity-research-data"
+    recipe = "kr-singularity-research-data",
 })
 
 data.raw.recipe["kr-singularity-tech-card"].surface_conditions = nil
 data.raw.recipe["kr-singularity-tech-card"].ingredients = {
-    { type = "item", name = "kr-blank-tech-card", amount = 5 },
-    { type = "item", name = "kr-singularity-research-data", amount = 5 },
+    {type = "item", name = "kr-blank-tech-card",           amount = 5},
+    {type = "item", name = "kr-singularity-research-data", amount = 5},
 }
 data.raw.recipe["kr-singularity-tech-card"].results = {
-    { type = "item", name = "kr-singularity-tech-card", amount = 5 },
+    {type = "item", name = "kr-singularity-tech-card", amount = 5},
 }
 
 data.raw.recipe["microplastics"].ingredients = {
-    {type = "item", name = "maraxsis-tropical-fish",   amount = 1},
-    {type = "item", name = "shotgun-shell", amount = 1},
+    {type = "item", name = "maraxsis-tropical-fish", amount = 1},
+    {type = "item", name = "shotgun-shell",          amount = 1},
 }
 
 if data.raw["assembling-machine"]["kr-atmospheric-condenser"] then

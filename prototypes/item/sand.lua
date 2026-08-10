@@ -5,7 +5,7 @@ for i = 1, 3 do
         width = 64,
         height = 64,
         scale = 0.575,
-        flags = {"icon"}
+        flags = {"icon"},
     }
 end
 
@@ -22,17 +22,17 @@ data:extend {{
 
 data:extend {{
     type = "recipe-category",
-    name = "maraxsis-sand-extraction"
+    name = "maraxsis-sand-extraction",
 }}
 
 data:extend {{
     type = "recipe",
     name = "maraxsis-sand-extraction",
-    categories = {"maraxsis-sand-extraction" },
+    categories = {"maraxsis-sand-extraction"},
     energy_required = 10,
     ingredients = {},
     results = {
-        {type = "item", name = maraxsis_constants.SAND_ITEM_NAME, amount = 1}
+        {type = "item", name = maraxsis_constants.SAND_ITEM_NAME, amount = 1},
     },
     enabled = false,
     show_amount_in_title = false,
@@ -54,7 +54,7 @@ for i = 1, 50 do
         type = "change-recipe-productivity",
         recipe = "maraxsis-sand-extraction",
         change = 0.1,
-        hidden = true
+        hidden = true,
     })
 end
 
@@ -79,4 +79,3 @@ for extractor in pairs(maraxsis_constants.MARAXSIS_SAND_EXTRACTORS) do
     extractor.name = extractor.name .. "-sand-extractor"
     data:extend {extractor}
 end
-

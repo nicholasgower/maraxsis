@@ -19,8 +19,8 @@ local estrogen_effects = {
         else
             if not on then return end
             local original_direction = entity.direction
-            if not entity.flip{horizontal = true} then
-                if not entity.rotate{reverse = false} then
+            if not entity.flip {horizontal = true} then
+                if not entity.rotate {reverse = false} then
                     return
                 end
             end
@@ -60,13 +60,13 @@ local estrogen_effects = {
                 direction = entity.direction,
                 create_build_effect_smoke = false,
                 raise_built = false,
-                move_stuck_players = false
+                move_stuck_players = false,
             }
             extra_arm.minable_flag = false
             extra_arm.operable = false
             extra_arm.rotatable = false
             extra_arm.destructible = false
-            extra_arm.rotate{}
+            extra_arm.rotate {}
             storage.estrogen_has_extra_arms[entity.unit_number] = extra_arm
             storage.estrogen_is_an_extra_arm[extra_arm.unit_number] = extra_arm
         else
@@ -84,7 +84,7 @@ local estrogen_effects = {
             position = entity.position,
             target = entity,
             speed = 1,
-            max_range = 0.1
+            max_range = 0.1,
         }
     end,
     cant_breathe = function(entity, on)
@@ -148,8 +148,8 @@ local function apply_estrogen_max_duration(player)
 end
 
 maraxsis.on_event(defines.events.on_script_trigger_effect, function(event)
-	local effect_id = event.effect_id
-	if effect_id ~= "maraxsis-estrogen-sticker-applied" then return end
+    local effect_id = event.effect_id
+    if effect_id ~= "maraxsis-estrogen-sticker-applied" then return end
 
     for _, player in pairs(game.players) do
         apply_estrogen_max_duration(player)

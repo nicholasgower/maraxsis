@@ -7,7 +7,7 @@ data:extend {{
     prerequisites = {"maraxsis-glassworking", "maraxsis-hydro-plant"},
     research_trigger = {
         type = "craft-item",
-        item = "maraxsis-pressure-dome"
+        item = "maraxsis-pressure-dome",
     },
     order = "ed[piscary]",
 }}
@@ -51,7 +51,7 @@ data:extend {{
     allow_productivity = true,
     categories = {"organic"},
     subgroup = "nauvis-agriculture",
-    order = "g[maraxsis]"
+    order = "g[maraxsis]",
 }}
 
 local function add_to_tech(recipe)

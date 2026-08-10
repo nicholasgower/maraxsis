@@ -74,7 +74,7 @@ for _, nightvision in pairs(data.raw["night-vision-equipment"]) do
 
     disabled.localised_description = {"",
         nightvision.localised_description or {"?", {"", {"equipment-description." .. nightvision.name}, "\n"}, {"", {"item-description." .. nightvision.name}, "\n"}, ""},
-        {"equipment-description.nightvision-disabled-underwater"}
+        {"equipment-description.nightvision-disabled-underwater"},
     }
 
     nightvision_to_extend[#nightvision_to_extend + 1] = disabled
@@ -124,5 +124,5 @@ add_quality_factoriopedia_info(data.raw["roboport"]["maraxsis-regulator"], {
     {{"quality-tooltip.atmosphere-consumption"}, function(entity, quality_level)
         local consumption_per_second = maraxsis.atmosphere_consumption(quality_level)
         return tostring(consumption_per_second) .. "/s"
-    end}
+    end},
 })

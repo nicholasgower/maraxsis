@@ -38,7 +38,7 @@ local function get_abyssal_light_size(player)
             light_size = light_size + (equipment.count * get_quality_buff(quality.level))
         end
     end
-    
+
     return light_size
 end
 
@@ -192,7 +192,7 @@ function maraxsis.set_modifier(source_key, modifier_type, modifier)
     if modifier and modifier ~= 0 then
         modifier_list[source_key] = modifier --Told to have a modifier
     else
-        modifier_list[source_key] = nil --Told to remove modifier
+        modifier_list[source_key] = nil      --Told to remove modifier
     end
 
     --Update the base value from scratch

@@ -55,7 +55,7 @@ table.delete_if = function(tbl, f, ...)
         if is_function then
             for k, v in pairs(tbl) do if not f(v, k, ...) then result[k] = v end end
         else
-            for k, v in pairs(tbl) do if f ~= v then result[k] = v end end        
+            for k, v in pairs(tbl) do if f ~= v then result[k] = v end end
         end
     end
     return result

@@ -43,12 +43,12 @@ for _, quality in pairs(data.raw.quality) do
         working_sound = {
             sound = {
                 filename = "__maraxsis__/sounds/regulator.ogg",
-                volume = 0.3
+                volume = 0.3,
             },
             max_sounds_per_type = 3,
             audible_distance_modifier = 0.4,
             fade_in_ticks = 4,
-            fade_out_ticks = 20
+            fade_out_ticks = 20,
         },
         energy_source = {
             type = "fluid",
@@ -76,9 +76,9 @@ for _, quality in pairs(data.raw.quality) do
                     name = "maraxsis-swimming-bubbles",
                     frequency = 100,
                     position = {-0.9, -2.7},
-                    starting_vertical_speed = 0.03
-                }
-            }
+                    starting_vertical_speed = 0.03,
+                },
+            },
         },
         effect_receiver = {
             uses_module_effects = false,
@@ -98,7 +98,7 @@ for _, quality in pairs(data.raw.quality) do
                         line_length = 8,
                         animation_speed = 1.5,
                         scale = 0.5 * 4 / 3,
-                        flags = {"no-scale"}
+                        flags = {"no-scale"},
                     },
                     {
                         filename = "__maraxsis__/graphics/entity/regulator/sh.png",
@@ -112,10 +112,10 @@ for _, quality in pairs(data.raw.quality) do
                         animation_speed = 1.5,
                         scale = 0.5 * 4 / 3,
                         draw_as_shadow = true,
-                    }
-                }
-            }
-        }
+                    },
+                },
+            },
+        },
     }}
 
     ::continue::

@@ -95,6 +95,6 @@ data:extend {{
         SAND_ITEM_NAME = SAND_ITEM_NAME,
         DEGRADATION_ENABLED = true, -- https://github.com/notnotmelon/maraxsis/issues/409
         ESTROGEN_EQUIPMENT = ESTROGEN_EQUIPMENT,
-        ESTROGEN_DURATION = 3 * 60 * 60
-    }
+        ESTROGEN_DURATION = 3 * 60 * 60,
+    },
 }}

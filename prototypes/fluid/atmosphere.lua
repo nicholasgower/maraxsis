@@ -19,7 +19,7 @@ data:extend {{
     energy_required = 10,
     ingredients = {},
     results = {
-        {type = "fluid", name = "maraxsis-atmosphere", amount = 100, temperature = 25}
+        {type = "fluid", name = "maraxsis-atmosphere", amount = 100, temperature = 25},
     },
     enabled = false,
     auto_recycle = false,
@@ -28,7 +28,7 @@ data:extend {{
         property = "pressure",
         min = 100,
         max = 4000,
-    }}
+    }},
 }}
 
 data:extend {{
@@ -39,20 +39,20 @@ data:extend {{
     effects = {
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-liquid-atmosphere"
+            recipe = "maraxsis-liquid-atmosphere",
         },
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-liquid-atmosphere-decompression"
+            recipe = "maraxsis-liquid-atmosphere-decompression",
         },
         {
             type = "unlock-recipe",
-            recipe = "empty-maraxsis-liquid-atmosphere-barrel"
+            recipe = "empty-maraxsis-liquid-atmosphere-barrel",
         },
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-liquid-atmosphere-barrel"
-        }
+            recipe = "maraxsis-liquid-atmosphere-barrel",
+        },
     },
     prerequisites = {"maraxsis-estrogen-technology-aquilo"},
     unit = {
@@ -61,10 +61,10 @@ data:extend {{
             {"hydraulic-science-pack", 1},
             {"cryogenic-science-pack", 1},
         },
-        time = 60
+        time = 60,
     },
     order = "eb[liquid-atmosphere]",
-    localised_name = {"fluid-name.maraxsis-liquid-atmosphere"}
+    localised_name = {"fluid-name.maraxsis-liquid-atmosphere"},
 }}
 
 data:extend {{
@@ -88,11 +88,11 @@ data:extend {{
     energy_required = 10,
     ingredients = {
         {type = "fluid", name = "maraxsis-atmosphere", amount = 100},
-        {type = "fluid", name = "fluoroketone-cold",   amount = 20}
+        {type = "fluid", name = "fluoroketone-cold",   amount = 20},
     },
     results = {
         {type = "fluid", name = "maraxsis-liquid-atmosphere", amount = 1},
-        {type = "fluid", name = "fluoroketone-hot",           amount = 20, ignored_by_stats = 20, ignored_by_productivity = 20}
+        {type = "fluid", name = "fluoroketone-hot",           amount = 20, ignored_by_stats = 20, ignored_by_productivity = 20},
     },
     enabled = false,
     main_product = "maraxsis-liquid-atmosphere",
@@ -104,7 +104,7 @@ data:extend {{
         property = "pressure",
         min = 100,
         max = 600,
-    }}
+    }},
 }}
 
 data:extend {{
@@ -113,10 +113,10 @@ data:extend {{
     categories = {"chemistry"},
     energy_required = 9,
     ingredients = {
-        {type = "fluid", name = "maraxsis-liquid-atmosphere", amount = 1}
+        {type = "fluid", name = "maraxsis-liquid-atmosphere", amount = 1},
     },
     results = {
-        {type = "fluid", name = "maraxsis-atmosphere", amount = 90, temperature = 25, ignored_by_stats = 90, ignored_by_productivity = 90}
+        {type = "fluid", name = "maraxsis-atmosphere", amount = 90, temperature = 25, ignored_by_stats = 90, ignored_by_productivity = 90},
     },
     enabled = false,
     main_product = "maraxsis-atmosphere",

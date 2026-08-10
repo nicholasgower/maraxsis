@@ -10,28 +10,28 @@ data:extend {{
     type = "custom-input",
     key_sequence = "",
     linked_game_control = "mine",
-    name = "mine"
+    name = "mine",
 }}
 
 data:extend {{
     type = "custom-input",
     name = "build",
     key_sequence = "",
-    linked_game_control = "build"
+    linked_game_control = "build",
 }}
 
 data:extend {{
     type = "custom-input",
     name = "build-ghost",
     key_sequence = "",
-    linked_game_control = "build-ghost"
+    linked_game_control = "build-ghost",
 }}
 
 data:extend {{
     type = "custom-input",
     name = "super-forced-build",
     key_sequence = "",
-    linked_game_control = "super-forced-build"
+    linked_game_control = "super-forced-build",
 }}
 
 -- https://github.com/notnotmelon/maraxsis/issues/255
@@ -39,5 +39,5 @@ data:extend {{
     type = "custom-input",
     name = "factory-open-outside-surface-to-remote-view",
     key_sequence = "SHIFT + mouse-button-2",
-    controller_key_sequence = "controller-leftstick"
+    controller_key_sequence = "controller-leftstick",
 }}

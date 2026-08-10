@@ -10,32 +10,32 @@ local BIOLUMINESCENCE_PARAMETERS = {
         color = {0.5, 0.5, 0.5},
         delay = 240,
         intensity = 1,
-        size = 0.3
+        size = 0.3,
     },
     [defines.segmented_unit_ai_state.investigating] = {
         color = {0.5, 0.5, 0.5},
         delay = 240,
         intensity = 1,
-        size = 0.3
+        size = 0.3,
     },
     [defines.segmented_unit_ai_state.attacking] = {
         color = {1, 0, 0},
         delay = 20,
         intensity = 3,
-        size = 0.5
+        size = 0.5,
     },
     [defines.segmented_unit_ai_state.enraged_at_target] = {
         color = {1, 0, 0},
         delay = 20,
         intensity = 3,
-        size = 0.5
+        size = 0.5,
     },
     [defines.segmented_unit_ai_state.enraged_at_nothing] = {
         color = {1, 0, 0},
         delay = 20,
         intensity = 3,
-        size = 0.5
-    }
+        size = 0.5,
+    },
 }
 
 local function save_spawn_location(segmented_unit)
@@ -66,7 +66,7 @@ local function go_investigate_spawn_location(segmented_unit)
         destination = {
             offset_x + spawn_location.x,
             offset_y + spawn_location.y,
-        }
+        },
     }
 end
 
@@ -114,7 +114,7 @@ local function draw_bioluminescese(segment)
         target = segment,
         surface = segment.surface_index,
         time_to_live = 5,
-        color = flash_parameters.color
+        color = flash_parameters.color,
     }
     local delay = get_segment_glow_delay(segment, flash_parameters)
     maraxsis.execute_later("draw_bioluminescese", delay, segment)

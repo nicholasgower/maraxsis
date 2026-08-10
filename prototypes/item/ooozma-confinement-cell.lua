@@ -13,7 +13,7 @@ for i = 1, 3 do
         width = 64,
         height = 64,
         scale = 1 / 2,
-        flags = {"icon"}
+        flags = {"icon"},
     }
 end
 
@@ -33,13 +33,13 @@ data:extend {{
     energy_required = 5,
     ingredients = {
         {type = "item", name = "maraxsis-reinforced-glass", amount = 5},
-        {type = "item", name = "steel-plate",          amount = 1},
+        {type = "item", name = "steel-plate",               amount = 1},
     },
     results = {
         {type = "item", name = "maraxsis-ooozma-confinement-cell", amount = 1},
     },
     auto_recycle = true,
-    allow_productivity = true
+    allow_productivity = true,
 }}
 
 data:extend {{
@@ -50,7 +50,7 @@ data:extend {{
     energy_required = 10,
     ingredients = {
         {type = "item", name = "maraxsis-ooozma-confinement-cell", amount = 1},
-        {type = "item", name = "maraxsis-fish-food",             amount = 1},
+        {type = "item", name = "maraxsis-fish-food",               amount = 1},
     },
     results = {
         {type = "item", name = "maraxsis-ooozma-confinement-cell", amount = 1},
@@ -60,7 +60,7 @@ data:extend {{
     auto_recycle = false,
     categories = {"maraxsis-hydro-plant"},
     surface_conditions = maraxsis.trench_surface_conditions(),
-    allow_productivity = true
+    allow_productivity = true,
 }}
 
 data:extend {{
@@ -76,14 +76,14 @@ data:extend {{
         {
             type = "unlock-recipe",
             recipe = "maraxsis-ooozma-specimen",
-        }
+        },
     },
     prerequisites = {"maraxsis-piscary", "ducts", "maraxsis-geothermal-energy"},
     research_trigger = {
         type = "scripted",
         trigger_description = {"technology-trigger.survive-estrogen"},
         icon = "__maraxsis__/graphics/icons/estrogen.png",
-        icon_size = 64
+        icon_size = 64,
     },
     order = "ee[ooozma-confinement]",
 }}

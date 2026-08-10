@@ -4,7 +4,7 @@ require "trench-noise-expressions"
 local asteroid_util = require "__space-age__.prototypes.planet.asteroid-spawn-definitions"
 local planet_map_gen = require "map-gen"
 
-PlanetsLib:extend{
+PlanetsLib:extend {
     type = "planet",
     name = "maraxsis",
     starting_area = 1,
@@ -20,7 +20,7 @@ PlanetsLib:extend{
     orbit = {
         distance = 17.5,
         orientation = 0.515,
-        parent = {type = "space-location", name = "star"}
+        parent = {type = "space-location", name = "star"},
     },
     starmap_icon = "__maraxsis__/graphics/planets/maraxsis-starmap-icon.png",
     starmap_icon_size = 512,
@@ -38,16 +38,16 @@ PlanetsLib:extend{
             surface_vertical_offset = 0.1,
             cloud_vertical_offset = 0.015,
             specular_intensity = 1,
-            atmosphere_color = { 0.055, 0.09, 0.11, 0.1 },
+            atmosphere_color = {0.055, 0.09, 0.11, 0.1},
             cloud_flow_intensity = 0.5,
             cloud_panning_rate = 0.5,
             rotation_seconds = -220,
-            planet_axis = { -15.0, 212.0 },
-            planet_axis_deviation_amplitude = { 10.0, 10.0 },
-            planet_axis_deviation_seconds = { 390.5, 353.7 },
-            position = { -680, 601 },
-            parallax_strength = { 0.95, 0.95 },
-            light_direction = { -0.42, 0.23, 0.67 },
+            planet_axis = {-15.0, 212.0},
+            planet_axis_deviation_amplitude = {10.0, 10.0},
+            planet_axis_deviation_seconds = {390.5, 353.7},
+            position = {-680, 601},
+            parallax_strength = {0.95, 0.95},
+            light_direction = {-0.42, 0.23, 0.67},
             light_radius = 8.9,
             atmosphere_thickness = 0.02,
             light_intensity_contrast = 0.3,
@@ -56,7 +56,7 @@ PlanetsLib:extend{
                 filename = "__maraxsis__/graphics/planets/maraxsis-surface.png",
                 width = 2048,
                 height = 1024,
-                allow_forced_downscale = true
+                allow_forced_downscale = true,
 
             },
             planet_normal = {
@@ -65,7 +65,7 @@ PlanetsLib:extend{
                 height = 1,
                 x = 1,
                 y = 0,
-                allow_forced_downscale = true
+                allow_forced_downscale = true,
             },
             planet_reflectivity = {
                 filename = "__maraxsis__/graphics/planets/maraxsis-reflectivity.png",
@@ -73,31 +73,31 @@ PlanetsLib:extend{
                 height = 1,
                 x = 2,
                 y = 0,
-                allow_forced_downscale = true
+                allow_forced_downscale = true,
             },
             global_cloud = {
                 filename = "__maraxsis__/graphics/planets/maraxsis-cloud.png",
                 width = 2048,
                 height = 1024,
-                allow_forced_downscale = true
+                allow_forced_downscale = true,
             },
             global_cloud_normal = {
                 filename = "__maraxsis__/graphics/planets/maraxsis-cloud-normal.png",
                 width = 2048,
                 height = 1024,
-                allow_forced_downscale = true
+                allow_forced_downscale = true,
             },
             global_cloud_flow = {
                 filename = "__space-age__/graphics/space/aquilo-cloud-flow.png",
                 width = 2048,
                 height = 1024,
-                allow_forced_downscale = true
-            }
-        }
-    }
+                allow_forced_downscale = true,
+            },
+        },
+    },
 }
 
-data:extend { {
+data:extend {{
     type = "space-connection",
     name = "vulcanus-maraxsis",
     subgroup = "planet-connections",
@@ -105,10 +105,10 @@ data:extend { {
     to = "maraxsis",
     order = "f",
     length = 20000,
-    asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_aquilo)
-} }
+    asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_aquilo),
+}}
 
-data:extend { {
+data:extend {{
     type = "space-connection",
     name = "fulgora-maraxsis",
     subgroup = "planet-connections",
@@ -116,11 +116,11 @@ data:extend { {
     to = "maraxsis",
     order = "f",
     length = 20000,
-    asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_aquilo)
-} }
+    asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_aquilo),
+}}
 
 if data.raw["planet"]["tenebris"] then
-    data:extend { {
+    data:extend {{
         type = "space-connection",
         name = "maraxsis-tenebris",
         subgroup = "planet-connections",
@@ -128,8 +128,8 @@ if data.raw["planet"]["tenebris"] then
         to = "tenebris",
         order = "g",
         length = 20000,
-        asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_aquilo)
-    } }
+        asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_aquilo),
+    }}
 end
 
 data:extend {{
@@ -143,12 +143,12 @@ data:extend {{
         {
             type = "unlock-space-location",
             space_location = "maraxsis",
-            use_icon_overlay_constant = true
+            use_icon_overlay_constant = true,
         },
         {
             type = "unlock-space-location",
             space_location = "maraxsis-trench",
-            use_icon_overlay_constant = true
+            use_icon_overlay_constant = true,
         },
         {
             type = "unlock-recipe",
@@ -161,7 +161,7 @@ data:extend {{
         "cliff-explosives",
         "electromagnetic-science-pack",
         "quality-module-3",
-        "fish-breeding"
+        "fish-breeding",
     },
     unit = {
         count = 3000,

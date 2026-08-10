@@ -12,18 +12,18 @@ maraxsis.on_event(defines.events.on_cargo_pod_finished_descending, function(even
         if stack.valid_for_read and stack.name == "hydraulic-science-pack" then
             local quality = stack.quality
             if quality.level <= 0 then
-                assert(stack.set_stack{
+                assert(stack.set_stack {
                     name = "maraxsis-fish-oil",
-                    count = stack.count
+                    count = stack.count,
                 })
             else
                 local new_quality = quality.previous
                 if new_quality then
-                    assert(stack.set_stack{
+                    assert(stack.set_stack {
                         name = "hydraulic-science-pack",
                         count = stack.count,
                         quality = new_quality,
-                        spoil_percent = stack.spoil_percent
+                        spoil_percent = stack.spoil_percent,
                     })
                 end
             end

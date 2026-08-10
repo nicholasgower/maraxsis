@@ -21,15 +21,15 @@ data:extend {{
     energy_required = 4,
     ingredients = {
         {type = "fluid", name = "water", amount = 80, fluidbox_index = 0, optional_fluidbox_indexes = {1}},
-        {type = "item", name = "pipe", amount = 1},
+        {type = "item",  name = "pipe",  amount = 1},
     },
     results = {
-        {type = "fluid", name = "maraxsis-supercritical-steam", amount = 80, temperature = 2000}
+        {type = "fluid", name = "maraxsis-supercritical-steam", amount = 80, temperature = 2000},
     },
     allow_productivity = false,
     allow_quality = false,
     auto_recycle = false,
-    categories = { "maraxsis-geothermal-generator"},
+    categories = {"maraxsis-geothermal-generator"},
 }}
 
 data:extend {{
@@ -40,11 +40,11 @@ data:extend {{
     icon = "__maraxsis__/graphics/icons/supercritical-steam-cooling.png",
     ingredients = {
         {type = "fluid", name = "maraxsis-supercritical-steam", amount = 50, temperature = 2000},
-        {type = "fluid", name = "fluoroketone-cold", amount = 10},
+        {type = "fluid", name = "fluoroketone-cold",            amount = 10},
     },
     results = {
-        {type = "fluid", name = "steam", amount = 500, temperature = 500},
-        {type = "fluid", name = "fluoroketone-hot", amount = 10, ignored_by_stats = 10, ignored_by_productivity = 10},
+        {type = "fluid", name = "steam",            amount = 500, temperature = 500},
+        {type = "fluid", name = "fluoroketone-hot", amount = 10,  ignored_by_stats = 10, ignored_by_productivity = 10},
     },
     allow_productivity = false,
     allow_quality = false,

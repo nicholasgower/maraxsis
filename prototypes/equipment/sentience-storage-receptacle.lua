@@ -16,9 +16,9 @@ data:extend {{
     energy_required = 10,
     categories = {"maraxsis-hydro-plant"},
     ingredients = {
-        {type = "item", name = "low-density-structure", amount = 10},
-        {type = "item", name = "quantum-processor",     amount = 20},
-        {type = "item", name = "maraxsis-tropical-fish",              amount = 1, quality_min = "legendary", quality_max = "legendary"},
+        {type = "item", name = "low-density-structure",  amount = 10},
+        {type = "item", name = "quantum-processor",      amount = 20},
+        {type = "item", name = "maraxsis-tropical-fish", amount = 1, quality_min = "legendary", quality_max = "legendary"},
     },
     auto_recycle = false,
     results = {
@@ -35,7 +35,7 @@ data:extend {{
         usage_priority = "secondary-input",
         input_flow_limit = "500kW",
         buffer_capacity = "10kJ",
-        drain = "400kW"
+        drain = "400kW",
     },
     energy_consumption = "1W",
     movement_bonus = 0,
@@ -43,12 +43,12 @@ data:extend {{
         filename = "__maraxsis__/graphics/equipment/sentience-storage-receptacle.png",
         width = 256,
         height = 256,
-        priority = "medium"
+        priority = "medium",
     },
     take_result = "maraxsis-sentience-storage-receptacle",
     shape = {
         width = 2,
         height = 2,
-        type = "full"
+        type = "full",
     },
 }}

@@ -29,7 +29,7 @@ for _, fluid in pairs(data.raw.fluid) do
         enabled = true,
         energy_required = 1,
         ingredients = {
-            {type = "fluid", name = fluid.name, amount = 100}
+            {type = "fluid", name = fluid.name, amount = 100},
         },
         results = {},
         hidden_in_factoriopedia = true,

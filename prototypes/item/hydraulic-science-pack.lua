@@ -33,7 +33,7 @@ if mods["Krastorio2-spaced-out"] then
         icon_size = 64,
         subgroup = "science-pack",
         weight = 1000,
-        order = "ao75[hydraulic-research-data]"
+        order = "ao75[hydraulic-research-data]",
     }}
 end
 
@@ -43,9 +43,9 @@ data:extend {{
     enabled = false,
     energy_required = 30,
     ingredients = {
-        {type = "item",  name = "maraxsis-ooozma-specimen", amount = 1},
-        {type = "item",  name = "salt",                   amount = 1, quality_change = -1},
-        {type = "fluid", name = "maraxsis-supercritical-steam",  amount = 150, temperature = 2000},
+        {type = "item",  name = "maraxsis-ooozma-specimen",     amount = 1},
+        {type = "item",  name = "salt",                         amount = 1,   quality_change = -1},
+        {type = "fluid", name = "maraxsis-supercritical-steam", amount = 150, temperature = 2000},
     },
     results = {
         {type = "item", name = "hydraulic-science-pack", amount = 1},
@@ -90,7 +90,7 @@ data:extend {{
         {
             type = "unlock-recipe",
             recipe = "maraxsis-fish-oil",
-        }
+        },
     },
     research_trigger = {
         type = "craft-item",

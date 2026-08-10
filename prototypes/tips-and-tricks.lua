@@ -7,14 +7,14 @@ data:extend {{
     order = "e-a",
     trigger = {
         type = "research",
-        technology = "planet-discovery-maraxsis"
+        technology = "planet-discovery-maraxsis",
     },
     skip_trigger = {
         type = "or",
         triggers = {
             {
                 type = "change-surface",
-                surface = "maraxsis"
+                surface = "maraxsis",
             },
             {
                 type = "sequence",
@@ -22,19 +22,19 @@ data:extend {{
                 {
                     {
                         type = "research",
-                        technology = "planet-discovery-maraxsis"
+                        technology = "planet-discovery-maraxsis",
                     },
                     {
                         type = "time-elapsed",
-                        ticks = 15 * minute
+                        ticks = 15 * minute,
                     },
                     {
                         type = "time-since-last-tip-activation",
-                        ticks = 15 * minute
-                    }
-                }
-            }
-        }
+                        ticks = 15 * minute,
+                    },
+                },
+            },
+        },
     },
     simulation = {
         planet = "maraxsis",
@@ -230,7 +230,7 @@ data:extend {{
     order = "e-c",
     trigger = {
         type = "research",
-        technology = "planet-discovery-maraxsis"
+        technology = "planet-discovery-maraxsis",
     },
-    dependencies = {"maraxsis-briefing"}
+    dependencies = {"maraxsis-briefing"},
 }}

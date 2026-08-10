@@ -6,15 +6,15 @@ data:extend {{
     effects = {
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-sonar"
-        }
+            recipe = "maraxsis-sonar",
+        },
     },
     prerequisites = {"maraxsis-estrogen-technology-vulcanus", "radar"},
     unit = {
         count = 5000,
         ingredients = {
-            {"metallurgic-science-pack",     1},
-            {"hydraulic-science-pack",       1},
+            {"metallurgic-science-pack", 1},
+            {"hydraulic-science-pack",   1},
         },
         time = 60,
     },
@@ -34,10 +34,10 @@ data:extend {{
     name = "maraxsis-sonar",
     enabled = false,
     ingredients = {
-        {type = "item", name = "tungsten-plate",       amount = 10},
+        {type = "item", name = "tungsten-plate",            amount = 10},
         {type = "item", name = "maraxsis-reinforced-glass", amount = 10},
-        {type = "item", name = "radar",                amount = 1},
-        {type = "item", name = "small-lamp",           amount = 2},
+        {type = "item", name = "radar",                     amount = 1},
+        {type = "item", name = "small-lamp",                amount = 2},
     },
     results = {
         {type = "item", name = "maraxsis-sonar", amount = 1},
@@ -63,12 +63,12 @@ data:extend {maraxsis.merge(data.raw.radar.radar, {
     resistances = {
         {
             type = "fire",
-            percent = 70
+            percent = 70,
         },
         {
             type = "impact",
-            percent = 30
-        }
+            percent = 30,
+        },
     },
     collision_box = {{-2.8, -2.3}, {2.8, 2.3}},
     selection_box = {{-3, -2.5}, {3, 2.5}},
@@ -78,7 +78,7 @@ data:extend {maraxsis.merge(data.raw.radar.radar, {
     max_distance_of_nearby_sector_revealed = 6,
     energy_source = {
         type = "electric",
-        usage_priority = "secondary-input"
+        usage_priority = "secondary-input",
     },
     energy_usage = "900kW",
     pictures = {
@@ -103,19 +103,19 @@ data:extend {maraxsis.merge(data.raw.radar.radar, {
                 line_length = 8,
                 shift = util.by_pixel(30, 20 - 16),
             },
-        }
+        },
     },
     working_sound = {
         sound = {
             {
                 filename = "__maraxsis__/sounds/sonar.ogg",
                 speed = 0.5,
-                volume = 1
-            }
+                volume = 1,
+            },
         },
         max_sounds_per_type = 2,
         audible_distance_modifier = 0.8,
-        use_doppler_shift = false
+        use_doppler_shift = false,
     },
     radius_minimap_visualisation_color = {r = 0.059, g = 0.092, b = 0.235, a = 0.275},
     rotation_speed = 0.005,
@@ -130,8 +130,8 @@ data:extend {maraxsis.merge(data.raw.radar.radar, {
             scale = 5,
         },
         rotate = false,
-        orientation_to_variation = false
-    }
+        orientation_to_variation = false,
+    },
 })}
 
 local light_layers = require "graphics.entity.sonar.lights.lights"
@@ -176,12 +176,12 @@ data:extend {maraxsis.merge(data.raw.lamp["small-lamp"], {
         layers = {
             light_layers["hr-light-1"],
             light_layers["hr-light-1-on"],
-        }
+        },
     },
     picture_off = {
         layers = {
             light_layers["hr-light-1"],
-        }
+        },
     },
 })}
 
@@ -191,12 +191,12 @@ data:extend {maraxsis.merge(data.raw.lamp["maraxsis-sonar-light-1"], {
         layers = {
             light_layers["hr-light-2"],
             light_layers["hr-light-2-on"],
-        }
+        },
     },
     picture_off = {
         layers = {
             light_layers["hr-light-2"],
-        }
+        },
     },
 })}
 

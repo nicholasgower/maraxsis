@@ -15,32 +15,32 @@ local function build_promethium_quality(i, prerequisites, count, q, energy_requi
         enabled = false,
         categories = {"maraxsis-hydro-plant"},
         ingredients = {
-            {type = "item", name = science_pack, amount = 1, quality_max = q.name, quality_min = q.name},
+            {type = "item",  name = science_pack,       amount = 1,         quality_max = q.name, quality_min = q.name},
             {type = "fluid", name = "maraxsis-omega-3", amount = 10 + i * 5},
-            {type = "item", name = "bioflux", amount = 1, quality_max = q.name, quality_min = q.name},
+            {type = "item",  name = "bioflux",          amount = 1,         quality_max = q.name, quality_min = q.name},
         },
         results = {
-            {type = "item", name = science_pack, amount = 1, ignored_by_stats = 1, ignored_by_productivity = 1, quality_min = q.next},
-            {type = "fluid", name = "water", amount = 20 + i * 5},
+            {type = "item",  name = science_pack, amount = 1,         ignored_by_stats = 1, ignored_by_productivity = 1, quality_min = q.next},
+            {type = "fluid", name = "water",      amount = 20 + i * 5},
         },
         icons = next.icon and {
             {
                 icon = data.raw.item[science_pack].icon,
-                icon_size = data.raw.item[science_pack].icon_size
+                icon_size = data.raw.item[science_pack].icon_size,
             },
             {
                 icon = next.icon,
                 icon_size = next.icon_size or 64,
                 scale = 0.25,
                 shift = {-8, 8},
-                floating = true
+                floating = true,
             },
         } or nil,
         allow_productivity = false,
         can_set_quality = false,
         auto_recycle = false,
         main_product = science_pack,
-        surface_conditions = table.deepcopy(data.raw.recipe["promethium-science-pack"].surface_conditions)
+        surface_conditions = table.deepcopy(data.raw.recipe["promethium-science-pack"].surface_conditions),
     }}
 
     data:extend {{
@@ -56,7 +56,7 @@ local function build_promethium_quality(i, prerequisites, count, q, energy_requi
                 icon_size = next.icon_size or 64,
                 scale = 0.5,
                 shift = {45, 45},
-                floating = true
+                floating = true,
             } or nil,
         },
         icon_size = 256,

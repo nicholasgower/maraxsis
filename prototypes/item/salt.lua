@@ -5,7 +5,7 @@ for i = 1, 3 do
         width = 64,
         height = 64,
         scale = 1 / 2,
-        flags = {"icon"}
+        flags = {"icon"},
     }
 end
 
@@ -27,7 +27,7 @@ data:extend {{
         {type = "fluid", name = "brackish-water", amount = 300},
     },
     results = {
-        {type = "item",  name = "salt",     amount = 3, quality_change = 1},
+        {type = "item",  name = "salt",     amount = 3,  quality_change = 1},
         {type = "fluid", name = "oxygen",   amount = 100},
         {type = "fluid", name = "hydrogen", amount = 200},
     },

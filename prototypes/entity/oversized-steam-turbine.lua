@@ -18,15 +18,15 @@ data:extend {{
     energy_required = 10,
     ingredients = {
         {type = "item", name = "maraxsis-reinforced-glass", amount = 100},
-        {type = "item", name = "tungsten-plate",       amount = 100},
-        {type = "item", name = "processing-unit",      amount = 50},
-        {type = "item", name = "steam-turbine",        amount = 3},
+        {type = "item", name = "tungsten-plate",            amount = 100},
+        {type = "item", name = "processing-unit",           amount = 50},
+        {type = "item", name = "steam-turbine",             amount = 3},
     },
     results = {
         {type = "item", name = "maraxsis-oversized-steam-turbine", amount = 1},
     },
     auto_recycle = true,
-    categories ={ "maraxsis-hydro-plant"},
+    categories = {"maraxsis-hydro-plant"},
     surface_conditions = maraxsis.surface_conditions(),
 }}
 
@@ -43,7 +43,7 @@ local function pictures()
                 line_length = 4,
                 shift = util.by_pixel(4.75, 6.75 - offset),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-V-shadow.png",
@@ -54,7 +54,7 @@ local function pictures()
                 draw_as_shadow = true,
                 shift = util.by_pixel(39.5, 24.5 - offset),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-V.png",
@@ -64,7 +64,7 @@ local function pictures()
                 line_length = 4,
                 shift = util.by_pixel(4.75, 6.75),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-V-shadow.png",
@@ -75,7 +75,7 @@ local function pictures()
                 draw_as_shadow = true,
                 shift = util.by_pixel(39.5, 24.5),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-V.png",
@@ -85,7 +85,7 @@ local function pictures()
                 line_length = 4,
                 shift = util.by_pixel(4.75, 6.75 + offset),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-V-shadow.png",
@@ -96,9 +96,9 @@ local function pictures()
                 draw_as_shadow = true,
                 shift = util.by_pixel(39.5, 24.5 + offset),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
-        }
+        },
     }
 
     local horizontal_animation = {
@@ -111,7 +111,7 @@ local function pictures()
                 line_length = 4,
                 shift = util.by_pixel(0 + offset, -2.75),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-H-shadow.png",
@@ -122,7 +122,7 @@ local function pictures()
                 draw_as_shadow = true,
                 shift = util.by_pixel(28.5 + offset, 18),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-H.png",
@@ -132,7 +132,7 @@ local function pictures()
                 line_length = 4,
                 shift = util.by_pixel(0, -2.75),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-H-shadow.png",
@@ -143,7 +143,7 @@ local function pictures()
                 draw_as_shadow = true,
                 shift = util.by_pixel(28.5, 18),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-H.png",
@@ -153,7 +153,7 @@ local function pictures()
                 line_length = 4,
                 shift = util.by_pixel(0 - offset, -2.75),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
             {
                 filename = "__base__/graphics/entity/steam-turbine/steam-turbine-H-shadow.png",
@@ -164,9 +164,9 @@ local function pictures()
                 draw_as_shadow = true,
                 shift = util.by_pixel(28.5 - offset, 18),
                 run_mode = "backward",
-                scale = 0.5
+                scale = 0.5,
             },
-        }
+        },
     }
 
     local pictures = {
@@ -188,7 +188,7 @@ local function smoke(y_offset)
         west_position = {0.75 + y_offset, -0.75},
         frequency = 0.08,
         starting_vertical_speed = 0.08,
-        starting_frame_deviation = 60
+        starting_frame_deviation = 60,
     }
 end
 
@@ -208,13 +208,13 @@ data:extend {{
     resistances = {
         {
             type = "fire",
-            percent = 70
-        }
+            percent = 70,
+        },
     },
     smoke = {
         smoke(0),
         smoke(2),
-        smoke(-2)
+        smoke(-2),
     },
     fluid_usage_per_tick = 80 / second, -- at normal quality
     maximum_temperature = 2000,
@@ -228,8 +228,8 @@ data:extend {{
         pipe_covers = nil,
         secondary_draw_orders = {north = -1, east = -1, west = -1},
         pipe_connections = {
-            {flow_direction = "input-output", direction = defines.direction.east,  position = {1, 1.5},   connection_category = "ducts"},
-            {flow_direction = "input-output", direction = defines.direction.west,  position = {-1, -1.5}, connection_category = "ducts"},
+            {flow_direction = "input-output", direction = defines.direction.east, position = {1, 1.5},   connection_category = "ducts"},
+            {flow_direction = "input-output", direction = defines.direction.west, position = {-1, -1.5}, connection_category = "ducts"},
         },
         max_pipeline_extent = constants.extent,
         production_type = "input",
@@ -248,7 +248,7 @@ data:extend {{
             {flow_direction = "input-output", direction = defines.direction.west,  position = {-1, 2}},
         },
         production_type = "output",
-        filter = "water"
+        filter = "water",
     },
     energy_source = {
         type = "electric",
@@ -271,12 +271,12 @@ data:extend {{
         match_speed_to_activity = true,
         max_sounds_per_prototype = 3,
         fade_in_ticks = 4,
-        fade_out_ticks = 20
+        fade_out_ticks = 20,
     },
     perceived_performance = {minimum = 0.25, performance_to_activity_rate = 1.0},
     spent_fluid = {
         name = "water",
         amount = 78 / 80,
-        temperature = data.raw.fluid.water.default_temperature
-    }
+        temperature = data.raw.fluid.water.default_temperature,
+    },
 }}

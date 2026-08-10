@@ -31,7 +31,7 @@ data:extend {{
     },
     results = {
         {type = "item", name = "microplastics", amount = 10},
-        {type = "item", name = "jelly",                  amount = 10},
+        {type = "item", name = "jelly",         amount = 10},
     },
     categories = {"organic", "crafting"},
     localised_name = {"recipe-name.microplastics"},

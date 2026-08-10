@@ -35,7 +35,7 @@ local function insert_hydro_plant(recipe)
         return
     end
     local categories = recipe.categories or {"crafting"}
-    table.insert(categories,"maraxsis-hydro-plant")
+    table.insert(categories, "maraxsis-hydro-plant")
     recipe.categories = categories
 end
 
@@ -52,7 +52,7 @@ if data.raw.technology["rocket-part-productivity"] then
         type = "change-recipe-productivity",
         recipe = "maraxsis-rocket-part",
         change = 0.1,
-        hidden = true
+        hidden = true,
     })
 end
 
@@ -148,7 +148,7 @@ uranium_fuel_cell.fuel_top_speed_multiplier_quality_bonus = nuclear_fuel.fuel_to
 data.raw["assembling-machine"]["crusher"].surface_conditions = nil
 
 do
-    for _, capsule in pairs{
+    for _, capsule in pairs {
         "yumako",
         "yumako-mash",
         "jellynut",
@@ -157,7 +157,7 @@ do
     } do
         data.raw.capsule[capsule].capsule_action.attack_parameters.cooldown = data.raw.capsule["raw-fish"].capsule_action.attack_parameters.cooldown
     end
-    for _, sticker in pairs{
+    for _, sticker in pairs {
         "yumako-regen-sticker",
         "bioflux-speed-regen-sticker",
     } do

@@ -6,7 +6,7 @@ data:extend {{
     name = "maraxsis_trench_elevation",
     expression = [[
         maraxsis_elevation(x /]] .. TRENCH_MOVEMENT_FACTOR .. [[, y /]] .. TRENCH_MOVEMENT_FACTOR .. [[)
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -14,7 +14,7 @@ data:extend {{
     name = "maraxsis_trench_wall",
     expression = [[
         maraxsis_trench_elevation < ]] .. TRENCH_ENTRANCE_ELEVATION .. [[
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -31,7 +31,7 @@ data:extend {{
             input_scale = 1/250,
             output_scale = 1
         }
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -48,7 +48,7 @@ data:extend {{
             input_scale = 1/200,
             output_scale = 1
         }
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -65,7 +65,7 @@ data:extend {{
             input_scale = 1/40,
             output_scale = 1
         }
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -82,7 +82,7 @@ data:extend {{
             input_scale = 1/40,
             output_scale = 1
         }
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -98,8 +98,8 @@ data:extend {{
     local_expressions = {
         lava_thickness = [[
             abs(maraxsis_lava_master)
-        ]]
-    }
+        ]],
+    },
 }}
 
 data:extend {{
@@ -115,9 +115,9 @@ data:extend {{
     local_expressions = {
         expanded_thickness = [[
             maraxsis_lava_thickness * lava_thickness_modifier
-        ]]
+        ]],
     },
-    parameters = {"lava_thickness_modifier"}
+    parameters = {"lava_thickness_modifier"},
 }}
 
 data:extend {{
@@ -125,7 +125,7 @@ data:extend {{
     name = "maraxsis_3x3_grid",
     expression = [[
         ((y %% 3) == 0) * ((x %% 3) == 0)
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -133,7 +133,7 @@ data:extend {{
     name = "maraxsis_4x4_grid",
     expression = [[
         ((y %% 4) == 0) * ((x %% 4) == 0)
-    ]]
+    ]],
 }}
 
 data:extend {{
@@ -141,59 +141,59 @@ data:extend {{
     name = "maraxsis_hot_lava",
     expression = [[
         maraxsis_trench_wall * (maraxsis_lava_master_master > 0) * maraxsis_lava_tile(1)
-    ]]
+    ]],
 }}
 
 data.raw.tile["lava-hot-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_hot_lava
     ]],
-    order = "b[lava]-a[maraxsis]"
+    order = "b[lava]-a[maraxsis]",
 }
 
 data.raw["simple-entity"]["maraxsis-lava-lamp"].autoplace = {
     probability_expression = [[
         maraxsis_4x4_grid * maraxsis_hot_lava * (maraxsis_trench_elevation < ]] .. TRENCH_ENTRANCE_ELEVATION - 0.05 .. [[)
     ]],
-    order = "b[lava]-a[maraxsis]"
+    order = "b[lava]-a[maraxsis]",
 }
 
 data.raw["simple-entity"]["maraxsis-trench-wall-collisionless"].autoplace = {
     probability_expression = [[
         maraxsis_3x3_grid * (maraxsis_trench_elevation < ]] .. (TRENCH_ENTRANCE_ELEVATION + 0.02) .. [[) * (maraxsis_trench_elevation >= 0.028)
     ]],
-    order = "b[lava]-a[maraxsis]"
+    order = "b[lava]-a[maraxsis]",
 }
 
 data.raw.tile["maraxsis-trench-out-of-map"].autoplace = {
     probability_expression = [[
         1 - maraxsis_trench_wall
     ]],
-    order = "a[maraxsis-trench-out-of-map]-a[maraxsis]"
+    order = "a[maraxsis-trench-out-of-map]-a[maraxsis]",
 }
 
 data.raw.tile["volcanic-cracks-hot-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_trench_wall * maraxsis_lava_tile(1.5)
     ]],
-    order = "c[tile]-a[maraxsis]"
+    order = "c[tile]-a[maraxsis]",
 }
 
 data.raw.tile["volcanic-cracks-warm-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_trench_wall * maraxsis_lava_tile(2.5)
     ]],
-    order = "d[tile]-a[maraxsis]"
+    order = "d[tile]-a[maraxsis]",
 }
 
 data.raw.tile["volcanic-folds-underwater"].autoplace = {
     probability_expression = [[maraxsis_trench_wall]],
-    order = "e[tile]-a[maraxsis]"
+    order = "e[tile]-a[maraxsis]",
 }
 
 data.raw["simple-entity"]["maraxsis-chimney"].autoplace = {
     probability_expression = [[
         maraxsis_trench_wall * maraxsis_3x3_grid * (random_penalty{x = x, y = y, seed = map_seed, source = 1, amplitude = 1} > 0.995)
     ]],
-    order = "f[entity]-a[chimney]"
+    order = "f[entity]-a[chimney]",
 }

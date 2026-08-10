@@ -7,8 +7,8 @@ local function default_destroyed_dropped_item_trigger()
                 type = "create-trivial-smoke",
                 smoke_name = "maraxsis-swimming-bubbles",
                 offset_deviation = {{-0.1, -0.1}, {0.1, 0.1}},
-            }
-        }
+            },
+        },
     }
 end
 
@@ -67,7 +67,7 @@ data:extend {maraxsis.merge(data.raw.tile["out-of-map"], {
     walking_speed_modifier = 0.2,
     collision_mask = {layers = {object = true, item = true, doodad = true, resource = true, [maraxsis_trench_entrance_collision_mask] = true}},
     autoplace = {
-        probability_expression = "maraxsis_trench_entrance"
+        probability_expression = "maraxsis_trench_entrance",
     },
 })}
 table.insert(out_of_map_tile_type_names, "maraxsis-trench-entrance")
@@ -92,8 +92,8 @@ data:extend {{
     space = {
         star_density = 0,
         nebula_scale = 10,
-        nebula_brightness = 0.5
-    }
+        nebula_brightness = 0.5,
+    },
 }}
 
 -- orange glow on the trench lava is created by lamp entities on a 4x4 tile grid.
@@ -113,7 +113,7 @@ data:extend {{
         tint = {1, 0.3, 0},
         intensity = 0.5,
         draw_as_light = true,
-    }
+    },
 }}
 
 local tile = maraxsis.merge(data.raw.tile["space-platform-foundation"], {

@@ -65,7 +65,7 @@ local recipes = {
     ["maraxsis-nuclear-submarine"] = {
         {type = "item", name = "tungsten-plate",                   amount = 50},
         {type = "item", name = "maraxsis-sonar",                   amount = 1},
-        {type = "item", name = "maraxsis-reinforced-glass",             amount = 100},
+        {type = "item", name = "maraxsis-reinforced-glass",        amount = 100},
         {type = "item", name = "nuclear-reactor",                  amount = 1},
         {type = "item", name = "pump",                             amount = 8},
         {type = "item", name = "processing-unit",                  amount = 50},
@@ -184,13 +184,13 @@ for i = 1, 2 do
         sound = {
             filename = "__maraxsis__/sounds/submarine.ogg",
             category = "game-effect",
-        }
+        },
     }
     entity.open_sound = table.deepcopy(data.raw.car.tank.open_sound)
     entity.close_sound = table.deepcopy(data.raw.car.tank.close_sound)
 
     local submarine_colors = {
-        {r = 1, g = 1, b = 1,  a = 0.5},
+        {r = 1,   g = 1,   b = 1,   a = 0.5},
         {r = 0.2, g = 0.7, b = 0.2, a = 0.5},
     }
 
@@ -198,12 +198,12 @@ for i = 1, 2 do
         filename = "__maraxsis__/graphics/entity/submarine/submarine-map-tag.png",
         flags = {"icon"},
         tint = submarine_colors[i],
-        size = {64, 64}
+        size = {64, 64},
     }
     entity.selected_minimap_representation = {
         filename = "__maraxsis__/graphics/entity/submarine/selected-submarine-map-tag.png",
         flags = {"icon"},
-        size = {70, 70}
+        size = {70, 70},
     }
     entity.quality_indicator_scale = 0
     entity.movement_energy_consumption = movement_energy_consumption[i] .. "kW"
@@ -225,8 +225,8 @@ for i = 1, 2 do
                 starting_frame_deviation = 50,
                 starting_frame_speed = 0,
                 starting_frame_speed_deviation = 5,
-            }
-        }
+            },
+        },
     }
     entity.guns = table.deepcopy(data.raw["spider-vehicle"]["spidertron"].guns)
     entity.resistances = {
@@ -254,7 +254,7 @@ for i = 1, 2 do
                 position = {0, 0},
                 create_build_effect_smoke = false
             }
-        ]]
+        ]],
     }
     entity.alert_icon_shift = {0, 0}
     entity.drawing_box_vertical_extension = 1
@@ -268,12 +268,12 @@ for i = 1, 2 do
     local light_cone = {
         filename = "__core__/graphics/light-cone.png",
         flags = {
-            "light"
+            "light",
         },
         height = 200,
         priority = "extra-high",
         scale = 2,
-        width = 200
+        width = 200,
     }
 
     entity.graphics_set.light = {
@@ -281,10 +281,10 @@ for i = 1, 2 do
             color = {
                 b = 1,
                 g = 1,
-                r = 1
+                r = 1,
             },
             intensity = 0.4,
-            size = 25
+            size = 25,
         },
         {
             color = {1, 1, 1},
@@ -292,7 +292,7 @@ for i = 1, 2 do
             shift = {0, -15.4 * 1.5},
             size = 3,
             intensity = 0.8,
-            type = "oriented"
+            type = "oriented",
         },
         {
             color = {1, 1, 1},
@@ -319,7 +319,7 @@ for i = 1, 2 do
             size = 1.5,
             intensity = 0.3,
             type = "oriented",
-            source_orientation_offset = 0.5+0.15,
+            source_orientation_offset = 0.5 + 0.15,
         },
         {
             color = {1, 1, 1},
@@ -328,7 +328,7 @@ for i = 1, 2 do
             size = 1.5,
             intensity = 0.3,
             type = "oriented",
-            source_orientation_offset = 0.5-0.15,
+            source_orientation_offset = 0.5 - 0.15,
         },
     }
     entity.graphics_set.animation = {
@@ -338,7 +338,7 @@ for i = 1, 2 do
             full_body_layer,
             mask_layer,
             shadow_layer,
-        }
+        },
     }
     entity.graphics_set.base_animation = nil
     entity.graphics_set.shadow_base_animation = nil
@@ -423,7 +423,7 @@ data:extend {{
     category = "game-effect",
     priority = 100,
     filename = "__maraxsis__/sounds/submerge.ogg",
-    speed = 0.5
+    speed = 0.5,
 }}
 
 -- https://github.com/notnotmelon/maraxsis/issues/341
@@ -433,4 +433,4 @@ toolbelt_equipment.shape = {width = 0, height = 0, type = "full"}
 toolbelt_equipment.hidden = true
 toolbelt_equipment.take_result = "toolbelt-equipment"
 toolbelt_equipment.inventory_size_bonus = 1
-data:extend{toolbelt_equipment}
+data:extend {toolbelt_equipment}

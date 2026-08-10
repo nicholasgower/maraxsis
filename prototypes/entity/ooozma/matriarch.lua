@@ -79,7 +79,7 @@ local segment_scales = {
     0.77,
     0.77,
     0.65,
-    0.64
+    0.64,
 }
 
 local function make_segment_name(base_name, scale)
@@ -89,33 +89,33 @@ end
 local resistances = {
     {
         type = "explosion",
-        percent = 60
+        percent = 60,
     },
     {
         type = "physical",
-        percent = 50
+        percent = 50,
     },
     {
         type = "fire",
-        percent = 100
+        percent = 100,
     },
     {
         type = "laser",
-        percent = 100
+        percent = 100,
     },
     {
         type = "impact",
-        percent = 100
+        percent = 100,
     },
     {
         type = "poison",
-        percent = 10
+        percent = 10,
     },
     {
         type = "electric",
         decrease = 20,
-        percent = 20
-    }
+        percent = 20,
+    },
 }
 
 local function make_matriarch_segment_specifications(base_name, segment_scales, scale)
@@ -137,8 +137,8 @@ local created_effect = {
                 type = "script",
                 effect_id = "maraxsis-matriarch-segment-created",
             },
-        }
-    }
+        },
+    },
 }
 
 local function make_matriarch_head(
@@ -196,10 +196,10 @@ local function make_matriarch_head(
             sound = {
                 filename = "__space-age__/sound/world/semi-persistent/distant-rumble-2.ogg",
                 volume = 1,
-                audible_distance_modifier = 0.8
+                audible_distance_modifier = 0.8,
             },
             max_sounds_per_prototype = 1,
-            match_volume_to_activity = true
+            match_volume_to_activity = true,
         },
         animation = {
             layers = {
@@ -211,11 +211,11 @@ local function make_matriarch_head(
         },
         render_layer = "elevated-rail-metal",
         segment_engine = {
-            segments = make_matriarch_segment_specifications(base_name, segment_scales, scale)
+            segments = make_matriarch_segment_specifications(base_name, segment_scales, scale),
         },
         created_effect = created_effect,
         update_effects_while_enraged = {
-            estrogen.make_estrogen_cloud_effect(base_name)
+            estrogen.make_estrogen_cloud_effect(base_name),
         },
     }
 end
@@ -253,7 +253,7 @@ local function make_matriarch_segment(base_name, scale, damage_multiplier, healt
                     filename = "__maraxsis__/sounds/estrogen.ogg",
                     category = "enemy",
                     priority = 127,
-                    volume = 0.5
+                    volume = 0.5,
                 },
                 fade_in_ticks = 4,
                 fade_out_ticks = 20,
@@ -272,9 +272,9 @@ local function make_matriarch_segment(base_name, scale, damage_multiplier, healt
             shift = util.by_pixel(0, -7),
             scale = 12.5 * scale,
             tint = {0.1, 0.1, 0.1, 0.1},
-            draw_as_light = true
+            draw_as_light = true,
         },
-        integration_patch_render_layer = "under-elevated"
+        integration_patch_render_layer = "under-elevated",
         --corpse = base_name .. "-corpse"
     }
 end
@@ -317,7 +317,7 @@ local function make_matriarch(
             factoriopedia_simulation,
             sounds,
             render_layer
-        )
+        ),
     }
 
     data:extend(make_matriarch_segments(base_name, segment_scales, scale, damage_multiplier, health, sounds, render_layer))

@@ -7,7 +7,7 @@ if settings.startup["sp-enable-spiderling"].value then return end -- https://git
 submarine_automation.unit = nil
 submarine_automation.research_trigger = {
     type = "build-entity",
-    entity = "maraxsis-diesel-submarine"
+    entity = "maraxsis-diesel-submarine",
 }
 submarine_automation.order = "eb[submarine-automation]"
 submarine_automation.prerequisites = {"planet-discovery-maraxsis"}

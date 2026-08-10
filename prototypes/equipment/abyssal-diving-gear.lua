@@ -5,11 +5,11 @@ data:extend {{
     effects = {
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-abyssal-diving-gear"
+            recipe = "maraxsis-abyssal-diving-gear",
         },
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-sentience-storage-receptacle"
+            recipe = "maraxsis-sentience-storage-receptacle",
         },
     },
     prerequisites = {"maraxsis-nuclear-submarine", "quantum-processor"},
@@ -45,7 +45,7 @@ data:extend {{
         {type = "item", name = "pipe-to-ground",                        amount = 2},
         {type = "item", name = "maraxsis-sentience-storage-receptacle", amount = 1},
         {type = "item", name = "pump",                                  amount = 1},
-        {type = "item", name = "maraxsis-reinforced-glass",                  amount = 50},
+        {type = "item", name = "maraxsis-reinforced-glass",             amount = 50},
         {type = "item", name = "maraxsis-super-sealant-substance",      amount = 50},
     },
     auto_recycle = true,
@@ -78,7 +78,7 @@ data:extend {{
         type = "electric",
         usage_priority = "secondary-input",
         input_flow_limit = "500kW",
-        drain = "400kW"
+        drain = "400kW",
     },
     energy_consumption = "1W",
     movement_bonus = 0.35,
@@ -86,13 +86,13 @@ data:extend {{
         filename = "__maraxsis__/graphics/equipment/abyssal-diving-gear.png",
         width = 256,
         height = 256,
-        priority = "medium"
+        priority = "medium",
     },
     take_result = "maraxsis-abyssal-diving-gear",
     shape = {
         width = 2,
         height = 2,
-        type = "full"
+        type = "full",
     },
 }}
 

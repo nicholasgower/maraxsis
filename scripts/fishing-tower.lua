@@ -44,10 +44,10 @@ end)
 -- https://mods.factorio.com/mod/quality-trees
 
 local function hash_string(x, y, surface_name)
-  -- 2D Spatial hash grid to store tree data. 
-  -- Using strings as keys as its likely neglible over hashing ints performance wise.
-  -- And we have no collisions, and per surface control.
-  return surface_name .. ":" .. math.floor(x / 2) .. "," .. math.floor(y / 2)
+    -- 2D Spatial hash grid to store tree data.
+    -- Using strings as keys as its likely neglible over hashing ints performance wise.
+    -- And we have no collisions, and per surface control.
+    return surface_name .. ":" .. math.floor(x / 2) .. "," .. math.floor(y / 2)
 end
 
 local function register_plant(plant, quality)
@@ -62,7 +62,7 @@ local function register_plant(plant, quality)
             surface = plant.surface,
             x_scale = 0.5,
             y_scale = 0.5,
-            render_layer = "light-effect"
+            render_layer = "light-effect",
         }
     end
 end
@@ -76,14 +76,14 @@ local function harvest_plant(plant, inv_buffer)
     for i = 1, #inv_buffer do
         local stack = inv_buffer[i]
         if stack and stack.valid_for_read then
-        local count = stack.count
-        local name = stack.name
-        stack.clear()  -- remove the original
-        inv_buffer.insert{
-            name = name,
-            count = count,
-            quality = harvest_quality
-        }
+            local count = stack.count
+            local name = stack.name
+            stack.clear() -- remove the original
+            inv_buffer.insert {
+                name = name,
+                count = count,
+                quality = harvest_quality,
+            }
         end
     end
 end

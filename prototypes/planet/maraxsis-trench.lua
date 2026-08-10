@@ -3,7 +3,7 @@ local planet_map_gen = require "map-gen"
 local surface_properties = table.deepcopy(data.raw.planet.maraxsis.surface_properties)
 surface_properties.pressure = 800000
 
-data:extend { maraxsis.merge(data.raw.planet.gleba, {
+data:extend {maraxsis.merge(data.raw.planet.gleba, {
     name = "maraxsis-trench",
     starting_area = 1,
     surface_properties = surface_properties,
@@ -23,4 +23,4 @@ data:extend { maraxsis.merge(data.raw.planet.gleba, {
     orientation = 0,
     auto_save_on_first_trip = false,
     asteroid_spawn_definitions = "nil",
-}) }
+})}

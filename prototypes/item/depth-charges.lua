@@ -6,7 +6,7 @@ data:extend {{
     effects = {
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-big-cliff-explosives"
+            recipe = "maraxsis-big-cliff-explosives",
         },
         {
             type = "unlock-recipe",
@@ -14,8 +14,8 @@ data:extend {{
         },
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-pipe-bomb"
-        }
+            recipe = "maraxsis-pipe-bomb",
+        },
     },
     prerequisites = {"cliff-explosives", "maraxsis-nuclear-submarine", "atomic-bomb"},
     unit = {
@@ -53,7 +53,7 @@ data:extend {{
         {type = "item", name = "maraxsis-big-cliff-explosives", amount = 1, quality_min = "legendary"},
     },
     auto_recycle = false,
-    categories = {"maraxsis-hydro-plant" },
+    categories = {"maraxsis-hydro-plant"},
     icons = {
         {
             icon = "__maraxsis__/graphics/icons/big-cliff-explosives.png",
@@ -64,7 +64,7 @@ data:extend {{
             icon_size = data.raw.quality.legendary.icon_size,
             scale = 0.25,
             shift = {-8, 8},
-            floating = true
+            floating = true,
         },
     },
 }}
@@ -109,11 +109,11 @@ data:extend {{
                     action_delivery = {
                         type = "projectile",
                         projectile = "maraxsis-big-cliff-explosives",
-                        starting_speed = 0.3
-                    }
-                }
-            }
-        }
+                        starting_speed = 0.3,
+                    },
+                },
+            },
+        },
     },
 }}
 
@@ -129,7 +129,7 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                         include_soft_decoratives = true,
                         invoke_decorative_trigger = true,
                         radius = 14,
-                        type = "destroy-decoratives"
+                        type = "destroy-decoratives",
                     },
                     {
                         apply_projection = true,
@@ -139,12 +139,12 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                         spawn_min = 30,
                         spawn_min_radius = 11.5,
                         spread_evenly = true,
-                        type = "create-decorative"
+                        type = "create-decorative",
                     },
                     {
                         explosion = "explosion",
                         radius = 450,
-                        type = "destroy-cliffs"
+                        type = "destroy-cliffs",
                     },
                     {
                         action = {
@@ -152,15 +152,15 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                                 projectile = "atomic-bomb-ground-zero-projectile",
                                 starting_speed = 1.48,
                                 starting_speed_deviation = 0.075,
-                                type = "projectile"
+                                type = "projectile",
                             },
                             radius = 7,
                             repeat_count = 1000,
                             target_entities = false,
                             trigger_from_target = true,
-                            type = "area"
+                            type = "area",
                         },
-                        type = "nested-result"
+                        type = "nested-result",
                     },
                     {
                         delay = 0,
@@ -171,7 +171,7 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                         full_strength_max_distance = 400,
                         max_distance = 1600,
                         strength = 20,
-                        type = "camera-effect"
+                        type = "camera-effect",
                     },
                     {
                         audible_distance_modifier = 3,
@@ -180,33 +180,33 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                         sound = {
                             aggregation = {
                                 max_count = 1,
-                                remove = true
+                                remove = true,
                             },
                             game_controller_vibration_data = {
                                 duration = 800,
                                 low_frequency_vibration_intensity = 1,
-                                play_for = "everything"
+                                play_for = "everything",
                             },
                             switch_vibration_data = {
                                 filename = "__base__/sound/fight/nuclear-explosion.bnvib",
-                                play_for = "everything"
+                                play_for = "everything",
                             },
                             variations = {
                                 {
                                     filename = "__base__/sound/fight/nuclear-explosion-1.ogg",
-                                    volume = 0.9
+                                    volume = 0.9,
                                 },
                                 {
                                     filename = "__base__/sound/fight/nuclear-explosion-2.ogg",
-                                    volume = 0.9
+                                    volume = 0.9,
                                 },
                                 {
                                     filename = "__base__/sound/fight/nuclear-explosion-3.ogg",
-                                    volume = 0.9
-                                }
-                            }
+                                    volume = 0.9,
+                                },
+                            },
                         },
-                        type = "play-sound"
+                        type = "play-sound",
                     },
                     {
                         audible_distance_modifier = 3,
@@ -215,20 +215,20 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                         sound = {
                             aggregation = {
                                 max_count = 1,
-                                remove = true
+                                remove = true,
                             },
                             variations = {
                                 {
                                     filename = "__base__/sound/fight/nuclear-explosion-aftershock.ogg",
-                                    volume = 0.4
-                                }
-                            }
+                                    volume = 0.4,
+                                },
+                            },
                         },
-                        type = "play-sound"
+                        type = "play-sound",
                     },
                     {
                         repeat_count = 1,
-                        type = "invoke-tile-trigger"
+                        type = "invoke-tile-trigger",
                     },
                     {
                         action = {
@@ -236,16 +236,16 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                                 projectile = "atomic-bomb-wave-spawns-cluster-nuke-explosion",
                                 starting_speed = 0.35,
                                 starting_speed_deviation = 0.075,
-                                type = "projectile"
+                                type = "projectile",
                             },
                             radius = 26,
                             repeat_count = 1000,
                             show_in_tooltip = false,
                             target_entities = false,
                             trigger_from_target = true,
-                            type = "area"
+                            type = "area",
                         },
-                        type = "nested-result"
+                        type = "nested-result",
                     },
                     {
                         action = {
@@ -253,16 +253,16 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                                 projectile = "atomic-bomb-wave-spawns-fire-smoke-explosion",
                                 starting_speed = 1.325,
                                 starting_speed_deviation = 0.075,
-                                type = "projectile"
+                                type = "projectile",
                             },
                             radius = 4,
                             repeat_count = 700,
                             show_in_tooltip = false,
                             target_entities = false,
                             trigger_from_target = true,
-                            type = "area"
+                            type = "area",
                         },
-                        type = "nested-result"
+                        type = "nested-result",
                     },
                     {
                         action = {
@@ -270,16 +270,16 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                                 projectile = "atomic-bomb-wave-spawns-nuke-shockwave-explosion",
                                 starting_speed = 1.325,
                                 starting_speed_deviation = 0.075,
-                                type = "projectile"
+                                type = "projectile",
                             },
                             radius = 8,
                             repeat_count = 1000,
                             show_in_tooltip = false,
                             target_entities = false,
                             trigger_from_target = true,
-                            type = "area"
+                            type = "area",
                         },
-                        type = "nested-result"
+                        type = "nested-result",
                     },
                     {
                         action = {
@@ -287,16 +287,16 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                                 projectile = "atomic-bomb-wave-spawns-nuclear-smoke",
                                 starting_speed = 1.325,
                                 starting_speed_deviation = 0.075,
-                                type = "projectile"
+                                type = "projectile",
                             },
                             radius = 26,
                             repeat_count = 300,
                             show_in_tooltip = false,
                             target_entities = false,
                             trigger_from_target = true,
-                            type = "area"
+                            type = "area",
                         },
-                        type = "nested-result"
+                        type = "nested-result",
                     },
                     {
                         action = {
@@ -305,27 +305,27 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
                                     {
                                         entity_name = "nuclear-smouldering-smoke-source",
                                         tile_collision_mask = {
-                                            layers = {["water_tile"] = true}
+                                            layers = {["water_tile"] = true},
                                         },
-                                        type = "create-entity"
-                                    }
+                                        type = "create-entity",
+                                    },
                                 },
-                                type = "instant"
+                                type = "instant",
                             },
                             radius = 8,
                             repeat_count = 10,
                             show_in_tooltip = false,
                             target_entities = false,
                             trigger_from_target = true,
-                            type = "area"
+                            type = "area",
                         },
-                        type = "nested-result"
-                    }
+                        type = "nested-result",
+                    },
                 },
-                type = "instant"
+                type = "instant",
             },
-            type = "direct"
-        }
+            type = "direct",
+        },
     },
     animation = {
         filename = "__base__/graphics/entity/cliff-explosives/cliff-explosives.png",
@@ -337,7 +337,7 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
         height = 58,
         shift = util.by_pixel(0.5, -4.5),
         priority = "high",
-        scale = 0.5
+        scale = 0.5,
     },
     shadow = {
         filename = "__base__/graphics/entity/cliff-explosives/cliff-explosives-shadow.png",
@@ -349,6 +349,6 @@ data:extend {maraxsis.merge(data.raw.projectile["cliff-explosives"], {
         shift = util.by_pixel(-3.5, 4),
         priority = "high",
         draw_as_shadow = true,
-        scale = 0.5
+        scale = 0.5,
     },
 })}

@@ -9,15 +9,15 @@ data:extend {{
             use_icon_overlay_constant = true,
             icon = "__maraxsis__/graphics/technology/project-seadragon.png",
             icon_size = 256,
-            effect_description = {"modifier-description.maraxsis-project-seadragon"}
+            effect_description = {"modifier-description.maraxsis-project-seadragon"},
         },
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-rocket-part"
+            recipe = "maraxsis-rocket-part",
         },
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-super-sealant-substance"
+            recipe = "maraxsis-super-sealant-substance",
         },
     },
     prerequisites = {"hydraulic-science-pack"},
@@ -52,7 +52,7 @@ rocket.rocket_sprite = {
     height = 290,
     width = 290,
     scale = 1.2,
-    shift = {0, 6}
+    shift = {0, 6},
 }
 rocket.rocket_rise_offset = {0, -7}
 rocket.rocket_smoke_bottom1_animation.scale = 0.01
@@ -66,7 +66,7 @@ rocket.rocket_smoke_top2_animation.hr_version = nil
 rocket.rocket_smoke_top3_animation.scale = 0.01
 rocket.rocket_smoke_top3_animation.hr_version = nil
 
-data:extend { rocket }
+data:extend {rocket}
 
 for surface in pairs(maraxsis_constants.MARAXSIS_SURFACES) do
     PlanetsLib.create_planet_entity_variant(

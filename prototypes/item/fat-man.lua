@@ -1,23 +1,23 @@
 local sounds = require("__base__.prototypes.entity.sounds")
 
-data:extend { {
+data:extend {{
     type = "recipe",
     name = "maraxsis-fat-man",
     categories = {"maraxsis-hydro-plant"},
     ingredients = {
-        { type = "item", name = "artillery-shell",                  amount = 1 },
-        { type = "item", name = "maraxsis-super-sealant-substance", amount = 1 },
-        { type = "item", name = "atomic-bomb",                      amount = 1 },
+        {type = "item", name = "artillery-shell",                  amount = 1},
+        {type = "item", name = "maraxsis-super-sealant-substance", amount = 1},
+        {type = "item", name = "atomic-bomb",                      amount = 1},
     },
     results = {
-        { type = "item", name = "maraxsis-fat-man", amount = 1 }
+        {type = "item", name = "maraxsis-fat-man", amount = 1},
     },
     energy_required = 10,
     auto_recycle = true,
     enabled = false,
-} }
+}}
 
-data:extend { {
+data:extend {{
     type = "ammo",
     name = "maraxsis-fat-man",
     icon = "__maraxsis__/graphics/icons/fat-man.png",
@@ -36,44 +36,44 @@ data:extend { {
                 range_deviation = 0,
                 source_effects = {
                     type = "create-explosion",
-                    entity_name = "artillery-cannon-muzzle-flash"
-                }
-            }
-        }
+                    entity_name = "artillery-cannon-muzzle-flash",
+                },
+            },
+        },
     },
     subgroup = "ammo",
     order = "d[explosive-cannon-shell]-d[artillery]",
-    stack_size = 1
-} }
+    stack_size = 1,
+}}
 
-data:extend { {
+data:extend {{
     type = "artillery-projectile",
     name = "maraxsis-nuclear-artillery-projectile",
-    flags = { "not-on-map" },
+    flags = {"not-on-map"},
     reveal_map = true,
     hidden = true,
-    map_color = { r = 0.5, g = 1, b = 0.5 },
+    map_color = {r = 0.5, g = 1, b = 0.5},
     picture = {
         filename = "__base__/graphics/entity/artillery-projectile/shell.png",
         draw_as_glow = true,
         width = 64,
         height = 64,
-        scale = 0.5
+        scale = 0.5,
     },
     shadow = {
         filename = "__base__/graphics/entity/artillery-projectile/shell-shadow.png",
         width = 64,
         height = 64,
-        scale = 0.5
+        scale = 0.5,
     },
     chart_picture = {
         filename = "__base__/graphics/entity/artillery-projectile/artillery-shoot-map-visualization.png",
-        flags = { "icon" },
+        flags = {"icon"},
         frame_count = 1,
         width = 64,
         height = 64,
         priority = "high",
-        scale = 0.25
+        scale = 0.25,
     },
     action = {
         type = "direct",
@@ -85,16 +85,16 @@ data:extend { {
                     tile_name = "nuclear-ground",
                     radius = 12,
                     apply_projection = true,
-                    tile_collision_mask = { layers = { water_tile = true } }
+                    tile_collision_mask = {layers = {water_tile = true}},
                 },
                 {
                     type = "destroy-cliffs",
                     radius = 9,
-                    explosion = "explosion"
+                    explosion = "explosion",
                 },
                 {
                     type = "create-entity",
-                    entity_name = "nuke-explosion"
+                    entity_name = "nuke-explosion",
                 },
                 {
                     type = "camera-effect",
@@ -105,7 +105,7 @@ data:extend { {
                     delay = 0,
                     strength = 6,
                     full_strength_max_distance = 200,
-                    max_distance = 800
+                    max_distance = 800,
                 },
                 {
                     type = "play-sound",
@@ -114,7 +114,7 @@ data:extend { {
                     -- min_distance = 200,
                     max_distance = 1000,
                     -- volume_modifier = 1,
-                    audible_distance_modifier = 3
+                    audible_distance_modifier = 3,
                 },
                 {
                     type = "play-sound",
@@ -123,21 +123,21 @@ data:extend { {
                     -- min_distance = 200,
                     max_distance = 1000,
                     -- volume_modifier = 1,
-                    audible_distance_modifier = 3
+                    audible_distance_modifier = 3,
                 },
                 {
                     type = "damage",
-                    damage = { amount = 400, type = "explosion" }
+                    damage = {amount = 400, type = "explosion"},
                 },
                 {
                     type = "create-entity",
                     entity_name = "huge-scorchmark",
-                    offsets = { { 0, -0.5 } },
-                    check_buildability = true
+                    offsets = {{0, -0.5}},
+                    check_buildability = true,
                 },
                 {
                     type = "invoke-tile-trigger",
-                    repeat_count = 1
+                    repeat_count = 1,
                 },
                 {
                     type = "destroy-decoratives",
@@ -145,7 +145,7 @@ data:extend { {
                     include_decals = true,
                     invoke_decorative_trigger = true,
                     decoratives_with_trigger_only = false, -- if true, destroys only decoratives that have trigger_effect set
-                    radius = 14                            -- large radius for demostrative purposes
+                    radius = 14,                           -- large radius for demostrative purposes
                 },
                 {
                     type = "create-decorative",
@@ -155,7 +155,7 @@ data:extend { {
                     spawn_min = 30,
                     spawn_max = 40,
                     apply_projection = true,
-                    spread_evenly = true
+                    spread_evenly = true,
                 },
                 {
                     type = "nested-result",
@@ -169,9 +169,9 @@ data:extend { {
                             type = "projectile",
                             projectile = "atomic-bomb-ground-zero-projectile",
                             starting_speed = 0.6 * 0.8,
-                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation
-                        }
-                    }
+                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
+                        },
+                    },
                 },
                 {
                     type = "nested-result",
@@ -186,9 +186,9 @@ data:extend { {
                             type = "projectile",
                             projectile = "atomic-bomb-wave",
                             starting_speed = 0.5 * 0.7,
-                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation
-                        }
-                    }
+                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
+                        },
+                    },
                 },
                 {
                     type = "nested-result",
@@ -204,9 +204,9 @@ data:extend { {
                             type = "projectile",
                             projectile = "atomic-bomb-wave-spawns-cluster-nuke-explosion",
                             starting_speed = 0.5 * 0.7,
-                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation
-                        }
-                    }
+                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
+                        },
+                    },
                 },
                 {
                     type = "nested-result",
@@ -221,9 +221,9 @@ data:extend { {
                             type = "projectile",
                             projectile = "atomic-bomb-wave-spawns-fire-smoke-explosion",
                             starting_speed = 0.5 * 0.65,
-                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation
-                        }
-                    }
+                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
+                        },
+                    },
                 },
                 {
                     type = "nested-result",
@@ -239,9 +239,9 @@ data:extend { {
                             type = "projectile",
                             projectile = "atomic-bomb-wave-spawns-nuke-shockwave-explosion",
                             starting_speed = 0.5 * 0.65,
-                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation
-                        }
-                    }
+                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
+                        },
+                    },
                 },
                 {
                     type = "nested-result",
@@ -257,9 +257,9 @@ data:extend { {
                             type = "projectile",
                             projectile = "atomic-bomb-wave-spawns-nuclear-smoke",
                             starting_speed = 0.5 * 0.65,
-                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation
-                        }
-                    }
+                            starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
+                        },
+                    },
                 },
                 {
                     type = "nested-result",
@@ -276,14 +276,14 @@ data:extend { {
                                 {
                                     type = "create-entity",
                                     entity_name = "nuclear-smouldering-smoke-source",
-                                    tile_collision_mask = { layers = { water_tile = true } }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                                    tile_collision_mask = {layers = {water_tile = true}},
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
     },
     final_action = {
         type = "direct",
@@ -293,11 +293,11 @@ data:extend { {
                 {
                     type = "create-entity",
                     entity_name = "medium-scorchmark-tintable",
-                    check_buildability = true
+                    check_buildability = true,
                 },
                 {
                     type = "invoke-tile-trigger",
-                    repeat_count = 1
+                    repeat_count = 1,
                 },
                 {
                     type = "destroy-decoratives",
@@ -307,10 +307,10 @@ data:extend { {
                     include_decals = false,
                     invoke_decorative_trigger = true,
                     decoratives_with_trigger_only = false, -- if true, destroys only decoratives that have trigger_effect set
-                    radius = 3.5                           -- large radius for demostrative purposes
-                }
-            }
-        }
+                    radius = 3.5,                          -- large radius for demostrative purposes
+                },
+            },
+        },
     },
-    height_from_ground = 280 / 64
-} }
+    height_from_ground = 280 / 64,
+}}

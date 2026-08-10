@@ -4,7 +4,7 @@ assert(tech.unit)
 
 table.insert(tech.prerequisites, "maraxsis-project-seadragon")
 
-for _, ingredient in pairs{
+for _, ingredient in pairs {
     {"automation-science-pack",      1},
     {"logistic-science-pack",        1},
     {"chemical-science-pack",        1},

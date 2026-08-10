@@ -1,4 +1,4 @@
-maraxsis.on_event(maraxsis.events.on_init(),  function()
+maraxsis.on_event(maraxsis.events.on_init(), function()
     storage.duct_exhausts = storage.duct_exhausts or {}
 end)
 
@@ -42,7 +42,7 @@ local function explode(entity)
             position = position,
             ghost_type = type,
             ghost_name = name,
-            force = force
+            force = force,
         }
     ) do
         ghost.destroy()
@@ -76,7 +76,7 @@ maraxsis.on_nth_tick(597, function()
         if found then
             for _, neighbour in pairs(duct_exhaust.surface.find_entities_filtered {
                 type = {"pipe", "pump", "storage-tank", "pipe-to-ground", "assembling-machine", "furnace", "generator", "boiler"},
-                force = duct_exhaust.force_index
+                force = duct_exhaust.force_index,
             }) do
                 explode(neighbour)
             end

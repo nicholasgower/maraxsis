@@ -22,9 +22,9 @@ local function make_estrogen_cloud_effect(base_name)
                     {
                         type = "create-entity",
                         entity_name = base_name .. "-expanding-estrogen-cloud-1",
-                    }
-                }
-            }
+                    },
+                },
+            },
         })
 
     for i = 2, estrogen_cloud_steps do
@@ -37,9 +37,9 @@ local function make_estrogen_cloud_effect(base_name)
                     action_delivery =
                     {
                         type = "delayed",
-                        delayed_trigger = base_name .. "-expanding-estrogen-cloud-delay-" .. i
-                    }
-                }
+                        delayed_trigger = base_name .. "-expanding-estrogen-cloud-delay-" .. i,
+                    },
+                },
             })
     end
     table.insert(effects,
@@ -51,14 +51,14 @@ local function make_estrogen_cloud_effect(base_name)
                 action_delivery =
                 {
                     type = "delayed",
-                    delayed_trigger = base_name .. "-estrogen-cloud-delay"
-                }
-            }
+                    delayed_trigger = base_name .. "-estrogen-cloud-delay",
+                },
+            },
         })
 
     return {
         time_cooldown = estrogen_cloud_interval * estrogen_cloud_steps + (1 + estrogen_cloud_repeats) * estrogen_cloud_duration,
-        effect = effects
+        effect = effects,
     }
 end
 
@@ -82,20 +82,20 @@ local function make_estrogen_cloud_trigger_effects(base_name, radius, damage_mul
                                 {
                                     type = "create-sticker",
                                     sticker = "maraxsis-estrogen-sticker",
-                                    show_in_tooltip = true
+                                    show_in_tooltip = true,
                                 },
                                 {
                                     type = "create-sticker",
                                     sticker = "maraxsis-estrogen-sticker-behind",
-                                    show_in_tooltip = false
+                                    show_in_tooltip = false,
                                 },
                                 {
                                     type = "script",
                                     effect_id = "maraxsis-estrogen-sticker-applied",
-                                }
-                            }
-                        }
-                    }
+                                },
+                            },
+                        },
+                    },
                 },
                 { -- combat robots can't take stickers
                     type = "nested-result",
@@ -112,18 +112,18 @@ local function make_estrogen_cloud_trigger_effects(base_name, radius, damage_mul
                             target_effects = {
                                 {
                                     type = "damage",
-                                    damage = {amount = 1 * damage_multiplier, type = "physical"}
+                                    damage = {amount = 1 * damage_multiplier, type = "physical"},
                                 },
                                 {
                                     type = "damage",
-                                    damage = {amount = 2 * damage_multiplier, type = "fire"}
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                                    damage = {amount = 2 * damage_multiplier, type = "fire"},
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
     }
 end
 
@@ -164,7 +164,7 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
             priority = "high",
             animation_speed = 0.25,
             filename = "__base__/graphics/entity/smoke/smoke.png",
-            flags = {"smoke"}
+            flags = {"smoke"},
         },
         action = {
             {
@@ -181,10 +181,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                             type = "create-smoke",
                             show_in_tooltip = false,
                             entity_name = "demolisher-ash-cloud-visual-dummy",
-                            initial_height = 0
+                            initial_height = 0,
                         },
-                    }
-                }
+                    },
+                },
             },
             {
                 type = "cluster",
@@ -200,10 +200,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                             type = "create-smoke",
                             show_in_tooltip = false,
                             entity_name = "demolisher-ash-cloud-visual-dummy",
-                            initial_height = 0
-                        }
-                    }
-                }
+                            initial_height = 0,
+                        },
+                    },
+                },
             },
             {
                 type = "cluster",
@@ -219,10 +219,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                             type = "create-smoke",
                             show_in_tooltip = false,
                             entity_name = "demolisher-ash-cloud-visual-dummy",
-                            initial_height = 0
-                        }
-                    }
-                }
+                            initial_height = 0,
+                        },
+                    },
+                },
             },
             {
                 type = "cluster",
@@ -238,10 +238,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                             type = "create-smoke",
                             show_in_tooltip = false,
                             entity_name = "demolisher-ash-cloud-visual-dummy",
-                            initial_height = 0
-                        }
-                    }
-                }
+                            initial_height = 0,
+                        },
+                    },
+                },
             },
             {
                 type = "cluster",
@@ -257,10 +257,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                             type = "create-smoke",
                             show_in_tooltip = false,
                             entity_name = "demolisher-ash-cloud-visual-dummy",
-                            initial_height = 0
-                        }
-                    }
-                }
+                            initial_height = 0,
+                        },
+                    },
+                },
             },
             {
                 -- thicker outer ring
@@ -281,14 +281,14 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                             starting_frame = 30,
                             starting_frame_deviation = 30,
                             speed_from_center = 0.1,
-                            speed_from_center_deviation = 0.1
-                        }
-                    }
-                }
+                            speed_from_center_deviation = 0.1,
+                        },
+                    },
+                },
             },
-            make_estrogen_cloud_trigger_effects(base_name, 32 * main_cloud_scale, damage_multiplier)
+            make_estrogen_cloud_trigger_effects(base_name, 32 * main_cloud_scale, damage_multiplier),
         },
-        action_cooldown = 10
+        action_cooldown = 10,
     }
     local function make_expanding_estrogen_cloud(i, cloud_scale)
         local max_radius = 32 * cloud_scale
@@ -313,10 +313,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                                 type = "create-smoke",
                                 show_in_tooltip = false,
                                 entity_name = "demolisher-ash-cloud-visual-dummy",
-                                initial_height = 0
-                            }
-                        }
-                    }
+                                initial_height = 0,
+                            },
+                        },
+                    },
                 }
                 table.insert(actions, cluster)
             end
@@ -342,10 +342,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                         starting_frame = 30,
                         starting_frame_deviation = 30,
                         speed_from_center = 0.1,
-                        speed_from_center_deviation = 0.1
-                    }
-                }
-            }
+                        speed_from_center_deviation = 0.1,
+                    },
+                },
+            },
         }
         table.insert(actions, outer_cluster)
         -- add the significant actions
@@ -386,10 +386,10 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                 priority = "high",
                 animation_speed = 0.25,
                 filename = "__base__/graphics/entity/smoke/smoke.png",
-                flags = {"smoke"}
+                flags = {"smoke"},
             },
             action = actions,
-            action_cooldown = estrogen_cloud_interval
+            action_cooldown = estrogen_cloud_interval,
         }
         return expanding_estrogen_cloud
     end
@@ -411,9 +411,9 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                     {
                         type = "play-sound",
                         sound = space_age_sounds.ash_cloud_explosion,
-                    }
-                }
-            }
+                    },
+                },
+            },
         })
 
         return expanding_estrogen_clouds
@@ -439,12 +439,12 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                         {
                             {
                                 type = "create-entity",
-                                entity_name = expanding_estrogen_clouds[i].name
-                            }
-                        }
-                    }
-                }
-            }
+                                entity_name = expanding_estrogen_clouds[i].name,
+                            },
+                        },
+                    },
+                },
+            },
         })
     end
 
@@ -466,12 +466,12 @@ local function make_particle_effects(base_name, order, scale, damage_multiplier)
                     {
                         {
                             type = "create-entity",
-                            entity_name = estrogen_cloud.name
-                        }
-                    }
-                }
-            }
-        }
+                            entity_name = estrogen_cloud.name,
+                        },
+                    },
+                },
+            },
+        },
     })
 
     local prototypes = {estrogen_cloud}
@@ -499,7 +499,7 @@ data:extend {
         fade_in_duration = 10,
         fade_away_duration = 50,
         draw_as_glow = true,
-        show_when_smoke_off = true
+        show_when_smoke_off = true,
     },
     trivial_smoke {
         name = "ooozma-estrogen-cloud-expanding-boundary",
@@ -514,7 +514,7 @@ data:extend {
         fade_in_duration = 10,
         fade_away_duration = 30,
         draw_as_glow = true,
-        show_when_smoke_off = true
+        show_when_smoke_off = true,
     },
 }
 
@@ -539,9 +539,9 @@ local function extend_sticker_effects()
                     frame_count = 50,
                     scale = 2.0,
                     animation_speed = 0.5,
-                    shift = util.by_pixel(0, 0)
-                })
-            }
+                    shift = util.by_pixel(0, 0),
+                }),
+            },
         },
         damage_per_tick = "nil",
         target_movement_modifier = 0.25,
@@ -566,8 +566,8 @@ local function extend_sticker_effects()
                 probability = 1,
                 volume = 0.65,
                 audible_distance_modifier = 0.01,
-            }
-        }
+            },
+        },
     })}
 
     data:extend {maraxsis.merge(data.raw.sticker["bioflux-speed-regen-sticker-behind"], {
@@ -587,16 +587,16 @@ local function extend_sticker_effects()
                     frame_count = 50,
                     scale = 2.0,
                     animation_speed = 0.5,
-                    shift = util.by_pixel(0, -48)
-                })
-            }
+                    shift = util.by_pixel(0, -48),
+                }),
+            },
         },
-        duration_in_ticks = maraxsis_constants.ESTROGEN_DURATION
+        duration_in_ticks = maraxsis_constants.ESTROGEN_DURATION,
     })}
 end
 
 return {
     make_estrogen_cloud_effect = make_estrogen_cloud_effect,
     make_particle_effects = make_particle_effects,
-    extend_sticker_effects = extend_sticker_effects
+    extend_sticker_effects = extend_sticker_effects,
 }

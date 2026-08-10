@@ -22,8 +22,8 @@ regulator.charging_energy = "2.5MW"
 
 local sqrt_2 = 1.41421356237
 regulator.charging_offsets = {
-    {-1.5, -1}, {1.5, -1}, {1.5, 1}, {-1.5, 1},
-    {-sqrt_2 * 1.5, -sqrt_2}, {sqrt_2 * 1.5, -sqrt_2}, {sqrt_2 * 1.5, sqrt_2}, {-sqrt_2 * 1.5, sqrt_2}
+    {-1.5,          -1}, {1.5, -1}, {1.5, 1}, {-1.5, 1},
+    {-sqrt_2 * 1.5, -sqrt_2}, {sqrt_2 * 1.5, -sqrt_2}, {sqrt_2 * 1.5, sqrt_2}, {-sqrt_2 * 1.5, sqrt_2},
 }
 
 regulator.integration_patch = {
@@ -38,7 +38,7 @@ regulator.integration_patch = {
             line_length = 8,
             animation_speed = 1,
             scale = 0.5 * 4 / 3,
-            flags = {"no-scale"}
+            flags = {"no-scale"},
         },
         {
             filename = "__maraxsis__/graphics/entity/regulator/sh.png",
@@ -52,8 +52,8 @@ regulator.integration_patch = {
             animation_speed = 1,
             scale = 0.5 * 4 / 3,
             draw_as_shadow = true,
-        }
-    }
+        },
+    },
 }
 regulator.integration_patch_render_layer = "object-under"
 regulator.placeable_by = {item = "maraxsis-pressure-dome", count = 1}
