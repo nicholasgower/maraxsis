@@ -54,7 +54,7 @@ data:extend {{
             recipe = "maraxsis-liquid-atmosphere-barrel",
         },
     },
-    prerequisites = {"maraxsis-estrogen-technology-aquilo"},
+    prerequisites = {"maraxsis-hypno-technology-aquilo"},
     unit = {
         count = 5000,
         ingredients = {

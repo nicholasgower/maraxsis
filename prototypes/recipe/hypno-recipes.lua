@@ -1,7 +1,7 @@
-function maraxsis.make_estrogen_technology_icons(base)
+function maraxsis.make_hypno_technology_icons(base)
     return {
         {
-            icon = "__maraxsis__/graphics/technology/estrogenuinely.png",
+            icon = "__maraxsis__/graphics/technology/ooozma.png",
             icon_size = 256,
         },
         {
@@ -11,7 +11,7 @@ function maraxsis.make_estrogen_technology_icons(base)
             shift = {20, 20},
         },
         {
-            icon = "__maraxsis__/graphics/icons/estrogen.png",
+            icon = "__maraxsis__/graphics/icons/hypno.png",
             icon_size = 64,
             scale = 0.40 * 4,
             shift = {20, 20},
@@ -20,13 +20,13 @@ function maraxsis.make_estrogen_technology_icons(base)
     }
 end
 
-function maraxsis.make_estrogen_technology(params)
+function maraxsis.make_hypno_technology(params)
     assert(params.space_location)
-    params.name = "maraxsis-estrogen-technology-" .. params.space_location
+    params.name = "maraxsis-hypno-technology-" .. params.space_location
     assert(not data.raw.technology[params.name])
 
-    if params.add_to_space ~= false and data.raw.technology["maraxsis-estrogen-technology-solar-system-edge"] then
-        table.insert(data.raw.technology["maraxsis-estrogen-technology-solar-system-edge"].prerequisites, params.name)
+    if params.add_to_space ~= false and data.raw.technology["maraxsis-hypno-technology-solar-system-edge"] then
+        table.insert(data.raw.technology["maraxsis-hypno-technology-solar-system-edge"].prerequisites, params.name)
     end
 
     local technology = params
@@ -34,18 +34,18 @@ function maraxsis.make_estrogen_technology(params)
     technology.icon = "__maraxsis__/graphics/technology/piscary.png"
     technology.icon_size = 256
     technology.type = "technology"
-    technology.localised_name = {"technology-name.maraxsis-estrogen-technology", {"space-location-name." .. params.space_location}}
-    technology.localised_description = {"technology-description.maraxsis-estrogen-technology", params.space_location}
+    technology.localised_name = {"technology-name.maraxsis-hypno-technology", {"space-location-name." .. params.space_location}}
+    technology.localised_description = {"technology-description.maraxsis-hypno-technology", params.space_location}
 
     data:extend {technology}
 end
 
-function maraxsis.make_estrogen_recipe(params)
+function maraxsis.make_hypno_recipe(params)
     assert(not params.categories)
     assert(params.recipe and data.raw.recipe[params.recipe], params.recipe)
 
     local recipe = table.deepcopy(data.raw.recipe[params.recipe])
-    recipe.name = "maraxsis-estrogen-recipe-" .. recipe.name
+    recipe.name = "maraxsis-hypno-recipe-" .. recipe.name
 
     recipe.main_product = recipe.main_product or recipe.results[1].name
     local old_main_product = data.raw.item[recipe.main_product] or data.raw.fluid[recipe.main_product] or data.raw.capsule[recipe.main_product]
@@ -101,7 +101,7 @@ function maraxsis.make_estrogen_recipe(params)
     end
 
     table.insert(recipe.icons, {
-        icon = "__maraxsis__/graphics/icons/estrogen.png",
+        icon = "__maraxsis__/graphics/icons/hypno.png",
         icon_size = 64,
         tint = {0.5, 0.5, 0.5, 0.5},
     })
@@ -112,7 +112,7 @@ function maraxsis.make_estrogen_recipe(params)
 
     local old_main_product = old_main_product or main_product
     recipe.localised_name = {
-        "recipe-name.maraxsis-estrogen-recipe",
+        "recipe-name.maraxsis-hypno-recipe",
         {
             "?",
             recipe.localised_name or {"recipe-name." .. params.recipe},
@@ -146,10 +146,10 @@ end
 
 -- space
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "solar-system-edge",
         prerequisites = {"stellar-discovery-solar-system-edge"},
-        icons = maraxsis.make_estrogen_technology_icons("__space-age__/graphics/technology/solar-system-edge.png"),
+        icons = maraxsis.make_hypno_technology_icons("__space-age__/graphics/technology/solar-system-edge.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -160,16 +160,16 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-solar-system-edge",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-solar-system-edge",
         recipe = "advanced-metallic-asteroid-crushing",
         productivity_technologies = {"asteroid-productivity"},
         swaps = {
             {name = "oxide-asteroid-chunk", swap_for = "metallic-asteroid-chunk", side = "ingredient"},
         },
     }
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-solar-system-edge",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-solar-system-edge",
         recipe = "metallic-asteroid-crushing",
         productivity_technologies = {"asteroid-productivity"},
         swaps = {
@@ -177,16 +177,16 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-solar-system-edge",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-solar-system-edge",
         recipe = "advanced-oxide-asteroid-crushing",
         productivity_technologies = {"asteroid-productivity"},
         swaps = {
             {name = "carbonic-asteroid-chunk", swap_for = "oxide-asteroid-chunk", side = "ingredient"},
         },
     }
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-solar-system-edge",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-solar-system-edge",
         recipe = "oxide-asteroid-crushing",
         productivity_technologies = {"asteroid-productivity"},
         swaps = {
@@ -194,16 +194,16 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-solar-system-edge",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-solar-system-edge",
         recipe = "advanced-carbonic-asteroid-crushing",
         productivity_technologies = {"asteroid-productivity"},
         swaps = {
             {name = "metallic-asteroid-chunk", swap_for = "carbonic-asteroid-chunk", side = "ingredient"},
         },
     }
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-solar-system-edge",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-solar-system-edge",
         recipe = "carbonic-asteroid-crushing",
         productivity_technologies = {"asteroid-productivity"},
         swaps = {
@@ -211,8 +211,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-solar-system-edge",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-solar-system-edge",
         recipe = "promethium-science-pack",
         swaps = {
             {name = "pentapod-egg",            swap_for = "biter-egg"},
@@ -223,10 +223,10 @@ end
 
 -- trench
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "maraxsis-trench",
-        prerequisites = {"maraxsis-estrogen-technology-maraxsis", "maraxsis-deepsea-research"},
-        icons = maraxsis.make_estrogen_technology_icons("__maraxsis__/graphics/planets/maraxsis-trench.png"),
+        prerequisites = {"maraxsis-hypno-technology-maraxsis", "maraxsis-deepsea-research"},
+        icons = maraxsis.make_hypno_technology_icons("__maraxsis__/graphics/planets/maraxsis-trench.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -240,8 +240,8 @@ do
     local prefix = "maraxsis-deepsea-research-"
     local quality_change = 2
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis-trench",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis-trench",
         recipe = prefix .. "automation-science-pack",
         swaps = {
             {name = "automation-science-pack", swap_for = "automation-science-pack", quality_change = quality_change},
@@ -250,8 +250,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis-trench",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis-trench",
         recipe = prefix .. "logistic-science-pack",
         swaps = {
             {name = "logistic-science-pack", swap_for = "logistic-science-pack", quality_change = quality_change},
@@ -260,8 +260,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis-trench",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis-trench",
         recipe = prefix .. "military-science-pack",
         swaps = {
             {name = "military-science-pack", swap_for = "military-science-pack",   quality_change = quality_change},
@@ -271,8 +271,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis-trench",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis-trench",
         recipe = prefix .. "chemical-science-pack",
         swaps = {
             {name = "chemical-science-pack", swap_for = "chemical-science-pack", quality_change = quality_change},
@@ -282,8 +282,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis-trench",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis-trench",
         recipe = prefix .. "production-science-pack",
         swaps = {
             {name = "production-science-pack",                                   swap_for = "production-science-pack", quality_change = quality_change},
@@ -293,8 +293,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis-trench",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis-trench",
         recipe = prefix .. "utility-science-pack",
         swaps = {
             {name = "utility-science-pack",             swap_for = "utility-science-pack", quality_change = quality_change},
@@ -307,10 +307,10 @@ end
 
 -- nauvis
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "nauvis",
-        prerequisites = {"maraxsis-estrogen-technology-maraxsis", "biter-egg-handling"},
-        icons = maraxsis.make_estrogen_technology_icons("__maraxsis__/graphics/technology/nauvis.png"),
+        prerequisites = {"maraxsis-hypno-technology-maraxsis", "biter-egg-handling"},
+        icons = maraxsis.make_hypno_technology_icons("__maraxsis__/graphics/technology/nauvis.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -322,24 +322,24 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-nauvis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-nauvis",
         recipe = "copper-plate",
         swaps = {
             {name = "iron-ore", swap_for = "copper-ore"},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-nauvis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-nauvis",
         recipe = "iron-plate",
         swaps = {
             {name = "copper-ore", swap_for = "iron-ore"},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-nauvis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-nauvis",
         recipe = "biter-egg",
         swaps = {
             {name = "biter-egg", swap_for = "biter-egg", quality_min = "uncommon"},
@@ -349,10 +349,10 @@ end
 
 -- vulcanus
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "vulcanus",
-        prerequisites = {"maraxsis-estrogen-technology-maraxsis"},
-        icons = maraxsis.make_estrogen_technology_icons("__space-age__/graphics/technology/vulcanus.png"),
+        prerequisites = {"maraxsis-hypno-technology-maraxsis"},
+        icons = maraxsis.make_hypno_technology_icons("__space-age__/graphics/technology/vulcanus.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -363,40 +363,40 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-vulcanus",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-vulcanus",
         recipe = "molten-iron-from-lava",
         swaps = {
             {name = "uranium-ore", swap_for = "stone", independent_probability = 0.05, amount = 1},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-vulcanus",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-vulcanus",
         recipe = "molten-copper-from-lava",
         swaps = {
             {name = "uranium-ore", swap_for = "stone", independent_probability = 0.05, amount = 1},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-vulcanus",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-vulcanus",
         recipe = "casting-copper",
         swaps = {
             {name = "molten-iron", swap_for = "molten-copper"},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-vulcanus",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-vulcanus",
         recipe = "casting-iron",
         swaps = {
             {name = "molten-copper", swap_for = "molten-iron"},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-vulcanus",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-vulcanus",
         recipe = "casting-steel",
         swaps = {
             {name = "engine-unit", swap_for = "steel-plate"},
@@ -405,8 +405,8 @@ do
         energy_required = data.raw.recipe["engine-unit"].energy_required,
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-vulcanus",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-vulcanus",
         recipe = "tungsten-carbide",
         swaps = {
             {name = "tungsten-plate",   swap_for = "tungsten-ore"},
@@ -418,10 +418,10 @@ end
 
 -- fulgora
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "fulgora",
-        prerequisites = {"maraxsis-estrogen-technology-maraxsis"},
-        icons = maraxsis.make_estrogen_technology_icons("__space-age__/graphics/technology/fulgora.png"),
+        prerequisites = {"maraxsis-hypno-technology-maraxsis"},
+        icons = maraxsis.make_hypno_technology_icons("__space-age__/graphics/technology/fulgora.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -432,8 +432,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-fulgora",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-fulgora",
         recipe = "holmium-solution",
         swaps = {
             {type = "item", name = "holmium-plate", swap_for = "holmium-solution", amount = 5},
@@ -442,8 +442,8 @@ do
     }
 
     if mods["Cerys-Moon-of-Fulgora"] then
-        maraxsis.make_estrogen_recipe {
-            technology = "maraxsis-estrogen-technology-fulgora",
+        maraxsis.make_hypno_recipe {
+            technology = "maraxsis-hypno-technology-fulgora",
             recipe = "scrap-recycling",
             results = table.deepcopy(data.raw.recipe["cerys-nuclear-scrap-recycling"].results),
         }
@@ -452,10 +452,10 @@ end
 
 -- cerys
 if mods["Cerys-Moon-of-Fulgora"] then
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "cerys",
-        prerequisites = {"maraxsis-estrogen-technology-maraxsis"},
-        icons = maraxsis.make_estrogen_technology_icons("__space-age__/graphics/technology/cerys.png"),
+        prerequisites = {"maraxsis-hypno-technology-maraxsis"},
+        icons = maraxsis.make_hypno_technology_icons("__space-age__/graphics/technology/cerys.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -466,8 +466,8 @@ if mods["Cerys-Moon-of-Fulgora"] then
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-cerys",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-cerys",
         recipe = "cerys-nuclear-scrap-recycling",
         results = table.deepcopy(data.raw.recipe["scrap-recycling"].results),
     }
@@ -475,10 +475,10 @@ end
 
 -- gleba
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "gleba",
-        prerequisites = {"maraxsis-estrogen-technology-maraxsis"},
-        icons = maraxsis.make_estrogen_technology_icons("__space-age__/graphics/technology/gleba.png"),
+        prerequisites = {"maraxsis-hypno-technology-maraxsis"},
+        icons = maraxsis.make_hypno_technology_icons("__space-age__/graphics/technology/gleba.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -489,16 +489,16 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-gleba",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-gleba",
         recipe = "pentapod-egg",
         swaps = {
             {name = "nutrients", swap_for = "nutrients", quality_min = "normal", quality_max = "normal"},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-gleba",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-gleba",
         recipe = "bioflux",
         swaps = {
             {name = "jelly",       swap_for = "jelly",       amount = 15},
@@ -510,10 +510,10 @@ end
 
 -- aquilo
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "aquilo",
-        prerequisites = {"maraxsis-estrogen-technology-maraxsis", "cryogenic-science-pack"},
-        icons = maraxsis.make_estrogen_technology_icons("__space-age__/graphics/technology/aquilo.png"),
+        prerequisites = {"maraxsis-hypno-technology-maraxsis", "cryogenic-science-pack"},
+        icons = maraxsis.make_hypno_technology_icons("__space-age__/graphics/technology/aquilo.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -524,8 +524,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-aquilo",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-aquilo",
         recipe = "ammoniacal-solution-separation",
         swaps = {
             {type = "fluid", name = "molten-iron",   swap_for = "ice",     amount = 25},
@@ -533,8 +533,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-aquilo",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-aquilo",
         recipe = "ice-melting",
         swaps = {
             {type = "fluid", name = "water", swap_for = "ice",   amount = 20, side = "ingredient"},
@@ -545,10 +545,10 @@ end
 
 -- maraxsis
 do
-    maraxsis.make_estrogen_technology {
+    maraxsis.make_hypno_technology {
         space_location = "maraxsis",
         prerequisites = {"maraxsis-project-seadragon"},
-        icons = maraxsis.make_estrogen_technology_icons("__maraxsis__/graphics/technology/maraxsis.png"),
+        icons = maraxsis.make_hypno_technology_icons("__maraxsis__/graphics/technology/maraxsis.png"),
         unit = {
             count = 1000,
             ingredients = {
@@ -558,8 +558,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis",
         recipe = "hydraulic-science-pack",
         swaps = {
             {name = "salt",                     swap_for = "salt",                     quality_change = 0},
@@ -567,8 +567,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis",
         recipe = "ske_h2o",
         swaps = {
             {name = "oxygen",   swap_for = "hydrogen"},
@@ -576,8 +576,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis",
         recipe = "maraxsis-salt-filter-cleaning",
         swaps = {
             {name = "saline-water", swap_for = "water"},
@@ -585,8 +585,8 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis",
         recipe = "microplastics",
         swaps = {
             {name = "raw-fish",     swap_for = "maraxsis-tropical-fish"},
@@ -595,15 +595,15 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis",
         recipe = "maraxsis-carbon",
         swaps = {
             {name = "coal", swap_for = "carbon", amount = 2},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
+    maraxsis.make_hypno_recipe {
         technology = "maraxsis-ooozma-confinement",
         recipe = "maraxsis-ooozma-specimen",
         hidden = false,
@@ -612,15 +612,15 @@ do
         },
     }
 
-    maraxsis.make_estrogen_recipe {
-        technology = "maraxsis-estrogen-technology-maraxsis",
+    maraxsis.make_hypno_recipe {
+        technology = "maraxsis-hypno-technology-maraxsis",
         recipe = "maraxsis-limestone-crushing",
         swaps = {
             {type = "item", name = "maraxsis-coral", swap_for = "calcite"},
         },
     }
 
-    maraxsis.make_estrogen_recipe {
+    maraxsis.make_hypno_recipe {
         technology = "maraxsis-project-seadragon",
         recipe = "maraxsis-geothermal-sulfur",
         swaps = {

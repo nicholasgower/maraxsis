@@ -81,8 +81,8 @@ data:extend {{
     prerequisites = {"maraxsis-piscary", "ducts", "maraxsis-geothermal-energy"},
     research_trigger = {
         type = "scripted",
-        trigger_description = {"technology-trigger.survive-estrogen"},
-        icon = "__maraxsis__/graphics/icons/estrogen.png",
+        trigger_description = {"technology-trigger.survive-hypno"},
+        icon = "__maraxsis__/graphics/icons/hypno.png",
         icon_size = 64,
     },
     order = "ee[ooozma-confinement]",

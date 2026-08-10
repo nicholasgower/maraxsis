@@ -20,7 +20,7 @@ require "scripts.supercritical-steam"
 require "scripts.hydraulic-science-pack"
 require "scripts.legendary-quality"
 require "scripts.matriarch"
-require "scripts.estrogen"
+require "scripts.hypno"
 
 require "compat.call-plumber"
 

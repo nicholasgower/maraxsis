@@ -3,8 +3,8 @@
 -- 2. Inner glow. Blending mode normal. Alpha 0.75
 -- 3. Saturation 2
 
-local estrogen = require "estrogen"
-estrogen.extend_sticker_effects()
+local hypno = require "hypno"
+hypno.extend_sticker_effects()
 local space_age_sounds = require "__space-age__.prototypes.entity.sounds"
 
 local function matriarch_spritesheet(file_name, is_shadow, is_glow, scale, alpha)
@@ -215,7 +215,7 @@ local function make_matriarch_head(
         },
         created_effect = created_effect,
         update_effects_while_enraged = {
-            estrogen.make_estrogen_cloud_effect(base_name),
+            hypno.make_hypno_cloud_effect(base_name),
         },
     }
 end
@@ -250,7 +250,7 @@ local function make_matriarch_segment(base_name, scale, damage_multiplier, healt
         working_sound = {
             main_sounds = {
                 sound = {
-                    filename = "__maraxsis__/sounds/estrogen.ogg",
+                    filename = "__maraxsis__/sounds/hypno.ogg",
                     category = "enemy",
                     priority = 127,
                     volume = 0.5,
@@ -322,7 +322,7 @@ local function make_matriarch(
 
     data:extend(make_matriarch_segments(base_name, segment_scales, scale, damage_multiplier, health, sounds, render_layer))
     --data:extend(make_matriarch_corpse(base_name, order, scale))
-    data:extend(estrogen.make_particle_effects(base_name, order, scale, damage_multiplier))
+    data:extend(hypno.make_particle_effects(base_name, order, scale, damage_multiplier))
 end
 
 make_matriarch(
