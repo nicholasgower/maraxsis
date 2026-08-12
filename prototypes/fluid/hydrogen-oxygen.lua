@@ -46,7 +46,6 @@ data:extend {{
     auto_recycle = false,
     categories = {"chemistry", "cryogenics"},
     main_product = "water",
-    hidden = not not mods.skewer_planet_vesta,
 }}
 
 data:extend {{
