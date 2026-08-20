@@ -38,6 +38,6 @@ water.animations = {
     frame_sequence = frame_sequence,
     draw_as_glow = false,
     shift = nil,
-    flags = {"no-scale"}
+    flags = {"no-scale"},
 }
 data:extend {water}

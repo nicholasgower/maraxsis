@@ -6,7 +6,7 @@ data:extend {{
     category = "resource",
     name = "maraxsis-coral",
     order = "e-0",
-    richness = true
+    richness = true,
 }}
 
 local coral_variants = {}
@@ -46,7 +46,7 @@ data:extend {{
         mining_time = 5,
         results = {
             {type = "item", name = "maraxsis-coral", amount = 1},
-        }
+        },
     },
     walking_sound = sounds.ore,
     mining_sound = table.deepcopy(data.raw.tree["slipstack"].mining_sound),
@@ -76,9 +76,9 @@ data:extend {{
                     type = "script",
                     effect_id = "maraxsis-coral-created",
                 },
-            }
-        }
-    }
+            },
+        },
+    },
 }}
 
 local animations = {}
@@ -103,8 +103,8 @@ for i = 1, 7 do
                 repeat_count = variant.frame_count,
                 scale = 0.33,
                 shift = {1.3, 0},
-            }
-        }
+            },
+        },
     }
 end
 
@@ -127,7 +127,7 @@ data:extend {{
     localised_name = {"entity-name.maraxsis-coral"},
     localised_description = {"entity-description.maraxsis-coral"},
     subgroup = "creatures",
-    order = "j-c[maraxsis-polylplast]"
+    order = "j-c[maraxsis-polylplast]",
 }}
 
 -- totally not a slipstack

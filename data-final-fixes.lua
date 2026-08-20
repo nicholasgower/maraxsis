@@ -20,7 +20,6 @@ require "compat.alien-biomes"
 require "compat.visible-planets-in-space"
 require "compat.rocket-silo-construction"
 require "compat.combat-mechanics-overhaul"
-require "compat.castra"
 require "compat.krastorio-2-final-fixes"
 require "compat.water-refining"
 require "compat.science-tab"
@@ -43,7 +42,7 @@ for extractor in pairs(maraxsis_constants.MARAXSIS_SAND_EXTRACTORS) do
         for _, v in pairs(seen) do
             if v == mining_drill then return end
         end
-        seen[#seen+1] = mining_drill
+        seen[#seen + 1] = mining_drill
         mining_drill = data.raw["mining-drill"][mining_drill]
         if not mining_drill then return end
         mining_drill.collision_mask = mask
@@ -71,7 +70,7 @@ while true do
 end
 
 for _, recipe in pairs(data.raw.recipe) do
-    if table_contains(recipe.categories,"maraxsis-hydro-plant") then
+    if table_contains(recipe.categories, "maraxsis-hydro-plant") then
         recipe.always_show_made_in = true
     end
 end
@@ -85,8 +84,8 @@ if data.raw.technology["legendary-quality"] and data.raw.technology["legendary-q
         localised_description = {"technology-description.legendary-quality"},
         prerequisites = {
             "hydraulic-science-pack",
-            "epic-quality"
-        }
+            "epic-quality",
+        },
     })}
 
     for _, ingredient in pairs(data.raw.technology["maraxsis-legendary-quality"].unit.ingredients) do
@@ -156,20 +155,20 @@ do
     end
 end
 
-for estrogen_equipment, strength in pairs(maraxsis_constants.ESTROGEN_EQUIPMENT) do
+for hypno_equipment, strength in pairs(maraxsis_constants.ESTROGEN_EQUIPMENT) do
     for prototype in pairs(defines.prototypes.equipment) do
-        local equipment_prototype = data.raw[prototype][estrogen_equipment]
+        local equipment_prototype = data.raw[prototype][hypno_equipment]
         if equipment_prototype then
             equipment_prototype.custom_tooltip_fields = equipment_prototype.custom_tooltip_fields or {}
             table.insert(equipment_prototype.custom_tooltip_fields, {
-                name = {"tooltip.estrogen-duration-reduction"},
+                name = {"tooltip.hypno-duration-reduction"},
                 value = {"quality-tooltip.percent-duration-decrease", tostring(strength * 100)},
-                quality_header = "quality-tooltip.estrogen-duration-reduction",
+                quality_header = "quality-tooltip.hypno-duration-reduction",
                 quality_values = table.map(data.raw.quality, function(q)
                     local quality_strength = (q.level * 0.3 + 1)
                     local value = tostring(quality_strength * strength * 100)
                     return {"quality-tooltip.percent-duration-decrease", value}
-                end)
+                end),
             })
         end
     end

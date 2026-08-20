@@ -4,7 +4,7 @@ data:extend {{
     icon = "__maraxsis__/graphics/icons/fishing-tower.png",
     icon_size = 64,
     stack_size = data.raw.item["agricultural-tower"].stack_size,
-    place_result = "maraxsis-fishing-tower"
+    place_result = "maraxsis-fishing-tower",
 }}
 
 data:extend {{
@@ -13,12 +13,12 @@ data:extend {{
     enabled = false,
     energy_required = 3,
     ingredients = {
-        {type = "item", name = "agricultural-tower",   amount = 1},
-        {type = "item", name = "maraxsis-coral",       amount = 10},
-        {type = "item", name = "maraxsis-glass-panes", amount = 10},
+        {type = "item", name = "agricultural-tower",        amount = 1},
+        {type = "item", name = "maraxsis-coral",            amount = 10},
+        {type = "item", name = "maraxsis-reinforced-glass", amount = 10},
     },
     results = {
-        {type = "item", name = "maraxsis-fishing-tower", amount = 1}
+        {type = "item", name = "maraxsis-fishing-tower", amount = 1},
     },
     allow_productivity = false,
     auto_recycle = true,
@@ -71,7 +71,7 @@ fishing_tower.radius_visualisation_picture = {
     filename = "__maraxsis__/graphics/entity/fishing-tower/radius-visualization.png",
     width = 6,
     height = 6,
-    priority = "extra-high-no-scale"
+    priority = "extra-high-no-scale",
 }
 fishing_tower.module_slots = 3
 fishing_tower.quality_affects_module_slots = true
@@ -97,8 +97,8 @@ data:extend {{
             [maraxsis_dome_collision_mask] = true,
             [maraxsis_underwater_collision_mask] = true,
             [maraxsis_lava_collision_mask] = true,
-            [maraxsis_trench_entrance_collision_mask] = true
-        }
+            [maraxsis_trench_entrance_collision_mask] = true,
+        },
     },
     collision_box = {{-0.8, -0.8}, {0.8, 0.8}},
     selection_box = {{-1, -1}, {1, 1}},
@@ -127,9 +127,9 @@ data:extend {{
                     type = "script",
                     effect_id = "maraxsis-fishing-plant-created",
                 },
-            }
-        }
-    }
+            },
+        },
+    },
 }}
 
 local fishing_plant_animation = table.deepcopy(data.raw["sticker"]["jellynut-speed-sticker"].animation)
@@ -138,7 +138,7 @@ fishing_plant_animation = {
     layers = {
         table.deepcopy(fishing_plant_animation),
         table.deepcopy(fishing_plant_animation),
-    }
+    },
 }
 fishing_plant_animation.layers[2].draw_as_glow = true
 fishing_plant_animation.type = "animation"
@@ -150,7 +150,7 @@ local probability = 1 / table_size(maraxsis_constants.TROPICAL_FISH_NAMES)
 for _, tropical_fish in pairs(maraxsis_constants.TROPICAL_FISH_NAMES) do
     table.insert(result_units, {
         unit = tropical_fish,
-        spawn_points = {{evolution_factor = 0, spawn_weight = probability}}
+        spawn_points = {{evolution_factor = 0, spawn_weight = probability}},
     })
 end
 
@@ -177,5 +177,5 @@ data:extend {{
     localised_name = {"entity-name.maraxsis-fishing-tower"},
     localised_description = {"entity-description.maraxsis-fishing-tower"},
     factoriopedia_alternative = "maraxsis-fishing-tower",
-    collision_mask = {layers = {}}
+    collision_mask = {layers = {}},
 }}

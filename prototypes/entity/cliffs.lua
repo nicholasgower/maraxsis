@@ -12,7 +12,7 @@ local cliff = scaled_cliff {
     factoriopedia_simulation = {
         hide_factoriopedia_gradient = true,
         init = "    game.simulation.camera_position = {0, 2.5}\n    for x = -8, 8, 1 do\n      for y = -3, 4 do\n        game.surfaces[1].set_tiles{{position = {x, y}, name = \"sand-3-underwater\"}}\n      end\n    end\n    for x = -8, 8, 4 do\n      game.surfaces[1].create_entity{name = \"cliff-maraxsis\", position = {x, 0}, cliff_orientation = \"west-to-east\"}\n    end\n  ",
-        planet = "maraxsis"
+        planet = "maraxsis",
     },
 }
 local function recursively_replace_cliff_shadows_to_vulcanus(cliff_orientations)
@@ -49,8 +49,8 @@ collisionless_cliff.created_effect = {
                 type = "script",
                 effect_id = "maraxsis-cliff-created",
             },
-        }
-    }
+        },
+    },
 }
 collisionless_cliff.hidden = true
 collisionless_cliff.factoriopedia_alternative = "cliff-maraxsis"

@@ -143,7 +143,7 @@ local function disable_due_to_dome_low_pressure(entity, powered_and_has_fluid)
                 sprite = "maraxsis-flooded-warning",
                 target = {
                     entity = entity,
-                    offset = entity.prototype.alert_icon_shift
+                    offset = entity.prototype.alert_icon_shift,
                 },
                 surface = entity.surface_index,
                 x_scale = 1.04,
@@ -416,7 +416,7 @@ local function place_collision_boxes(pressure_dome_data, health, player)
             quality = quality,
             create_build_effect_smoke = false,
             direction = orientation,
-            player = player -- setup the undo queue
+            player = player, -- setup the undo queue
         }
         collision_box.health = health
         collision_box.disabled_by_script = true
@@ -558,7 +558,7 @@ maraxsis.on_nth_tick(631, function()
         local fluid = regulator_fluidbox.get_fluid(1)
         if fluid and fluid.temperature ~= 25 then
             fluid.temperature = 25
-            regulator_fluidbox.set_fluid(1,fluid)
+            regulator_fluidbox.set_fluid(1, fluid)
         end
     end
 end)
@@ -721,7 +721,7 @@ local function cleanup_dome_for_deletion(pressure_dome_data, buffer)
                 if buffer and surface.valid then
                     buffer.insert(stack)
                 elseif surface.valid then
-                    surface.spill_item_stack{
+                    surface.spill_item_stack {
                         position = pressure_dome_data.position,
                         stack = stack,
                         enable_looted = true,
@@ -986,10 +986,10 @@ maraxsis.on_event(maraxsis.events.on_built(), function(event)
     entity.destroy()
 
     -- https://github.com/notnotmelon/maraxsis/issues/359
-    local existing = surface.find_entities_filtered{
+    local existing = surface.find_entities_filtered {
         position = position,
         name = "entity-ghost",
-        inner_name = "maraxsis-pressure-dome"
+        inner_name = "maraxsis-pressure-dome",
     }
     for _, existing in pairs(existing) do
         if existing.position.x == position.x and existing.position.y == position.y then
@@ -1101,7 +1101,7 @@ maraxsis.on_event("mine", function(event)
         if e.valid and not DOME_EXCLUDED_FROM_DISABLE[e.name] then
             player.create_local_flying_text {
                 text = {"maraxsis.cannot-mine-dome", e.name, e.quality.name, e.localised_name},
-                position = entity.position
+                position = entity.position,
             }
             return
         end

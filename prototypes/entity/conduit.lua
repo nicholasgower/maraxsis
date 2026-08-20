@@ -14,8 +14,8 @@ data:extend {{
     energy_required = 15,
     ingredients = {
         {type = "item", name = "beacon",                           amount = 1},
-        {type = "item", name = "maraxsis-glass-panes",             amount = 25},
-        {type = "item", name = "superconductor",                  amount = 25},
+        {type = "item", name = "maraxsis-reinforced-glass",        amount = 25},
+        {type = "item", name = "superconductor",                   amount = 25},
         {type = "item", name = "maraxsis-super-sealant-substance", amount = 15},
     },
     results = {
@@ -38,7 +38,7 @@ data:extend {{
             recipe = "maraxsis-conduit",
         },
     },
-    prerequisites = {"effect-transmission", "maraxsis-project-seadragon", "electromagnetic-science-pack", "epic-quality"},
+    prerequisites = {"effect-transmission", "maraxsis-hypno-technology-fulgora", "epic-quality"},
     unit = {
         count = 5000,
         ingredients = {
@@ -88,7 +88,7 @@ data:extend {maraxsis.merge(data.raw.beacon.beacon, {
                             scale = 0.5,
                             draw_as_shadow = true,
                             shift = {0, -0.5},
-                        }
+                        },
                     },
                 },
                 apply_tint = false,
@@ -106,7 +106,7 @@ data:extend {maraxsis.merge(data.raw.beacon.beacon, {
                     shift = {0, -0.5},
                 },
                 apply_tint = true,
-            }
+            },
         },
         module_tint_mode = "mix",
 
@@ -123,5 +123,5 @@ data:extend {maraxsis.merge(data.raw.beacon.beacon, {
     icon_size = 64,
     supply_area_distance = 16,
     distribution_effectivity = 0.5,
-    distribution_effectivity_bonus_per_quality_level = 0.05
+    distribution_effectivity_bonus_per_quality_level = 0.05,
 })}

@@ -1,6 +1,6 @@
-require "scripts.constants"
 _G.maraxsis = {}
 _G.maraxsis_constants = prototypes.mod_data["maraxsis-constants"].data
+
 require "lib.lib"
 
 require "scripts.map-gen.maraxsis"
@@ -16,11 +16,11 @@ require "scripts.fishing-tower"
 require "scripts.drowning"
 require "scripts.sonar"
 require "scripts.sand-extractor"
-require "scripts.oversized-steam-turbine"
+require "scripts.supercritical-steam"
 require "scripts.hydraulic-science-pack"
 require "scripts.legendary-quality"
-require "scripts.ooozma"
-require "scripts.estrogen"
+require "scripts.matriarch"
+require "scripts.hypno"
 
 require "compat.call-plumber"
 

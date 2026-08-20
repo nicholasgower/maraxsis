@@ -7,15 +7,6 @@ local dome = {
     flags = {"no-scale"},
 }
 
-local light_2 = {
-    filename = "__core__/graphics/light-medium.png",
-    width = 300,
-    height = 300,
-    scale = 7,
-    shift = {0, 0.3},
-    draw_as_light = true,
-}
-
 local base_shadow = {
     filename = "__maraxsis__/graphics/entity/pressure-dome/base-shadow.png",
     width = 1344,
@@ -49,16 +40,16 @@ data:extend {{
     name = "maraxsis-pressure-dome",
     enabled = false,
     ingredients = {
-        {type = "item", name = "pipe",                 amount = 30},
-        {type = "item", name = "maraxsis-glass-panes", amount = 5000},
-        {type = "item", name = "tungsten-plate",       amount = 100},
+        {type = "item", name = "pipe",                      amount = 30},
+        {type = "item", name = "maraxsis-reinforced-glass", amount = 5000},
+        {type = "item", name = "tungsten-plate",            amount = 100},
     },
     results = {
         {type = "item", name = "maraxsis-pressure-dome", amount = 1},
     },
     energy_required = 10,
     auto_recycle = true,
-    categories = {"maraxsis-hydro-plant" },
+    categories = {"maraxsis-hydro-plant"},
 }}
 
 local function collision_box() return {{-16, -16}, {16, 16}} end
@@ -97,12 +88,12 @@ data:extend {{
             cage_shadow,
             base_shadow,
             dome,
-        }, table.deepcopy(data.raw.roboport["maraxsis-regulator"].integration_patch.layers))
+        }, table.deepcopy(data.raw.roboport["maraxsis-regulator"].integration_patch.layers)),
     },
     surface_conditions = maraxsis.surface_conditions(),
     build_sound = {
         filename = "__core__/sound/build-ghost-tile.ogg",
-        volume = 0
+        volume = 0,
     },
     created_smoke = {
         type = "create-trivial-smoke",
@@ -121,14 +112,11 @@ data:extend {maraxsis.merge(data.raw["lamp"]["small-lamp"], {
     name = "maraxsis-pressure-dome-lamp",
     factoriopedia_alternative = "maraxsis-pressure-dome",
     quality_indicator_scale = 0,
-    localised_name = {"entity-name.maraxsis-pressure-dome"},
     localised_description = {"entity-description.maraxsis-pressure-dome"},
     remove_decoratives = "false",
-    hidden_in_factoriopedia = true,
+    hidden = true,
     surface_conditions = maraxsis.surface_conditions(),
     minable = "nil",
-    icon = "__maraxsis__/graphics/icons/pressure-dome.png",
-    icon_size = 64,
     flags = {"placeable-player", "player-creation", "not-on-map", "not-blueprintable"},
     max_health = 10000,
     collision_box = collision_box(),
@@ -147,7 +135,7 @@ data:extend {maraxsis.merge(data.raw["lamp"]["small-lamp"], {
         color = {
             b = 0.75,
             g = 1,
-            r = 1
+            r = 1,
         },
         intensity = 0.9,
     },
@@ -155,7 +143,7 @@ data:extend {maraxsis.merge(data.raw["lamp"]["small-lamp"], {
         color = {
             b = 0.75,
             g = 1,
-            r = 1
+            r = 1,
         },
         intensity = 0,
         size = 55,
@@ -168,7 +156,6 @@ data:extend {maraxsis.merge(data.raw["constant-combinator"]["constant-combinator
     type = "constant-combinator",
     name = "maraxsis-pressure-dome-combinator",
     factoriopedia_alternative = "maraxsis-pressure-dome",
-    quality_indicator_scale = 0,
     surface_conditions = maraxsis.surface_conditions(),
     localised_name = {"entity-name.maraxsis-pressure-dome"},
     localised_description = {"entity-description.maraxsis-pressure-dome"},
@@ -185,25 +172,25 @@ data:extend {maraxsis.merge(data.raw["constant-combinator"]["constant-combinator
         {0, 0},
         {0, 0},
         {0, 0},
-        {0, 0}
+        {0, 0},
     },
     circuit_wire_connection_points = {
         {
             shadow = {red = {0, 0}, green = {0, 0}},
-            wire = {red = {0, 0}, green = {0, 0}}
+            wire = {red = {0, 0}, green = {0, 0}},
         },
         {
             shadow = {red = {0, 0}, green = {0, 0}},
-            wire = {red = {0, 0}, green = {0, 0}}
+            wire = {red = {0, 0}, green = {0, 0}},
         },
         {
             shadow = {red = {0, 0}, green = {0, 0}},
-            wire = {red = {0, 0}, green = {0, 0}}
+            wire = {red = {0, 0}, green = {0, 0}},
         },
         {
             shadow = {red = {0, 0}, green = {0, 0}},
-            wire = {red = {0, 0}, green = {0, 0}}
-        }
+            wire = {red = {0, 0}, green = {0, 0}},
+        },
     },
     draw_copper_wires = false,
     draw_circuit_wires = false,
@@ -257,7 +244,7 @@ data:extend {{
         flags = {"smoke"},
         frame_count = 1,
     },
-    cyclic = true
+    cyclic = true,
 }}
 
 data:extend {{
@@ -280,7 +267,7 @@ data:extend {{
         ["object"] = true,
         ["item"] = true,
         [maraxsis_underwater_collision_mask] = true,
-        [maraxsis_dome_collision_mask] = true
+        [maraxsis_dome_collision_mask] = true,
     }},
     squeak_behaviour = false,
     minable = {mining_time = 1, result = "maraxsis-pressure-dome"},
@@ -288,13 +275,13 @@ data:extend {{
     resistances = {
         {
             type = "acid",
-            percent = 90
+            percent = 90,
         },
         {
             type = "fire",
-            percent = 100
+            percent = 100,
         },
-    }
+    },
 }}
 
 data:extend {{

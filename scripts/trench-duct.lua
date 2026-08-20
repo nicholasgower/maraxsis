@@ -23,7 +23,7 @@ maraxsis.on_event(maraxsis.events.on_built(), function(event)
         name = "maraxsis-trench-duct-lower",
         position = surface_duct.position,
         force = surface_duct.force_index,
-        direction = opposite_direction(surface_duct.direction)
+        direction = opposite_direction(surface_duct.direction),
     }
 
     surface_duct.add_fluid_box_linked_connection(0, trench_duct, 0)
@@ -32,7 +32,7 @@ maraxsis.on_event(maraxsis.events.on_built(), function(event)
         surface_duct = surface_duct,
         trench_duct = trench_duct,
         surface_duct_unit_number = surface_duct.unit_number,
-        trench_duct_unit_number = trench_duct.unit_number
+        trench_duct_unit_number = trench_duct.unit_number,
     }
 
     storage.trench_ducts[surface_duct.unit_number] = trench_duct_data

@@ -135,9 +135,9 @@ local function blacklist_via_tile_buildability_rule(entity, required_tile)
                 [maraxsis_lava_collision_mask] = true,
                 [maraxsis_trench_entrance_collision_mask] = true,
                 [maraxsis_underwater_collision_mask] = true,
-            }
+            },
         },
-        colliding_tiles = {layers = {[required_tile] = true}}
+        colliding_tiles = {layers = {[required_tile] = true}},
     })
 end
 

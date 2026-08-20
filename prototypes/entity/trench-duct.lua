@@ -3,7 +3,7 @@ local constants = require "__FluidMustFlow__.prototypes.constants"
 data.raw.technology["ducts"].unit = nil
 data.raw.technology["ducts"].research_trigger = {
     type = "mine-entity",
-    entities = {"maraxsis-chimney"}
+    entities = {"maraxsis-chimney"},
 }
 data.raw.technology["ducts"].prerequisites = {"sp-spidertron-automation", "planet-discovery-maraxsis"}
 
@@ -14,7 +14,7 @@ data:extend {{
     stack_size = 5,
     place_result = "maraxsis-trench-duct",
     subgroup = "ducts",
-    order = "d[pipe]-x[trench-duct]"
+    order = "d[pipe]-x[trench-duct]",
 }}
 
 data:extend {{
@@ -39,7 +39,7 @@ table.insert(data.raw.technology["ducts"].effects, {
 
 for _, effect in pairs(data.raw.technology["ducts"].effects) do
     if effect.type == "unlock-recipe" then
-        local recipe = data.raw.recipe[effect.recipe]        
+        local recipe = data.raw.recipe[effect.recipe]
         recipe.categories = {"maraxsis-hydro-plant", "advanced-crafting"}
         for _, ingredient in pairs(recipe.ingredients) do
             if ingredient.name == "iron-plate" then
@@ -77,28 +77,28 @@ data:extend {{
             width = 128,
             height = 561,
             scale = 0.5,
-            shift = {-0.05, 4}
+            shift = {-0.05, 4},
         },
         east = {
             filename = "__maraxsis__/graphics/entity/trench-duct/trench-duct.png",
             width = 128,
             height = 561,
             scale = 0.5,
-            shift = {0, 4.3}
+            shift = {0, 4.3},
         },
         south = {
             filename = "__maraxsis__/graphics/entity/trench-duct/trench-duct.png",
             width = 128,
             height = 561,
             scale = 0.5,
-            shift = {0, 4.3}
+            shift = {0, 4.3},
         },
         west = {
             filename = "__maraxsis__/graphics/entity/trench-duct/trench-duct.png",
             width = 128,
             height = 561,
             scale = 0.5,
-            shift = {-0.1, 4.3}
+            shift = {-0.1, 4.3},
         },
     },
     placeable_position_visualization = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"].placeable_position_visualization),
@@ -343,7 +343,7 @@ data.raw.pump["duct-intake"].energy_source = {type = "void"}
 data.raw.pump["duct-exhaust"].energy_source = {type = "void"}
 data.raw.pump["non-return-duct"].energy_source = {type = "void"}
 
-for _, pump in pairs{"duct-intake", "duct-exhaust"} do
+for _, pump in pairs {"duct-intake", "duct-exhaust"} do
     data.raw.pump[pump].energy_source = {
         type = "electric",
         usage_priority = "secondary-input",

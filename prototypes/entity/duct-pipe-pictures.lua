@@ -9,7 +9,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 256,
-                shift = {1.25, 0}
+                shift = {1.25, 0},
             },
             {
                 draw_as_shadow = true,
@@ -18,7 +18,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 256,
-                shift = {1.25, 0}
+                shift = {1.25, 0},
             },
         },
     }
@@ -31,7 +31,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 256,
-                shift = {-1.25, 0}
+                shift = {-1.25, 0},
             },
             {
                 draw_as_shadow = true,
@@ -40,7 +40,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 256,
-                shift = {-1.25, 0}
+                shift = {-1.25, 0},
             },
         },
     }
@@ -53,7 +53,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 128,
-                shift = {0, -0.55}
+                shift = {0, -0.55},
             },
             {
                 draw_as_shadow = true,
@@ -62,7 +62,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 256,
-                shift = {0, -1.5}
+                shift = {0, -1.5},
             },
         },
     }
@@ -75,7 +75,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 256,
-                shift = {0, 1.5}
+                shift = {0, 1.5},
             },
             {
                 draw_as_shadow = true,
@@ -84,7 +84,7 @@ local function duct_pipe_pictures()
                 priority = "high",
                 scale = 0.5,
                 width = 256,
-                shift = {0, 1.5}
+                shift = {0, 1.5},
             },
         },
     }

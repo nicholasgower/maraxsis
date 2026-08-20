@@ -24,7 +24,7 @@ trench_wall.icons = {
         icon = trench_wall.icon,
         tint = {r = 0.2, g = 0.2, b = 0.3},
         icon_size = trench_wall.icon_size,
-    }
+    },
 }
 trench_wall.icon = nil
 trench_wall.icon_size = nil
@@ -46,8 +46,8 @@ trench_wall_collisionless.created_effect = {
                 type = "script",
                 effect_id = "maraxsis-trench-wall-created",
             },
-        }
-    }
+        },
+    },
 }
 data:extend {trench_wall_collisionless}
 
@@ -71,8 +71,8 @@ data:extend {{
     minable                    = {
         mining_time = 0.2,
         results = {
-            {type = "item", name = "maraxsis-glass-panes", amount_min = 35, amount_max = 45},
-            {type = "item", name = "limestone",   amount_min = 20, amount_max = 30},
+            {type = "item", name = "maraxsis-reinforced-glass", amount_min = 35, amount_max = 45},
+            {type = "item", name = "limestone",                 amount_min = 20, amount_max = 30},
         },
     },
     max_health                 = 300,
@@ -102,7 +102,7 @@ data:extend {{
             height = 96,
             flags = {"no-scale"},
             scale = 0.75,
-            shift = {-0.5, 0}
+            shift = {-0.5, 0},
         },
         {
             filename = "__maraxsis__/graphics/entity/mollusk-husk/mollusk-husk-4.png",
@@ -110,10 +110,10 @@ data:extend {{
             height = 85,
             flags = {"no-scale"},
             scale = 0.75,
-            shift = {0.5, 0}
+            shift = {0.5, 0},
         },
     },
-    map_color                  = {149, 145, 108}
+    map_color                  = {149, 145, 108},
 }}
 
 -- sandstone

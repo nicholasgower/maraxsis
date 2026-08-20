@@ -1,5 +1,4 @@
-
-local mining_drill_prototypes = prototypes.get_entity_filtered{{filter="type", type="mining-drill"}}
+local mining_drill_prototypes = prototypes.get_entity_filtered {{filter = "type", type = "mining-drill"}}
 
 local function determine_place_direction(surface, position, drill_prototype)
     local offset_width = drill_prototype.tile_width
@@ -11,16 +10,16 @@ local function determine_place_direction(surface, position, drill_prototype)
 
     local area = {
         {position.x - offset_width + margin, position.y - offset_height + margin},
-        {position.x + offset_width - margin, position.y + offset_height - margin}
+        {position.x + offset_width - margin, position.y + offset_height - margin},
     }
     local belt_types = {"transport-belt", "underground-belt", "splitter", "container"}
 
     local neighboring_belts = table.array_combine(
-        surface.find_entities_filtered{
+        surface.find_entities_filtered {
             area = area,
-            type = belt_types
+            type = belt_types,
         },
-        surface.find_entities_filtered{
+        surface.find_entities_filtered {
             area = area,
             ghost_type = belt_types,
         }
@@ -74,11 +73,11 @@ local function construct_sand_extractor(event)
     if not maraxsis_constants.MARAXSIS_SAND_EXTRACTORS[name] then return end
     name = name .. "-sand-extractor"
     local position = event.cursor_position
-    
+
     if surface.entity_prototype_collides(name, position, false) then return end
-    
-    if surface.get_tile(position).hidden_tile then 
-        player.create_local_flying_text{
+
+    if surface.get_tile(position).hidden_tile then
+        player.create_local_flying_text {
             text = {"cant-build-reason.cant-build-on-tile", surface.get_tile(position).prototype.localised_name},
             surface = surface,
             create_at_cursor = true,
@@ -86,8 +85,8 @@ local function construct_sand_extractor(event)
         }
         return -- If tile is unnatural, like concrete, then don't place mine. Muluna addition.
     end
-    
-    local distance = math.sqrt((position.x - player.physical_position.x)^2 + (position.y - player.physical_position.y)^2)
+
+    local distance = math.sqrt((position.x - player.physical_position.x) ^ 2 + (position.y - player.physical_position.y) ^ 2)
     local is_ghost = (not cursor_stack_valid) or event.input_name == "build-ghost" or event.input_name == "super-forced-build"
     if player.character and (distance >= player.character.build_distance) and not is_ghost then
         return -- If unreachable, then don't place
@@ -100,7 +99,7 @@ local function construct_sand_extractor(event)
         force = player.force,
         player = player,
         quality = quality,
-        direction = determine_place_direction(surface, position, drill_prototype)
+        direction = determine_place_direction(surface, position, drill_prototype),
     }
 
     if not is_ghost then

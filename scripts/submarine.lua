@@ -112,13 +112,13 @@ local function determine_submerge_direction(submarine)
                 player.create_local_flying_text {
                     text = {"maraxsis.cannot-submerge"},
                     position = position,
-                    create_at_cursor = false
+                    create_at_cursor = false,
                 }
             end
             surface.play_sound {
                 path = "utility/cannot_build",
                 position = position,
-                volume_modifier = 1
+                volume_modifier = 1,
             }
             return nil
         end
@@ -140,13 +140,13 @@ local function determine_submerge_direction(submarine)
                 player.create_local_flying_text {
                     text = {"maraxsis.rocks-in-the-way"},
                     position = position,
-                    create_at_cursor = false
+                    create_at_cursor = false,
                 }
             end
             surface.play_sound {
                 path = "utility/cannot_build",
                 position = position,
-                volume_modifier = 1
+                volume_modifier = 1,
             }
             return nil
         end
@@ -160,7 +160,7 @@ local function play_submerge_sound(target, position)
     target.play_sound {
         path = "maraxsis-submerge",
         position = position,
-        volume_modifier = 1
+        volume_modifier = 1,
     }
 end
 maraxsis.register_delayed_function("play_submerge_sound", play_submerge_sound)
@@ -178,7 +178,7 @@ maraxsis.register_delayed_function("post_sub_teleport_inventory_restoration", fu
         local grid = submarine.grid
         if not grid then return end
         if not toolbelt.valid then return end
-        assert(grid.take{equipment = toolbelt})
+        assert(grid.take {equipment = toolbelt})
     end
 
     local function transfer_inventory_back_to_submarine()
@@ -206,12 +206,12 @@ local function teleport_submarine(submarine, target_position, target_surface)
         local stack = inventory[i]
         if stack and stack.valid_for_read then
             lua_inventory[i].swap_stack(stack)
-            inventory_indicies[#inventory_indicies+1] = i
+            inventory_indicies[#inventory_indicies + 1] = i
         end
     end
     inventory.clear()
     submarine.teleport(target_position, target_surface, true, false)
-    local toolbelt = grid.put{position = {0, 0}, name = "maraxsis-toolbelt-equipment"}
+    local toolbelt = grid.put {position = {0, 0}, name = "maraxsis-toolbelt-equipment"}
     assert(toolbelt)
     maraxsis.execute_later("post_sub_teleport_inventory_restoration", 1, submarine, toolbelt, lua_inventory, inventory_indicies)
 end
@@ -257,7 +257,7 @@ local function descend_or_ascend(submarine)
             player.set_controller {
                 type = defines.controllers.remote,
                 position = target_position,
-                surface = target_surface
+                surface = target_surface,
             }
         end
         player.opened = submarine
@@ -282,7 +282,7 @@ local function descend_or_ascend(submarine)
     script.raise_event("maraxsis-on-submerged", {
         entity = submarine,
         old_surface_index = old_surface.index,
-        old_position = old_position
+        old_position = old_position,
     })
 
     return true
@@ -307,9 +307,9 @@ local function descend_or_ascend_character(character)
     script.raise_event("maraxsis-on-submerged", {
         entity = character,
         old_surface_index = old_surface.index,
-        old_position = old_position
+        old_position = old_position,
     })
-        
+
     return true
 end
 
@@ -338,7 +338,7 @@ maraxsis.on_event(
         defines.events.on_player_alt_selected_area,
         defines.events.on_player_alt_reverse_selected_area,
         defines.events.on_player_reverse_selected_area,
-        defines.events.on_player_cursor_stack_changed
+        defines.events.on_player_cursor_stack_changed,
     },
     function(event)
         storage.previous_spidertron_remote_selection = storage.previous_spidertron_remote_selection or {}
@@ -407,7 +407,7 @@ maraxsis.on_nth_tick(277, function()
             for _, player in pairs(submarine.force.players) do
                 player.remove_alert {
                     entity = submarine,
-                    type = defines.alert_type.train_out_of_fuel
+                    type = defines.alert_type.train_out_of_fuel,
                 }
             end
         end
@@ -430,10 +430,10 @@ maraxsis.on_event(defines.events.on_player_respawned, function(event)
     for surface_name in pairs(maraxsis_constants.MARAXSIS_SURFACES) do
         local surface = game.get_surface(surface_name)
         if not surface then goto continue end
-        for _, submarine in pairs(surface.find_entities_filtered{
+        for _, submarine in pairs(surface.find_entities_filtered {
             name = submarine_names,
             type = "spider-vehicle",
-            force = force_index
+            force = force_index,
         }) do
             local patrol_data = remote.call("SpidertronPatrols", "get_waypoints", submarine)
             if not patrol_data then

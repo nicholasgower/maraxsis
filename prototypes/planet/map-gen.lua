@@ -28,7 +28,7 @@ planet_map_gen["maraxsis"] = function()
             cliff_elevation_0 = maraxsis_constants.TRENCH_ENTRANCE_ELEVATION,
             cliff_elevation_interval = 0.1,
             cliff_smoothing = 0, -- This is critical for correct cliff placement on the trench entrance.
-            richness = 0.98
+            richness = 0.98,
         },
         autoplace_controls = {
             ["maraxsis-coral"] = {},
@@ -43,7 +43,7 @@ planet_map_gen["maraxsis"] = function()
                     ["dirt-5-underwater"] = {},
                     ["lowland-cream-red-underwater"] = {},
                     ["lowland-red-vein-2-underwater"] = {},
-                }
+                },
             },
             ["decorative"] = {
                 settings = {
@@ -112,12 +112,12 @@ planet_map_gen["maraxsis"] = function()
                     ["green-pita-mini"] = {},
                     ["lichen-decal"] = {},
                     ["shroom-decal"] = {},
-                }
+                },
             },
             ["entity"] = {
                 settings = entity_spawn_settings,
             },
-        }
+        },
     }
 end
 
@@ -143,7 +143,7 @@ planet_map_gen["maraxsis-trench"] = function()
                     ["volcanic-cracks-warm-underwater"] = {},
                     ["volcanic-folds-underwater"] = {},
                     ["maraxsis-trench-out-of-map"] = {},
-                }
+                },
             },
             ["decorative"] = {
                 settings = {
@@ -218,7 +218,7 @@ planet_map_gen["maraxsis-trench"] = function()
                     ["green-pita-mini"] = {},
                     ["lichen-decal"] = {},
                     ["shroom-decal"] = {},
-                }
+                },
             },
             ["entity"] = {
                 settings = {
@@ -231,7 +231,7 @@ planet_map_gen["maraxsis-trench"] = function()
                     ["vulcanus-chimney-faded"] = {},
                 },
             },
-        }
+        },
     }
 end
 

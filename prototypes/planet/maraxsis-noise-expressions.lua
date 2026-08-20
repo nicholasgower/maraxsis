@@ -3,14 +3,14 @@ local TRENCH_ENTRANCE_ELEVATION = maraxsis_constants.TRENCH_ENTRANCE_ELEVATION
 data:extend {{
     type = "noise-expression",
     name = "maraxsis_starting_area",
-    expression = "1000"
+    expression = "1000",
 }}
 
 data:extend {{
     type = "noise-function",
     name = "distance_from_0_0",
     expression = "sqrt(xx * xx + yy * yy)",
-    parameters = {"xx", "yy"}
+    parameters = {"xx", "yy"},
 }}
 
 data:extend {{
@@ -19,7 +19,7 @@ data:extend {{
     expression = [[
         (1 - distance_from_0_0(xx, yy) / maraxsis_starting_area)
     ]],
-    parameters = {"xx", "yy"}
+    parameters = {"xx", "yy"},
 }}
 
 data:extend {{
@@ -37,13 +37,13 @@ data:extend {{
             output_scale = 1
         })
     ]],
-    parameters = {"xx", "yy"}
+    parameters = {"xx", "yy"},
 }}
 
 data:extend {{
     type = "noise-expression",
     name = "maraxsis_surface_moisture",
-    expression = "maraxsis_moisture(x, y)"
+    expression = "maraxsis_moisture(x, y)",
 }}
 
 data:extend {{ -- distorted x. Also offset grid so that the starting area is in the middle of a cell
@@ -61,7 +61,7 @@ data:extend {{ -- distorted x. Also offset grid so that the starting area is in 
             output_scale = fulgora_grid * 0.07
         } * maraxsis_wobble_mask(xx, yy) + fulgora_grid / 2
     ]],
-    parameters = {"xx", "yy"}
+    parameters = {"xx", "yy"},
 }}
 data:extend {{ -- distorted y. Also offset grid so that the starting area is in the middle of a cell
     type = "noise-function",
@@ -78,7 +78,7 @@ data:extend {{ -- distorted y. Also offset grid so that the starting area is in 
             output_scale = fulgora_grid * 0.07
         } * maraxsis_wobble_mask(xx, yy) + fulgora_grid / 2
     ]],
-    parameters = {"xx", "yy"}
+    parameters = {"xx", "yy"},
 }}
 
 data:extend {{ -- We usually want a lot of wobble or none at all, so wobble_influence has a high output scale and then we clamp it.
@@ -98,9 +98,9 @@ data:extend {{ -- We usually want a lot of wobble or none at all, so wobble_infl
                 input_scale = 128 / fulgora_grid / 20 ,
                 output_scale = 3
             }
-        ]]
+        ]],
     },
-    parameters = {"xx", "yy"}
+    parameters = {"xx", "yy"},
 }}
 
 data:extend {{
@@ -118,21 +118,21 @@ data:extend {{
                 maraxsis_moisture(xx, yy) + maraxsis_elevation_bonus(xx, yy),
                 maraxsis_moisture(xx, yy)
             )
-        ]]
+        ]],
     },
-    parameters = {"xxx", "yyy"}
+    parameters = {"xxx", "yyy"},
 }}
 
 data:extend {{
     type = "noise-expression",
     name = "maraxsis_surface_elevation",
-    expression = "maraxsis_elevation(x, y)"
+    expression = "maraxsis_elevation(x, y)",
 }}
 
 data:extend {{
     type = "noise-expression",
     name = "maraxsis_trench_entrance",
-    expression = "maraxsis_surface_elevation < " .. TRENCH_ENTRANCE_ELEVATION
+    expression = "maraxsis_surface_elevation < " .. TRENCH_ENTRANCE_ELEVATION,
 }}
 
 data:extend {{
@@ -175,7 +175,7 @@ data:extend {{
             )
         ]],
     },
-    parameters = {"xx", "yy"}
+    parameters = {"xx", "yy"},
 }}
 
 data:extend {{
@@ -194,8 +194,8 @@ data:extend {{
                 input_scale = 128 / 20,
                 output_scale = 3
             }
-        ]]
-    }
+        ]],
+    },
 }}
 
 for i = 1, table_size(maraxsis_constants.TROPICAL_FISH_NAMES) do
@@ -207,8 +207,8 @@ for i = 1, table_size(maraxsis_constants.TROPICAL_FISH_NAMES) do
             wx = "maraxsis_wx(x, y) + " .. i * 97,
             wy = "maraxsis_wy(x, y) + " .. i * 61,
             seed = "map_seed + " .. i * 100,
-            rand = "1 - random_penalty{x = wx, y = wy, seed = seed, source = 1, amplitude = 1}"
-        }
+            rand = "1 - random_penalty{x = wx, y = wy, seed = seed, source = 1, amplitude = 1}",
+        },
     }}
 end
 
@@ -216,42 +216,42 @@ data.raw.tile["lowland-cream-red-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_coral_reef(x, y) >= 0.65
     ]],
-    order = "a[coral]-a[maraxsis]"
+    order = "a[coral]-a[maraxsis]",
 }
 
 data.raw.tile["lowland-red-vein-2-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_coral_reef(x, y) >= 0.45
     ]],
-    order = "a[coral]-b[maraxsis]"
+    order = "a[coral]-b[maraxsis]",
 }
 
 data.raw.tile["sand-3-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_surface_elevation > (0.9 + ]] .. TRENCH_ENTRANCE_ELEVATION .. [[)
     ]],
-    order = "b[sand]-a[maraxsis]"
+    order = "b[sand]-a[maraxsis]",
 }
 
 data.raw.tile["sand-2-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_surface_elevation > (0.7 + ]] .. TRENCH_ENTRANCE_ELEVATION .. [[)
     ]],
-    order = "b[sand]-b[maraxsis]"
+    order = "b[sand]-b[maraxsis]",
 }
 
 data.raw.tile["sand-1-underwater"].autoplace = {
     probability_expression = [[
         maraxsis_surface_elevation > (0.3 + ]] .. TRENCH_ENTRANCE_ELEVATION .. [[)
     ]],
-    order = "b[sand]-c[maraxsis]"
+    order = "b[sand]-c[maraxsis]",
 }
 
 data.raw.tile["dirt-5-underwater"].autoplace = {
     probability_expression = [[
         1
     ]],
-    order = "b[sand]-d[maraxsis]"
+    order = "b[sand]-d[maraxsis]",
 }
 
 data.raw["simple-entity"]["big-sand-rock-underwater"].autoplace = {
@@ -270,14 +270,14 @@ data.raw["simple-entity"]["big-sand-rock-underwater"].autoplace = {
                 input_scale = 1 / 40,
                 output_scale = 1
             } > 0.9
-        ]]
+        ]],
     },
-    order = "c[rocks]-a[big-sand-rock-underwater]"
+    order = "c[rocks]-a[big-sand-rock-underwater]",
 }
 
 data.raw["simple-entity"]["big-sand-rock-underwater"].minable.results = {
     {type = "item", name = maraxsis_constants.SAND_ITEM_NAME, amount_min = 11, amount_max = 15},
-    {type = "item", name = "stone",         amount_min = 11, amount_max = 15}
+    {type = "item", name = "stone",                           amount_min = 11, amount_max = 15},
 }
 
 data.raw["simple-entity"]["maraxsis-mollusk-husk"].autoplace = {
@@ -311,7 +311,7 @@ data.raw["simple-entity"]["maraxsis-mollusk-husk"].autoplace = {
             } > 0.2) + (distance_from_0_0(x, y) < 30)
         ]],
     },
-    order = "c[rocks]-b[mollusk-husk]"
+    order = "c[rocks]-b[mollusk-husk]",
 }
 
 data.raw.tree["maraxsis-polylplast"].autoplace = {
@@ -321,5 +321,5 @@ data.raw.tree["maraxsis-polylplast"].autoplace = {
     local_expressions = {
         random_1 = "random_penalty{x = x, y = y, seed = map_seed, source = 1, amplitude = 1} > 0.96",
         random_2 = "random_penalty{x = x, y = y, seed = map_seed, source = 1, amplitude = 1} > 0.9996",
-    }
+    },
 }

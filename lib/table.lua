@@ -55,7 +55,7 @@ table.delete_if = function(tbl, f, ...)
         if is_function then
             for k, v in pairs(tbl) do if not f(v, k, ...) then result[k] = v end end
         else
-            for k, v in pairs(tbl) do if f ~= v then result[k] = v end end        
+            for k, v in pairs(tbl) do if f ~= v then result[k] = v end end
         end
     end
     return result
@@ -226,14 +226,16 @@ end
 
 ---Returns a new array with duplicates removed.
 ---@param tbl any[]
+---@param f? fun(element: any): any
 ---@return any[]
-table.dedupe = function(tbl)
+table.dedupe = function(tbl, f)
     local seen = {}
     local result = {}
     for _, v in pairs(tbl) do
-        if not seen[v] then
+        local key = f and f(v) or v
+        if not seen[key] then
             table.insert(result, v)
-            seen[v] = true
+            seen[key] = true
         end
     end
     return result

@@ -4,12 +4,12 @@ local function init()
     storage.external_modifiers = storage.external_modifiers or {}
     storage.external_modifiers.light_radius = storage.external_modifiers.light_radius or {}
     storage.external_modifiers.swim_speed = storage.external_modifiers.swim_speed or {}
-    storage.external_modifiers.estrogen_resistance = storage.external_modifiers.estrogen_resistance or {}
+    storage.external_modifiers.hypno_resistance = storage.external_modifiers.hypno_resistance or {}
 
     storage.base_character_values = storage.base_character_values or {}
     storage.base_character_values.light_radius = storage.base_character_values.light_radius or 0
     storage.base_character_values.swim_speed = storage.base_character_values.swim_speed or 0
-    storage.base_character_values.estrogen_resistance = storage.base_character_values.estrogen_resistance or 0
+    storage.base_character_values.hypno_resistance = storage.base_character_values.hypno_resistance or 0
 end
 
 maraxsis.on_event(maraxsis.events.on_init(), init)
@@ -38,28 +38,28 @@ local function get_abyssal_light_size(player)
             light_size = light_size + (equipment.count * get_quality_buff(quality.level))
         end
     end
-    
+
     return light_size
 end
 
-function maraxsis.get_estrogen_resistance(player)
+function maraxsis.get_hypno_resistance(player)
     init()
     local character = player.character
-    local estrogen_resistance = 1 - storage.base_character_values["estrogen_resistance"]
-    if not character then return estrogen_resistance end
+    local hypno_resistance = 1 - storage.base_character_values["hypno_resistance"]
+    if not character then return hypno_resistance end
     local grid = character.grid
-    if not grid then return estrogen_resistance end
+    if not grid then return hypno_resistance end
 
     for _, equipment in pairs(grid.get_contents()) do
         if maraxsis_constants.ESTROGEN_EQUIPMENT[equipment.name] then
             local quality = prototypes.quality[equipment.quality]
             for _ = 1, equipment.count do
-                estrogen_resistance = estrogen_resistance * (1 - (maraxsis_constants.ESTROGEN_EQUIPMENT[equipment.name] * get_quality_buff(quality.level)))
+                hypno_resistance = hypno_resistance * (1 - (maraxsis_constants.ESTROGEN_EQUIPMENT[equipment.name] * get_quality_buff(quality.level)))
             end
         end
     end
 
-    return estrogen_resistance
+    return hypno_resistance
 end
 
 maraxsis.is_wearing_abyssal_diving_gear = function(player)
@@ -192,7 +192,7 @@ function maraxsis.set_modifier(source_key, modifier_type, modifier)
     if modifier and modifier ~= 0 then
         modifier_list[source_key] = modifier --Told to have a modifier
     else
-        modifier_list[source_key] = nil --Told to remove modifier
+        modifier_list[source_key] = nil      --Told to remove modifier
     end
 
     --Update the base value from scratch

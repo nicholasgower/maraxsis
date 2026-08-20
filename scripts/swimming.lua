@@ -21,7 +21,7 @@ local function transfer_equipment_grid(old_armor, new_armor)
             new_equipment.burner.heat = equipment.burner.heat
             new_equipment.burner.currently_burning = equipment.burner.currently_burning
             new_equipment.burner.remaining_burning_fuel = equipment.burner.remaining_burning_fuel
-            for target_inventory, source_inventory in pairs{
+            for target_inventory, source_inventory in pairs {
                 [new_equipment.burner.inventory] = equipment.burner.inventory,
                 [new_equipment.burner.burnt_result_inventory] = equipment.burner.burnt_result_inventory,
             } do
@@ -59,7 +59,7 @@ local function transfer_armor_item(player, armor, target_armor_name)
         count = 1,
         quality = armor.quality,
         health = armor.health,
-        spoil_percent = armor.spoil_percent
+        spoil_percent = armor.spoil_percent,
     }
 
     transfer_equipment_grid(armor, stack)
@@ -149,7 +149,7 @@ maraxsis.on_event("factory-open-outside-surface-to-remote-view", function(event)
     if player.selected then return end
     local surface = player.surface
     if surface.name ~= "maraxsis" then return end
-    
+
     local cursor_position = event.cursor_position
     local tile = surface.get_tile(cursor_position)
 
@@ -158,7 +158,7 @@ maraxsis.on_event("factory-open-outside-surface-to-remote-view", function(event)
 
     local trench = game.planets["maraxsis-trench"].surface
     if not trench then return end
-    
+
     player.set_controller {
         position = cursor_position,
         surface = trench,
