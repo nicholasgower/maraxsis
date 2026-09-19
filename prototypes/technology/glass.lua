@@ -22,7 +22,7 @@ data:extend {{
         },
         {
             type = "unlock-recipe",
-            recipe = "maraxsis-limestone-processing",
+            recipe = "maraxsis-limestone-crushing",
         },
     },
     prerequisites = {"planet-discovery-maraxsis"},
@@ -119,6 +119,11 @@ data:extend {{
     icons = util.technology_icon_constant_recipe_productivity("__maraxsis__/graphics/technology/glass-productivity.png"),
     icon_size = 256,
     effects = {
+        {
+            type = "change-recipe-productivity",
+            recipe = "maraxsis-pressure-dome",
+            change = 0.1
+        }
     },
     prerequisites = {"maraxsis-project-seadragon", "production-science-pack", "utility-science-pack", "metallurgic-science-pack"},
     unit = {
@@ -137,13 +142,7 @@ data:extend {{
     max_level = "infinite",
     upgrade = true,
     PlanetsLib_recipe_productivity_effects = {
-        allow_recipes_without_productivity = true,
         effects = {
-            {
-                type = "item",
-                name = "maraxsis-pressure-dome",
-                change = 0.1
-            },
             {
                 type = "item",
                 name = "maraxsis-glass-panes",
@@ -165,21 +164,23 @@ data:extend {{
 
 data:extend {{
     type = "recipe",
-    name = "maraxsis-limestone-processing",
+    name = "maraxsis-limestone-crushing",
     enabled = false,
-    energy_required = 5,
+    energy_required = 20,
     ingredients = {
         {type = "item", name = "limestone", amount = 1},
     },
     results = {
-        {type = "item", name = "calcite", amount = 1},
-        {type = "item", name = "stone",   amount = 1},
+        {type = "item", name = "calcite", amount = 1, quality_change = 1, shared_probability = {min = 0/3, max = 1/3}},
+        {type = "item", name = "calcite", amount = 1, quality_change = 2, shared_probability = {min = 1/3, max = 2/3}},
+        {type = "item", name = "calcite", amount = 1, quality_change = 3, shared_probability = {min = 2/3, max = 3/3}},
     },
-    icon = "__maraxsis__/graphics/icons/limestone-processing.png",
-    icon_size = 64,
+    icons = PlanetsLib.crushing_recipe_icons("__maraxsis__/graphics/icons/limestone-2.png", 64),
     allow_productivity = true,
-    categories = {"maraxsis-hydro-plant", "metallurgy"},
+    categories = {"crushing"},
     allow_decomposition = false,
     main_product = "calcite",
     auto_recycle = false,
+    subgroup = "space-crushing",
+    order = "i[limestone-processing]"
 }}

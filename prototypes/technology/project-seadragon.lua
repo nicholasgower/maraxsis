@@ -43,9 +43,7 @@ local maraxsis_rocket_part = table.deepcopy(data.raw["recipe"]["rocket-part"])
 maraxsis_rocket_part.name = "maraxsis-rocket-part"
 maraxsis_rocket_part.localised_name = maraxsis_rocket_part.localised_name or {"item-name.rocket-part"}
 maraxsis_rocket_part.enabled = false
-maraxsis_rocket_part.surface_conditions = {
-    {property = "pressure", min = 200000, max = 200000},
-}
+maraxsis_rocket_part.surface_conditions = maraxsis.shallow_surface_conditions()
 maraxsis_rocket_part.auto_recycle = false
 maraxsis_rocket_part.order = data.raw.item["rocket-part"].order .. "-a[maraxsis]"
 data:extend {maraxsis_rocket_part}
@@ -56,9 +54,9 @@ data:extend {{
     enabled = false,
     energy_required = 5,
     ingredients = {
-        {type = "item",  name = "sulfur",    amount = 3},
-        {type = "fluid", name = "heavy-oil", amount = 25},
-        {type = "fluid", name = "hydrogen",     amount = 100},
+        {type = "item",  name = "sulfur", amount = 3},
+        {type = "fluid", name = "heavy-oil", amount = 200},
+        {type = "fluid", name = "hydrogen", amount = 100},
     },
     results = {
         {type = "item", name = "maraxsis-super-sealant-substance", amount = 1},
@@ -66,6 +64,7 @@ data:extend {{
     categories = {"chemistry", "cryogenics"},
     allow_productivity = true,
     auto_recycle = false,
+    sort_item_ingredients = false
 }}
 
 local super_sealant_substance_variants = {}
@@ -130,11 +129,13 @@ for surface in pairs(maraxsis_constants.MARAXSIS_SURFACES) do
             disabled_when_recipe_not_researched = true,
             placeable_by = {{item = "rocket-silo", count = 1}},
             flags = {"placeable-player", "player-creation", "not-in-made-in"},
-            logistic_trash_inventory_size = 1,
             hidden = true,
             hidden_in_factoriopedia = true,
         },
         "maraxsis-runtime-entity-replacement",
         "rocket-silo"
     )
+
+    -- https://github.com/notnotmelon/maraxsis/issues/417
+    PlanetsLib.assign_rocket_part_recipe(surface, maraxsis_rocket_part.name)
 end

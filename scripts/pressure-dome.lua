@@ -112,32 +112,48 @@ local function count_points_in_dome(pressure_dome_data, entity)
     return count
 end
 
+--- Whether the entity needs a dome to prevent flooding.
+--- @param entity LuaEntity
+local function needs_dome(entity)
+    return maraxsis_constants.NEEDS_DOME[entity.name] or false
+end
+
+--- Whether the entity needs a dome *with atmosphere* to prevent flooding.
+--- @param entity LuaEntity
+local function needs_atmosphere(entity)
+    return needs_dome(entity) and not maraxsis_constants.DOME_EXCLUDED_FROM_DISABLE[entity.name]
+end
+
 local FLOODED_STATUS = {
     diode = defines.entity_status_diode.red,
     label = {"entity-status.flooded"},
 }
-local DOME_DISABLEABLE_TYPES = maraxsis_constants.DOME_DISABLEABLE_TYPES
-local DOME_EXCLUDED_FROM_DISABLE = maraxsis_constants.DOME_EXCLUDED_FROM_DISABLE
-local function disable_due_to_dome_low_pressure(entity, powered_and_has_fluid)
-    if not entity.valid or not entity.is_updatable then return end
-    if not DOME_DISABLEABLE_TYPES[entity.type] or DOME_EXCLUDED_FROM_DISABLE[entity.name] then return end
 
-    local should_be_active = not not powered_and_has_fluid
-    local is_active = not entity.disabled_by_script
-    if is_active == should_be_active then return end
-    entity.disabled_by_script = not should_be_active
+--- Some entities only need the dome, atmosphere optional.
+local FLOODED_DOME_ONLY_STATUS = {
+    diode = defines.entity_status_diode.red,
+    label = {"entity-status.flooded-dome-only"},
+}
+
+--- Sets or unsets an entity's flooded debuff, which prevents it from working.
+--- @param entity LuaEntity
+--- @param flooded boolean
+local function set_flooded(entity, flooded)
+    if not entity.valid or not entity.is_updatable then return end
+    if entity.disabled_by_script == flooded then return end
+    entity.disabled_by_script = flooded
 
     storage.flooded_warning_info_icons = storage.flooded_warning_info_icons or {}
     local warning = storage.flooded_warning_info_icons[entity.unit_number]
 
-    if should_be_active then
+    if not flooded then
         entity.custom_status = nil
         if warning then
             warning.destroy()
             storage.flooded_warning_info_icons[entity.unit_number] = nil
         end
     else
-        entity.custom_status = FLOODED_STATUS
+        entity.custom_status = needs_atmosphere(entity) and FLOODED_STATUS or FLOODED_DOME_ONLY_STATUS
         if not warning then
             warning = rendering.draw_sprite {
                 sprite = "maraxsis-flooded-warning",
@@ -151,6 +167,29 @@ local function disable_due_to_dome_low_pressure(entity, powered_and_has_fluid)
             }
             storage.flooded_warning_info_icons[entity.unit_number] = warning
         end
+    end
+end
+
+--- Floods the entity in a dome if applicable.
+--- @param entity LuaEntity
+--- @param dome_has_atmosphere boolean
+local function flood_in_dome(entity, dome_has_atmosphere)
+    if not entity.valid then return end
+    if needs_atmosphere(entity) then
+        set_flooded(entity, not dome_has_atmosphere)
+    elseif needs_dome(entity) then
+        -- entity only needs a dome, atmosphere not required
+        set_flooded(entity, false)
+    end
+end
+
+--- Floods the entity on the seabed if applicable.
+--- @param entity LuaEntity
+local function flood_on_seabed(entity)
+    if not entity.valid then return end
+    local is_on_seabed = entity.surface.get_tile(entity.position).collides_with(maraxsis_underwater_collision_mask)
+    if needs_dome(entity) and is_on_seabed then
+        set_flooded(entity, true)
     end
 end
 
@@ -322,6 +361,7 @@ maraxsis.on_event(maraxsis.events.on_built(), function(event)
     if not entity.valid or entity.name == "maraxsis-pressure-dome" then return end
     if mobile_entities[entity.type] then return end
     local surface = entity.surface
+    if not maraxsis_constants.MARAXSIS_SURFACES[surface.name] then return end
 
     for _, pressure_dome_data in pairs(storage.pressure_domes) do
         local dome = pressure_dome_data.entity
@@ -331,10 +371,9 @@ maraxsis.on_event(maraxsis.events.on_built(), function(event)
         if points_in_dome == 0 then
             goto continue
         elseif points_in_dome == 4 then
-            disable_due_to_dome_low_pressure(entity, pressure_dome_data.powered_and_has_fluid)
+            flood_in_dome(entity, pressure_dome_data.powered_and_has_fluid)
             table.insert(pressure_dome_data.contained_entities, entity)
             update_combinator(pressure_dome_data)
-            update_dome_minable_flag(pressure_dome_data)
         else
             maraxsis.cancel_creation(entity, event.player_index, {"cant-build-reason.entity-in-the-way", prototypes.entity["maraxsis-pressure-dome"].localised_name})
         end
@@ -342,9 +381,41 @@ maraxsis.on_event(maraxsis.events.on_built(), function(event)
         do return end
         ::continue::
     end
+    flood_on_seabed(entity)
 end,
     flooded_event_filter
 )
+
+--- Lays dome floor at the given positions, saving what was underneath.
+---
+--- We need to save the tile under the dome floor tile to know what to restore
+--- if/when the dome is mined.
+--- @param args {surface: LuaSurface, positions: TilePosition[]}
+local function lay_dome_floor(args)
+    local surface, positions = args.surface, args.positions
+    local below = {}
+    -- `unplace_tiles` skips restoring on space platforms, so we can skip
+    -- saving here too.
+    if not surface.platform then
+        for i, position in pairs(positions) do
+            local top = surface.get_tile(position).name
+            if top ~= PRESSURE_DOME_TILE then
+                below[i] = {top = top, hidden = surface.get_hidden_tile(position)}
+            end
+        end
+    end
+
+    local tiles = {}
+    for i, position in pairs(positions) do
+        tiles[i] = {name = PRESSURE_DOME_TILE, position = position}
+    end
+    surface.set_tiles(tiles, true, false, true, false)
+
+    for i, stack in pairs(below) do
+        surface.set_hidden_tile(positions[i], stack.top)
+        surface.set_double_hidden_tile(positions[i], stack.hidden)
+    end
+end
 
 local function place_tiles(pressure_dome_data)
     local surface = pressure_dome_data.surface
@@ -352,18 +423,17 @@ local function place_tiles(pressure_dome_data)
     local position = pressure_dome_data.position
     local x, y = position.x, position.y
 
-    local tiles = {}
+    local positions = {}
 
     for xx = -math.floor(octagon_size), math.floor(octagon_size) do
         for yy = -math.floor(octagon_size), math.floor(octagon_size) do
             if is_point_in_polygon(xx + 0.5, yy) then
-                local x, y = x + xx, y + yy
-                tiles[#tiles + 1] = {name = PRESSURE_DOME_TILE, position = {x, y}}
+                positions[#positions + 1] = {x + xx, y + yy}
             end
         end
     end
 
-    surface.set_tiles(tiles, true, false, true, false)
+    lay_dome_floor {surface = surface, positions = positions}
 end
 
 local DEFAULT_MARAXSIS_TILE = "sand-3-underwater"
@@ -389,16 +459,25 @@ local function unplace_tiles(pressure_dome_data)
     }
 
     local tiles = {}
+    local restore_hidden = {}
 
     for _, tile in pairs(tiles_in_square) do
         local tile_position = tile.position
         local xx, yy = tile_position.x, tile_position.y
         if is_point_in_polygon(xx - x + 0.5, yy - y) then
             tiles[#tiles + 1] = {name = tile_to_unplace or tile.hidden_tile or DEFAULT_MARAXSIS_TILE, position = {xx, yy}}
+            restore_hidden[#tiles] = tile.double_hidden_tile
         end
     end
 
     surface.set_tiles(tiles, true, false, true, false)
+
+    if not tile_to_unplace then
+        for i, tile in pairs(tiles) do
+            surface.set_hidden_tile(tile.position, restore_hidden[i])
+            surface.set_double_hidden_tile(tile.position, nil)
+        end
+    end
     if not surface.platform then
         surface.destroy_decoratives {
             area = area,
@@ -697,7 +776,10 @@ maraxsis.on_event(maraxsis.events.on_built(), function(event)
     place_collision_boxes(pressure_dome_data, health, player)
     place_tiles(pressure_dome_data)
     place_regulator(pressure_dome_data)
-    update_dome_minable_flag(pressure_dome_data)
+
+    for _, e in pairs(contained_entities) do
+        flood_in_dome(e, pressure_dome_data.powered_and_has_fluid)
+    end
 
     storage.pressure_domes[entity.id] = pressure_dome_data
     rerender_all_domes()
@@ -723,12 +805,14 @@ local function delete_invalid_entities_from_contained_entities_list(pressure_dom
             break
         end
     end
-
-    update_dome_minable_flag(pressure_dome_data)
 end
 
 local function cleanup_dome_for_deletion(pressure_dome_data, buffer)
     unplace_tiles(pressure_dome_data)
+
+    for _, entity in pairs(pressure_dome_data.contained_entities) do
+        flood_on_seabed(entity)
+    end
 
     for _, collision_box in pairs(pressure_dome_data.collision_boxes) do
         collision_box.destroy()
@@ -1051,7 +1135,7 @@ maraxsis.on_nth_tick(73, function()
         if powered_and_has_fluid == dome_data.powered_and_has_fluid then goto continue end
 
         for _, e in pairs(dome_data.contained_entities) do
-            disable_due_to_dome_low_pressure(e, powered_and_has_fluid)
+            flood_in_dome(e, powered_and_has_fluid)
         end
 
         dome_data.powered_and_has_fluid = powered_and_has_fluid
@@ -1060,18 +1144,21 @@ maraxsis.on_nth_tick(73, function()
     end
 end)
 
--- https://github.com/notnotmelon/maraxsis/issues/34
+--- Tiles that are "unminable" don't remember what's under them. We need that to
+--- restore whatever was under a Pressure Dome when it's mined. For this reason,
+--- pressure dome tiles are technically mineable with a mining time of 2^63. If
+--- it's actually mined for whatever reason, this handler un-mines it.
 maraxsis.on_event(maraxsis.events.on_mined_tile(), function(event)
-    local dome_tiles_to_rebuild = {}
+    local positions = {}
     for _, tile in pairs(event.tiles) do
         local name = tile.old_tile.name
         if name == PRESSURE_DOME_TILE then
-            dome_tiles_to_rebuild[#dome_tiles_to_rebuild + 1] = {position = tile.position, name = name}
+            positions[#positions + 1] = tile.position
         end
     end
-    if not dome_tiles_to_rebuild[1] then return end
+    if not positions[1] then return end
     local surface = game.get_surface(event.surface_index)
-    surface.set_tiles(dome_tiles_to_rebuild, true, false, false, false)
+    lay_dome_floor {surface = surface, positions = positions}
 end)
 
 maraxsis.on_nth_tick(5, function(event)
@@ -1104,37 +1191,5 @@ maraxsis.on_nth_tick(5, function(event)
             pressure_dome_data.opacity = opacity
         end
         ::continue::
-    end
-end)
-
-maraxsis.on_event("mine", function(event)
-    local player = game.get_player(event.player_index)
-    local entity = player.selected
-    if not entity then return end
-    if entity.name ~= "maraxsis-pressure-dome-collision" then return end
-    local pressure_dome_data
-
-    for _, dome_data in pairs(storage.pressure_domes) do
-        for _, collision_box in pairs(dome_data.collision_boxes) do
-            if collision_box.valid and collision_box == entity then
-                pressure_dome_data = dome_data
-                goto parent_dome_found
-            end
-        end
-    end
-    ::parent_dome_found::
-
-    if not pressure_dome_data then return end
-
-    local contained_entities = pressure_dome_data.contained_entities
-    if table_size(contained_entities) == 0 then return end
-    for _, e in pairs(contained_entities) do
-        if e.valid and not DOME_EXCLUDED_FROM_DISABLE[e.name] then
-            player.create_local_flying_text {
-                text = {"maraxsis.cannot-mine-dome", e.name, e.quality.name, e.localised_name},
-                position = entity.position
-            }
-            return
-        end
     end
 end)
